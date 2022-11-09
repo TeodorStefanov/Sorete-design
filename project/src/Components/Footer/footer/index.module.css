@@ -1,0 +1,9 @@
+.footer {
+  background-color: #273540;
+  height: 200px;
+}
+.footerText {
+  color: white;
+  overflow: hidden;
+}
+

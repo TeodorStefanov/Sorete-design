@@ -1,0 +1,12 @@
+.container{
+    width: 200px;
+    text-align: center;
+    align-items: center;
+    border: solid 2px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: grey;
+    height: 100px;
+}

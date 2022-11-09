@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.picture {
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+.submitPicture {
+  text-align: center;
+  background: #234465;
+  color: pink;
+  padding: 10px;
+  width: 180px;
+  margin-bottom: 80px;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  border: 2px solid white;
+  border-radius: 21px;
+  cursor: pointer;
+}
+.submitButton {
+  text-align: center;
+  background: #234465;
+  color: pink;
+  padding: 10px;
+  width: 100px;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  border: 2px solid white;
+  border-radius: 21px;
+  cursor: pointer;
+}
+
+.submitPicture:hover {
+  background-color: pink;
+  border: 2px solid #234465;
+  color: #234465;
+  font-style: italic;
+}
+.submitButton:hover {
+  background-color: pink;
+  border: 2px solid #234465;
+  color: #234465;
+  font-style: italic;
+}
+.error {
+  background-color: rgb(224, 142, 142);
+  margin-top: 10px;
+  font-size: 18px;
+  color: #234465;
+}

@@ -1,0 +1,27 @@
+.container {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.pictureContainer {
+  display: inline-block;
+  position: relative;
+  width: 20%;
+  margin: 2%;
+  cursor: pointer;
+}
+.picture {
+  display: inline-block;
+  width: 100%;
+}
+.text {
+  font-size: 40px;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.picture:hover {
+  box-shadow: 2px 2px 10px 2px grey;
+}

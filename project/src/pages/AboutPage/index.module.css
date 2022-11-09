@@ -1,0 +1,76 @@
+.container {
+  width: 100%;
+  height: auto;
+}
+.headerPic {
+  width: 100%;
+  height: 500px;
+}
+.top {
+  text-align: center;
+  align-items: center;
+  margin-right: 400px;
+  margin-left: 400px;
+  font-size: 20px;
+  margin-bottom: 100px;
+  color: black;
+}
+.mainP {
+  font-size: 38px;
+  padding: 4px 0 4px;
+
+  font-weight: 200;
+  font-size: 38px;
+  line-height: 106%;
+}
+.middle {
+  width: 100%;
+  height: auto;
+  background-color: #f9f8f6;
+}
+.upperM {
+  display: flex;
+  margin-left: 8%;
+}
+.upperPic {
+  width: 58%;
+}
+.upperText {
+  text-align: left;
+  font-size: 18px;
+  margin-top: 180px;
+  margin-right: 180px;
+  margin-left: 40x;
+  color: black;
+}
+.middleM {
+  display: flex;
+  margin-right: 12.6%;
+  height: 400px;
+}
+.middleText {
+  text-align: left;
+  font-size: 18px;
+  margin-top: 100px;
+  margin-right: 50px;
+  margin-left: 150px;
+  color: black;
+}
+.middlePic {
+  width: 80%;
+}
+.bottomM{
+    display: flex;
+    height: 400px;
+    margin-left: 3.5%;
+}
+.bottomPic {
+  width: 60%;
+}
+.bottomText{
+    width: 25%;
+    font-size: 18px;
+    text-align: left;
+    margin-top: 100px;
+
+}

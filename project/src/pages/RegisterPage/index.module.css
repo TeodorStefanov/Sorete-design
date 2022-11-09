@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: auto;
+}
+
+.submit {
+  background: #234465;
+  color: pink;
+  padding: 10px;
+  width: 100px;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  border: 2px solid white;
+  border-radius: 21px;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: pink;
+  border: 2px solid #234465;
+  color: #234465;
+  font-style: italic;
+}
+.error {
+  background-color: rgb(224, 142, 142);
+  margin-top: 10px;
+  font-size: 18px;
+  color: #234465;
+}

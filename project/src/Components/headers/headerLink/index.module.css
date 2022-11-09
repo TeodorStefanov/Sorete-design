@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  background-color: #f8f9fa;
+  height: 3em;
+  width: 100%;
+  white-space: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.about {
+  margin-left: 200px;
+  text-decoration: none;
+  color: black;
+}
+.about:hover {
+  font-weight: bold;
+  transition: ease-in-out;
+}
+
+.login {
+  margin-right: 200px;
+  letter-spacing: 1px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
+  font-weight: bold;
+  color: black;
+  transition: ease-in-out;
+}
+
+.picture {
+  vertical-align: middle;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.legged {
+  display: flex;
+}

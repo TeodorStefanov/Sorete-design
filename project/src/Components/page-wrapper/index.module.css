@@ -1,0 +1,17 @@
+.all {
+  display: flex;
+  border: 1px solid pink;
+  background-color: white;
+  align-items: center;
+  text-align: center;
+}
+.totalAll {
+  height: 100%;
+  font-family: serif;
+  font-style: italic;
+}
+
+.inner-container {
+  display: inline-block;
+  width: 100%;
+}

@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  height: 500px;
+}
+.left {
+  width: 60%;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+}
+.picture {
+  width: 60%;
+  height: 100%;
+}
+
+.right {
+  width: 40%;
+  height: 100%;
+  text-align: left;
+}
+.descriptionPrice {
+  width: 80%;
+  height: 80%;
+  margin-top: 2px;
+}
+.name {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.addToCart {
+  width: 80%;
+  height: 40px;
+  background-color: black;
+  color: white;
+}
+.size {
+  border-top: solid 1px;
+  border-color: #d8d8d8;
+}
+.sizeL {
+  display: flex;
+  margin-top: 2%;
+}
+
+.number {
+  margin: 100px;
+}
+.minus,
+.plus {
+  width: 20px;
+  height: 20px;
+  background: #f2f2f2;
+  border-radius: 4px;
+  padding: 8px 5px 8px 5px;
+  border: 1px solid #ddd;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+input {
+  height: 34px;
+  width: 100px;
+  text-align: center;
+  font-size: 26px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.L {
+  width: 20%;
+  height: 100%;
+  font-size: 20px;
+  padding-top: 2%;
+}
+.qualityNumber {
+  width: 60%;
+  text-align: center;
+  cursor: pointer;
+  
+}
+.valueNumber{
+  width: 18%;
+  margin-right: 12px;
+  margin-left: 12px;
+}
+.sizePrice {
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  padding-top: 2%;
+}

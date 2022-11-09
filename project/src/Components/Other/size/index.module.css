@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  margin-top: 2%;
+}
+.size {
+  width: 20%;
+  height: 100%;
+  font-size: 20px;
+  padding-top: 2%;
+}
+.qualityNumber {
+  width: 60%;
+  text-align: center;
+  cursor: pointer;
+}
+.valueNumber {
+  width: 18%;
+  margin-right: 12px;
+  margin-left: 12px;
+}
+.price {
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  padding-top: 2%;
+}

@@ -1,0 +1,18 @@
+.container {
+  display: inline-block;
+  width: 100%;
+  /* border:1px solid red; */
+  vertical-align: top;
+  height: 50px;
+  position: sticky;
+  top: 3em;
+}
+
+.list-item {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  background-color: #273540;
+  color: white;
+  align-items: center;
+}
