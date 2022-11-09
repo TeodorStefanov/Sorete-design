@@ -10,7 +10,7 @@ const Input = ({
   placeHolder,
   onBlur,
   error,
-}) => {
+}) => { 
   return (
     <div className={styles.container}>
       <label htmlFor={name}>
