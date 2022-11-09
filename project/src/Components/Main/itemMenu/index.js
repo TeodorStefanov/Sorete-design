@@ -11,19 +11,19 @@ const ItemMenu = () => {
     <div className={styles.container}>
       <div className={styles.pictureContainer}>
         <img className={styles.picture} src={picOne} />
-        <div className={styles.text}>Centered</div>
+        <div className={styles.text}>Towels</div>
       </div>
       <div className={styles.pictureContainer}>
         <img className={styles.picture} src={picTwo} />
-        <div className={styles.text}>Centered</div>
+        <div className={styles.text}>Bathrobes</div>
       </div>
       <div className={styles.pictureContainer}>
         <img className={styles.picture} src={picThree} />
-        <div className={styles.text}>Centered</div>
+        <div className={styles.text}>Bath Rugs & Mats</div>
       </div>
       <div className={styles.pictureContainer}>
         <img className={styles.picture} src={picFour} />
-        <div className={styles.text}>Centered</div>
+        <div className={styles.text}>Bath Accessories</div>
       </div>
     </div>
   );
