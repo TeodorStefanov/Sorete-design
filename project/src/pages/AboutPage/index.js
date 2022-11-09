@@ -5,6 +5,7 @@ import headerPic from "../../images/about/block1_273.jpg";
 import firstPic from "../../images/about/firstPic.jpg";
 import secondPic from "../../images/about/secondPic.jpg";
 import thirdPic from "../../images/about/thirdPic.jpg";
+import video from '../../images/about/video2_280.mp4'
 const AboutPage = () => {
   return (
     <PageWrapper>
@@ -44,7 +45,7 @@ const AboutPage = () => {
             <img className={styles.middlePic} src={secondPic} />
           </div>
           <div className={styles.bottomM}>
-            <img className={styles.bottomPic} src={thirdPic}/>
+            <img className={styles.bottomPic} src={thirdPic} />
             <p className={styles.bottomText}>
               With more than 140 employees, the Sorema family continues to grow,
               confident in its work, and always ready for whatever the future
@@ -52,6 +53,18 @@ const AboutPage = () => {
               success.
             </p>
           </div>
+        </div>
+        <div className={styles.footer}>
+          <span className={styles.footerText}>
+            <p>FAMILY. PASSION. COMMITMENT</p> Our many years of knowledge have
+            allowed us to experiment with techniques and designs to perfect our
+            products. That's why only the finest fibers and the best
+            manufacturing techniques are used in our products: to ensure that
+            they are not only stylish but durable, safe and comfortable.
+          </span>
+          <video width='380' height='380' className={styles.footerVideo} autoPlay={true} loop muted>
+            <source src={video} type='video/mp4'/>
+          </video>
         </div>
       </div>
     </PageWrapper>
