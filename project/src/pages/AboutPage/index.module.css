@@ -59,18 +59,29 @@
 .middlePic {
   width: 80%;
 }
-.bottomM{
-    display: flex;
-    height: 400px;
-    margin-left: 3.5%;
+.bottomM {
+  display: flex;
+  height: 400px;
+  margin-left: 3.5%;
 }
 .bottomPic {
   width: 60%;
 }
-.bottomText{
-    width: 25%;
-    font-size: 18px;
-    text-align: left;
-    margin-top: 100px;
-
+.bottomText {
+  width: 25%;
+  font-size: 18px;
+  text-align: left;
+  margin-top: 100px;
+}
+.footer {
+  display: flex;
+  margin: 100px;
+}
+.footerText {
+  width: 40%;
+  text-align: left;
+  margin: 100px;
+}
+.footerVideo {
+  width: 60%;
 }
