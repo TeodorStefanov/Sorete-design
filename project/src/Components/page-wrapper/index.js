@@ -17,7 +17,7 @@ const PageWrapper = (props) => {
         <main className={styles.all}>
           <div className={styles["inner-container"]}>{props.children}</div>
         </main>
-      </div>
+      </div> 
       {isError ? <ErrorComponent /> : ""}
       <Footer />
     </div>
