@@ -5,7 +5,7 @@ import UserContext from "../../Context";
 import styles from "./index.module.css";
 import { handleMinus, handlePlus } from "../../utils/size";
 import Size from "../../Components/Other/size";
-const ItemPage = () => { 
+const ItemPage = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -16,32 +16,85 @@ const ItemPage = () => {
   const params = useParams();
   const context = useContext(UserContext);
   const { user } = context;
+  //const [cart, setCart] = useState(`${user.cart}`);
 
   const getData = async () => {
     const id = params.id;
     const promise = await fetch(`/item/${id}`);
     if (promise.status === 200) {
-      const response = await promise.json(); 
-      setName(response.name); 
-      setDescription(response.description); 
-      setImageUrl(response.imageUrl); 
+      const response = await promise.json();
+      setName(response.name);
+      setDescription(response.description);
+      setImageUrl(response.imageUrl);
       setPrice(response.price.toFixed(2));
     }
+
+console.log(user.cart[0])
   };
   const handleSubmit = async () => {
     const id = params.id;
-    const promise = await fetch(`/user/cart/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: user._id,
-        quantity: { L: valueL, M: valueM, S: valueS },
-      }),
-    });
-    const response = await promise.json();
-    console.log(response);
+    // const promise = await fetch(`/user/cart/${id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     id: user._id,
+    //   }),
+    // });
+    // const response = await promise.json();
+    // console.log(response);
+    if (user.cart.length === 0) {
+      const promise = await fetch("/addToCart", {
+        method: "POST",  
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          product: id,
+          quantity: {
+            L: valueL,
+            M: valueM,
+            S: valueS,
+          },
+        }),
+      });
+      const response = await promise.json();
+      if (promise.status === 200) {
+        console.log("1");
+        const newPromise = await fetch("/user/cart", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: user._id,
+            cartId: response,
+          }),
+        });
+        const newResponse = await newPromise.json();
+        console.log(newResponse);
+      }
+    } else {
+      const cart = user.cart[0];
+      const promise2 = await fetch("/updateCart", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: cart,
+          product: id,
+          quantity: {
+            L: valueL,
+            M: valueM,
+            S: valueS,
+          },
+        }),
+      });
+      const response2 = await promise2.json();
+      console.log(response2);
+    }
   };
   const setMinusL = () => {
     setValueL(handleMinus(valueL));
