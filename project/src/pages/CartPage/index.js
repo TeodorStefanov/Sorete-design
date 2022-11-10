@@ -7,7 +7,7 @@ const CartPage = () => {
   const handlePic = async () => {
     const promise = await fetch(`/cart/${user._id}`)
       .then((res) => res.json())
-      .then((response) => console.log(response.cart));
+      .then((response) => console.log(response));
   };
   return (
     <PageWrapper>

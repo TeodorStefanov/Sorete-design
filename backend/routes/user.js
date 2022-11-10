@@ -8,7 +8,8 @@ const {
   checkAuthentication,
   editProfile,
   userCart,
-  cart,
+  cartt,
+  cartUser,
 } = require("../controllers/user");
 
 router.post("/registration", async (req, res) => {
@@ -52,10 +53,16 @@ router.put("/user/cart/:id", async (req, res) => {
   }
 });
 router.get("/cart/:id", async (req, res) => {
-  const user = await cart(req, res);
+  const user = await cartt(req, res);
   if(user) {
     res.status(200).send(user)
   }
 });
+router.put('/user/cart', async (req,res) => {
+  const updatedUser2 = await cartUser(req,res)
+  if(updatedUser2){
+    res.status(200).send(updatedUser2)
+  }
+})
 
 module.exports = router;

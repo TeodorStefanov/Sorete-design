@@ -184,7 +184,7 @@ const userCart = async (req, res) => {
       { _id: id },
       {
         $addToSet: {
-          cart: [{ _id, quantity }],
+          cart: [_id],
         },
       }
     ).then((updatedUser) => res.send(updatedUser));
@@ -192,12 +192,30 @@ const userCart = async (req, res) => {
     console.log(err);
   }
 };
-const cart = async (req, res) => {
+const cartt = async (req, res) => {
   const id = req.params.id;
   try {
-    const user = await User.findById({ _id: id });
-    console.log(user);
+    const user = await User.findById({ _id: id }).populate('cart')
+    const userNew = await user.cart[0].populate('product')
+    
+    console.log(userNew.product); 
     return user;
+  } catch (err) {
+    console.log(err);
+  }
+};
+const cartUser = async (req, res) => {
+  const { id, cartId } = req.body;
+  console.log(req.body)
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: id },
+      {
+        $addToSet: {
+          cart: [cartId],
+        },
+      }
+    ).then((updatedUser) => res.send(updatedUser));
   } catch (err) {
     console.log(err);
   }
@@ -208,5 +226,6 @@ module.exports = {
   checkAuthentication,
   editProfile,
   userCart,
-  cart,
+  cartt,
+  cartUser,
 };
