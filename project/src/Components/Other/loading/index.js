@@ -1,5 +1,5 @@
 import React from "react";
-import PageWrapper from "../page-wrapper";
+import PageWrapper from "../../page-wrapper";
 const Loading = () => {
   return (
     <PageWrapper>
