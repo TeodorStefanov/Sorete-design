@@ -1,6 +1,8 @@
 .footer {
   background-color: #273540;
   height: 200px;
+  position: static;
+  bottom: 0px;
 }
 .footerText {
   color: white;

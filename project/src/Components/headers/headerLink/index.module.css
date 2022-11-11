@@ -35,16 +35,25 @@
   color: black;
   transition: ease-in-out;
 }
-
+.cartShopping{
+  height: 20px;
+}
+.cartShopping:hover{
+  box-shadow: 2px 2px 10px 2px #f8f9fa;
+}
 .picture {
   vertical-align: middle;
-  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
+.picture:hover {
+  box-shadow: 2px 2px 2px 2px grey;
+}
 
 .legged {
   display: flex;
-  width: 50px;
+  width: 100px;
 }

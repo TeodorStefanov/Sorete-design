@@ -1,6 +1,6 @@
 .all {
   display: flex;
-  border: 1px solid pink;
+  min-height: 500px;
   background-color: white;
   align-items: center;
   text-align: center;
