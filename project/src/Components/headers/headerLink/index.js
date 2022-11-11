@@ -16,7 +16,7 @@ const HeaderLink = () => {
       <section className={styles.login}>
         {loggedIn ? (
           <div className={styles.logged}>
-            <FontAwesomeIcon icon={faCartShopping} />
+            <FontAwesomeIcon className={styles.cartShopping} icon={faCartShopping}/>
             <img src={user.picture} className={styles.picture} />
             <Link to="/" className={styles.link} onClick={logOut}>
               Изход

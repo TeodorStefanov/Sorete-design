@@ -18,7 +18,7 @@ const itemSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
-    }
+    },
 })
 
 itemSchema.path('imageUrl').validate(function (url) { 

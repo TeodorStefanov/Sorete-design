@@ -195,10 +195,10 @@ const userCart = async (req, res) => {
 const cartt = async (req, res) => {
   const id = req.params.id;
   try {
-    const user = await User.findById({ _id: id }).populate('cart')
-    const userNew = await user.cart[0].populate('product')
-    
-    console.log(userNew.product); 
+    const user = await User.findById({ _id: id }).populate("cart");
+    const userNew = await user.cart.populate("product");
+
+    console.log(userNew.product);
     return user;
   } catch (err) {
     console.log(err);
@@ -206,14 +206,12 @@ const cartt = async (req, res) => {
 };
 const cartUser = async (req, res) => {
   const { id, cartId } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   try {
     const user = await User.findOneAndUpdate(
       { _id: id },
       {
-        $addToSet: {
-          cart: [cartId],
-        },
+        cart: cartId,
       }
     ).then((updatedUser) => res.send(updatedUser));
   } catch (err) {

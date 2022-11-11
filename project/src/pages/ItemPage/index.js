@@ -29,7 +29,7 @@ const ItemPage = () => {
       setPrice(response.price.toFixed(2));
     }
 
-console.log(user.cart[0])
+    console.log(user.cart);
   };
   const handleSubmit = async () => {
     const id = params.id;
@@ -44,56 +44,59 @@ console.log(user.cart[0])
     // });
     // const response = await promise.json();
     // console.log(response);
-    if (user.cart.length === 0) {
-      const promise = await fetch("/addToCart", {
-        method: "POST",  
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          product: id,
-          quantity: {
-            L: valueL,
-            M: valueM,
-            S: valueS,
+    if (valueL <= 9 && valueM <= 9 && valueS <= 9) {
+      if (!user.cart) {
+        console.log('1')
+        const promise = await fetch("/addToCart", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      });
-      const response = await promise.json();
-      if (promise.status === 200) {
-        console.log("1");
-        const newPromise = await fetch("/user/cart", {
+          body: JSON.stringify({
+            product: id,
+            quantity: {
+              L: valueL,
+              M: valueM,
+              S: valueS,
+            },
+          }),
+        });
+        const response = await promise.json();
+        if (promise.status === 200) {
+          console.log("1");
+          const newPromise = await fetch("/user/cart", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: user._id,
+              cartId: response,
+            }),
+          });
+          const newResponse = await newPromise.json();
+          console.log(newResponse);
+        }
+      } else {
+        const cart = user.cart[0];
+        const promise2 = await fetch("/updateCart", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id: user._id,
-            cartId: response,
+            id: cart,
+            product: id,
+            quantity: {
+              L: valueL,
+              M: valueM,
+              S: valueS,
+            },
           }),
         });
-        const newResponse = await newPromise.json();
-        console.log(newResponse);
+        const response2 = await promise2.json();
+        console.log(response2);
       }
-    } else {
-      const cart = user.cart[0];
-      const promise2 = await fetch("/updateCart", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: cart,
-          product: id,
-          quantity: {
-            L: valueL,
-            M: valueM,
-            S: valueS,
-          },
-        }),
-      });
-      const response2 = await promise2.json();
-      console.log(response2);
     }
   };
   const setMinusL = () => {
@@ -140,6 +143,12 @@ console.log(user.cart[0])
                 value={valueL}
                 onClickMinus={setMinusL}
                 onClickPlus={setPlusL}
+                onChange={(e) => {
+                  const match = /^[0-9]*$/;
+                  if (e.target.value.match(match)) {
+                    setValueL(Number(e.target.value));
+                  }
+                }}
                 price={price}
                 size={"L"}
               />
@@ -147,6 +156,12 @@ console.log(user.cart[0])
                 value={valueM}
                 onClickMinus={setMinusM}
                 onClickPlus={setPlusM}
+                onChange={(e) => {
+                  const match = /^[0-9]*$/;
+                  if (e.target.value.match(match)) {
+                    setValueM(Number(e.target.value));
+                  }
+                }}
                 price={price}
                 size="M"
               />
@@ -154,12 +169,22 @@ console.log(user.cart[0])
                 value={valueS}
                 onClickMinus={setMinusS}
                 onClickPlus={setPlusS}
+                onChange={(e) => {
+                  const match = /^[0-9]*$/;
+                  if (e.target.value.match(match)) {
+                    setValueS(Number(e.target.value));
+                  }
+                }}
                 price={price}
                 size="S"
               />
             </div>
           </div>
-          <button className={styles.addToCart} onClick={handleSubmit}>
+          <button
+            className={styles.addToCart}
+            type="button"
+            onClick={handleSubmit}
+          >
             Add to cart
           </button>
         </div>
