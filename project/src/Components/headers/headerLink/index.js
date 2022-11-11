@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import UserContext from "../../../Context";
 const HeaderLink = () => {
   const { loggedIn, logOut, user } = useContext(UserContext);
@@ -16,6 +16,7 @@ const HeaderLink = () => {
       <section className={styles.login}>
         {loggedIn ? (
           <div className={styles.logged}>
+            <FontAwesomeIcon icon={faCartShopping} />
             <img src={user.picture} className={styles.picture} />
             <Link to="/" className={styles.link} onClick={logOut}>
               Изход
