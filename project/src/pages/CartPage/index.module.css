@@ -23,6 +23,20 @@
   height: 200px;
   border: solid 2px yellow;
 }
+.picture {
+  width: 30%;
+  height: 100%;
+}
+.name {
+  width: 70%;
+  height: 20%;
+  font-size: 20px;
+  text-align: left;
+}
+.price{
+  width: 70%;
+  height: 80%;
+}
 .right {
   width: 18%;
   border: solid 2px yellow;
