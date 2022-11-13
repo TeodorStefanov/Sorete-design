@@ -27,15 +27,31 @@
   width: 30%;
   height: 100%;
 }
-.name {
+.nameMain {
+  display: flex;
   width: 70%;
-  height: 20%;
+  height: 100%;
   font-size: 20px;
   text-align: left;
 }
-.price{
+.leftMain{
   width: 70%;
-  height: 80%;
+  height: 100%;
+  font-size: 20px;
+  text-align: left;
+}
+.name {
+  width: 100%;
+  font-size: 20px;
+  
+}
+.price {
+  list-style-type: none;
+}
+.rightMain{
+  width: 30%;
+  padding-right: 20px;
+  text-align: right;
 }
 .right {
   width: 18%;
