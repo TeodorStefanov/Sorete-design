@@ -78,7 +78,7 @@ const ItemPage = () => {
           console.log(newResponse);
         }
       } else {
-        const cart = user.cart[0];
+        const cart = user.cart;
         const promise2 = await fetch("/updateCart", {
           method: "PUT",
           headers: {
