@@ -2,9 +2,10 @@
   display: flex;
   margin-left: 200px;
   margin-right: 200px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: auto;
-
-  border: solid 2px yellow;
+  background-color: #e5e8e9;
   gap: 10px;
 }
 .left {
@@ -15,48 +16,19 @@
 .cartSummary {
   width: 100%;
   height: 50px;
-  border: solid 2px yellow;
-}
-.item {
-  display: flex;
-  width: 100%;
-  height: 200px;
-  border: solid 2px yellow;
-}
-.picture {
-  width: 30%;
-  height: 100%;
-}
-.nameMain {
-  display: flex;
-  width: 70%;
-  height: 100%;
-  font-size: 20px;
-  text-align: left;
-}
-.leftMain{
-  width: 70%;
-  height: 100%;
-  font-size: 20px;
-  text-align: left;
-}
-.name {
-  width: 100%;
-  font-size: 20px;
+  padding-top: 20px;
   
+  text-align: left;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: white;
 }
-.price {
-  list-style-type: none;
-}
-.rightMain{
-  width: 30%;
-  padding-right: 20px;
-  text-align: right;
-}
+
 .right {
   width: 18%;
-  border: solid 2px yellow;
   height: 200px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-right: 10px;
+  background-color: white;
 }

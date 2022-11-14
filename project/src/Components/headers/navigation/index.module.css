@@ -5,6 +5,7 @@
   vertical-align: top;
   height: 50px;
   position: sticky;
+  z-index: 1;
   top: 3em;
 }
 

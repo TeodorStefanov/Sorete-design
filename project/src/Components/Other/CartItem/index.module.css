@@ -1,37 +1,39 @@
 .container {
-    display: flex;
-    width: 100%;
-    height: 200px;
-    border: solid 2px yellow;
-    gap: 10px;
-  }
-  .picture {
-    width: 30%;
-    height: 100%;
-  }
-  .main {
-    display: flex;
-    width: 70%;
-    height: 100%;
-    font-size: 20px;
-    text-align: left;
-  }
-  .left{
-    width: 70%;
-    height: 100%;
-    font-size: 20px;
-    text-align: left;
-  }
-  .name {
-    width: 100%;
-    font-size: 20px;
-    
-  }
-  .price {
-    list-style-type: none;
-  }
-  .right{
-    width: 30%;
-    padding-right: 20px;
-    text-align: right;
-  }
+  display: flex;
+  width: 100%;
+  height: 200px;
+  background-color: white;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.picture {
+  width: 25%;
+  height: 100%;
+}
+.main {
+  display: flex;
+  width: 70%;
+  height: 100%;
+  font-size: 20px;
+  text-align: left;
+}
+.left {
+  width: 70%;
+  height: 100%;
+  font-size: 20px;
+  text-align: left;
+}
+.name {
+  width: 100%;
+  font-size: 20px;
+}
+.price {
+  list-style-type: none;
+}
+.right {
+  width: 30%;
+  text-align: right;
+}
+.button {
+  margin-top: 102px;
+}
