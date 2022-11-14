@@ -1,5 +1,8 @@
 import React from "react";
 import styles from "./index.module.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 const CartItem = ({
   imageUrl,
   name,
@@ -7,6 +10,7 @@ const CartItem = ({
   quantityM,
   quantityS,
   price,
+  total,
 }) => {
   return (
     <div className={styles.container}>
@@ -15,18 +19,20 @@ const CartItem = ({
         <div className={styles.left}>
           <h1 className={styles.name}>{name}</h1>
           <ul className={styles.price}>
-            <b>Quantity:</b>
-            <li>L: {quantityL}</li>
-            <li>M: {quantityM}</li>
-            <li>S: {quantityS}</li>
+            Quantity:
+            <li>Size L: {quantityL}</li>
+            <li>Size M: {quantityM}</li>
+            <li>Size S: {quantityS}</li>
           </ul>
           <p>
             <b>Price:</b> {price} BGN
           </p>
         </div>
         <div className={styles.right}>
-          <p>Total:</p>
-          <button>Remove</button>
+          <p>
+            <b>{total} BGN</b>
+          </p>
+          <FontAwesomeIcon className={styles.button} icon={faTrashCan} />
         </div>
       </div>
     </div>
