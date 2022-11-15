@@ -24,9 +24,6 @@ const CartItem = ({
             <li>Size M: {quantityM}</li>
             <li>Size S: {quantityS}</li>
           </ul>
-          <p>
-            <b>Price:</b> {price} BGN
-          </p>
         </div>
         <div className={styles.right}>
           <p>
