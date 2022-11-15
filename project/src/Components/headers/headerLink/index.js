@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import UserContext from "../../../Context";
 const HeaderLink = () => {
+  const navigate = useNavigate();
   const { loggedIn, logOut, user } = useContext(UserContext);
-
+  const handleClick = () => {
+    const id = user._id;
+    navigate(`/${id}/cart`);
+  };
   return (
     <div className={styles.container}>
       <Link to="/about" className={styles.about}>
@@ -16,7 +20,11 @@ const HeaderLink = () => {
       <section className={styles.login}>
         {loggedIn ? (
           <div className={styles.logged}>
-            <FontAwesomeIcon className={styles.cartShopping} icon={faCartShopping}/>
+            <FontAwesomeIcon
+              className={styles.cartShopping}
+              icon={faCartShopping}
+              onClick={handleClick}
+            />
             <img src={user.picture} className={styles.picture} />
             <Link to="/" className={styles.link} onClick={logOut}>
               Изход

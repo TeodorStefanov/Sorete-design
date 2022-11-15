@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 const Item = ({ name, description, imageUrl, price, id }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/items/${id}`);
+    navigate(`/products/${id}`);
   };
   return (
     <div className={styles.container} onClick={handleClick}>

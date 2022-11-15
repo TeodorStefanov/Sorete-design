@@ -5,7 +5,7 @@ import UserContext from "../../Context";
 import styles from "./index.module.css";
 import { handleMinus, handlePlus } from "../../utils/size";
 import Size from "../../Components/Other/size";
-const ItemPage = () => {
+const ProductPage = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -16,7 +16,6 @@ const ItemPage = () => {
   const params = useParams();
   const context = useContext(UserContext);
   const { user } = context;
-  //const [cart, setCart] = useState(`${user.cart}`);
 
   const getData = async () => {
     const id = params.id;
@@ -28,25 +27,12 @@ const ItemPage = () => {
       setImageUrl(response.imageUrl);
       setPrice(response.price.toFixed(2));
     }
-
-    console.log(user.cart);
   };
   const handleSubmit = async () => {
     const id = params.id;
-    // const promise = await fetch(`/user/cart/${id}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     id: user._id,
-    //   }),
-    // });
-    // const response = await promise.json();
-    // console.log(response);
     if (valueL <= 9 && valueM <= 9 && valueS <= 9) {
       if (!user.cart) {
-        console.log('1')
+        console.log("1");
         const promise = await fetch("/addToCart", {
           method: "POST",
           headers: {
@@ -63,8 +49,7 @@ const ItemPage = () => {
         });
         const response = await promise.json();
         if (promise.status === 200) {
-          console.log("1");
-          const newPromise = await fetch("/user/cart", {
+          const newPromise = await fetch("/user/createCart", {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -192,4 +177,4 @@ const ItemPage = () => {
     </PageWrapper>
   );
 };
-export default ItemPage;
+export default ProductPage;

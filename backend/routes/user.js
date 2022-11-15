@@ -2,14 +2,13 @@ const env = process.env.NODE_ENV || "development";
 const express = require("express");
 
 const router = express.Router();
-const {
+const { 
   saveUser,
   verifyUser,
   checkAuthentication,
   editProfile,
-  userCart,
-  cartt,
-  cartUser,
+  createCart,
+  getCart,
 } = require("../controllers/user");
 
 router.post("/registration", async (req, res) => {
@@ -31,13 +30,13 @@ router.post("/login", async (req, res) => {
     res.cookie("aid", token, { maxAge: 3600000 });
     res.send(user);
   }
-});
+}); 
 router.post("/verify", async (req, res) => {
   const user = await checkAuthentication(req, res);
   if (user) {
     res.send(user);
   }
-});
+}); 
 router.put("/profile/edit", async (req, res) => {
   const { user, error, status, message } = await editProfile(req, res);
   if (!error) {
@@ -45,24 +44,18 @@ router.put("/profile/edit", async (req, res) => {
   } else {
     res.status(status).send({ error: message });
   }
-});
-router.put("/user/cart/:id", async (req, res) => {
-  const updatedUser = await userCart(req, res);
-  if (updatedUser) {
-    res.status(200).send(updatedUser);
-  }
-});
+}); 
 router.get("/cart/:id", async (req, res) => {
-  const user = await cartt(req, res);
-  if(user) {
-    res.status(200).send(user)
+  const user = await getCart(req, res);
+  if (user) {
+    res.status(200).send(user);
+  } 
+});
+router.put("/user/createCart", async (req, res) => {
+  const updatedUser2 = await createCart(req, res);
+  if (updatedUser2) {
+    res.status(200).send(updatedUser2);
   }
 });
-router.put('/user/cart', async (req,res) => {
-  const updatedUser2 = await cartUser(req,res)
-  if(updatedUser2){
-    res.status(200).send(updatedUser2)
-  }
-})
 
 module.exports = router;

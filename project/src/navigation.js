@@ -20,7 +20,7 @@ import RegisterPage from './pages/RegisterPage'
 import ProfileEdit from './pages/profileEdit'
 
 import UserContext from './Context'
-import ItemPage from './pages/ItemPage'
+import ProductPage from './pages/productPage'
 import CartPage from './pages/CartPage'
 import AboutPage from './pages/AboutPage'
 
@@ -39,8 +39,8 @@ const Navigation = () => {
                 <Route path='/registration' element={<RegisterPage />} />
                 {loggedIn ? (<Route path='/profile' element={<Profile />} />) : <Route path='/profile' element={<Navigate to='/login' />} />}
                 {loggedIn ? (<Route path='/profile/edit' element={<ProfileEdit />} />) : <Route path='/profile/edit' element={<Navigate to='/login' />} />}
-                <Route path='/items/:id' element={<ItemPage />} />
-                <Route path='/cart' element={<CartPage/>} />
+                <Route path='/products/:id' element={<ProductPage />} />
+                <Route path='/:userID/cart' element={<CartPage/>} />
             </Routes>
         </BrowserRouter>
     )
