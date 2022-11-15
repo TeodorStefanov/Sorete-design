@@ -1,13 +1,12 @@
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || "development";
 
 const config = {
-    development: {
-        port: process.env.PORT || 9000,
-        dbURL: "mongodb+srv://user:123123abc@softuni.dg6bv.mongodb.net/Project?retryWrites=true&w=majority",
-        authCookieName: 'x-auth-token',
-        privetKey: 'PROJECT-WORKSHOP-SOFTUNI'
-    },
-    production: {}
+  development: {
+    port: process.env.PORT || 9000,
+    dbURL: process.env.DATABASE_URL,
+    privetKey: process.env.PRIVATE_KEY,
+  },
+  production: {},
 };
-config/config.js
+config / config.js;
 module.exports = config[env];

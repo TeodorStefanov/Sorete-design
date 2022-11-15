@@ -1,11 +1,11 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
-const privetKey = "PROJECT-WORKSHOP-SOFTUNI";
+const config = require("../config/config");
 const jwt = require("jsonwebtoken");
 
 const generateToken = (data) => {
-  const token = jwt.sign(data, privetKey, { expiresIn: "1h" });
+  const token = jwt.sign(data, config.privetKey, { expiresIn: "1h" });
   return token;
 };
 
@@ -125,7 +125,7 @@ const checkAuthentication = async (req, res) => {
     return false;
   }
   try {
-    const decoded = jwt.verify(token, privetKey);
+    const decoded = jwt.verify(token, config.privetKey);
     if (decoded) {
       const { username } = decoded;
       const user = await User.findOne({ username });
@@ -175,36 +175,17 @@ const editProfile = async (req, res) => {
     };
   }
 };
-const userCart = async (req, res) => {
-  const obj = req.body;
-  const { id, quantity } = obj;
-  const _id = req.params.id;
-  try {
-    const user = await User.findOneAndUpdate(
-      { _id: id },
-      {
-        $addToSet: {
-          cart: [_id],
-        },
-      }
-    ).then((updatedUser) => res.send(updatedUser));
-  } catch (err) {
-    console.log(err);
-  }
-};
-const cartt = async (req, res) => {
+const getCart = async (req, res) => {
   const id = req.params.id;
   try {
     const user = await User.findById({ _id: id }).populate("cart");
     const userNew = await user.cart.populate("product");
-
-    console.log(userNew.product);
     return user;
   } catch (err) {
     console.log(err);
   }
 };
-const cartUser = async (req, res) => {
+const createCart = async (req, res) => {
   const { id, cartId } = req.body;
   console.log(req.body);
   try {
@@ -223,7 +204,6 @@ module.exports = {
   verifyUser,
   checkAuthentication,
   editProfile,
-  userCart,
-  cartt,
-  cartUser,
+  getCart,
+  createCart,
 };

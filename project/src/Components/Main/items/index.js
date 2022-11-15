@@ -7,7 +7,7 @@ class Kartichki extends Component {
     super(props);
     this.state = {
       items: [],
-    };
+    }; 
   }
 
   getItems = async () => {
