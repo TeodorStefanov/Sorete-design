@@ -32,8 +32,13 @@ const CartPage = () => {
     <PageWrapper>
       {products.length > 0 ? (
         <div className={styles.container}>
-          <div className={styles.left}>
-            <p className={styles.cartSummary}>SHOPPING CART</p>
+          <div className={styles.main}>
+            <div className={styles.cartSummary}>
+              <p>
+                <b>SHOPPING CART </b>({products.length} Products)
+              </p>
+              <p>Confirm the products and quantities of your order</p>
+            </div>
             {products.map((el, index) => {
               const total =
                 quantity[index].L + quantity[index].M + quantity[index].S;
@@ -51,12 +56,19 @@ const CartPage = () => {
               );
             })}
           </div>
-          <div className={styles.right}>
-            <p>Total</p>
-            <p>{allTotal()} BGN</p>
-            <button className={styles.button} onClick={handlePic}>
-              CONTINUE
-            </button>
+          <div className={styles.bottom}>
+            <div className={styles.bottomLeft}>
+              <p>PROMO CODE</p>
+              <input className={styles.input}></input>
+              <button>APPLY</button>
+            </div>
+            <div className={styles.bottomRight}>
+              <p>Total</p>
+              <p>{allTotal()} BGN</p>
+              <button className={styles.button} onClick={handlePic}>
+                BUY
+              </button>
+            </div>
           </div>
         </div>
       ) : (
