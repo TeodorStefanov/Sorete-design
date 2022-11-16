@@ -57,9 +57,12 @@
 }
 .applyButton {
   padding: 10px;
+  width: 100px;
   height: 40px;
+  margin-left: 10px;
   background-color: white;
-  border-color: white;
+  border: solid 1px rgb(175, 175, 175);
+  border-color: rgb(175, 175, 175);
   color: #828282;
 }
 .button:hover {
