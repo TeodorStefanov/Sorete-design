@@ -68,7 +68,7 @@ const CartPage = () => {
               {checkCode ? <p>Please enter valid Promo code</p> : ''}
             </div>
             <div className={styles.bottomRight}>
-              <p>Total</p>
+              <p>Total (Tax incl.)</p>
               <p>{allTotal()} BGN</p>
               <button className={styles.button} onClick={handlePic}>
                 BUY
