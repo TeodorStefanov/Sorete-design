@@ -30,7 +30,20 @@ const Header = () => {
   return (
     <div onClick={handleSubmit}>
       <header>
-        <img className={styles.container} src={pictures[currentImg]} alt="" />
+        <div className={styles.container}>
+          <img className={styles.picture} src={pictures[currentImg]} alt="" />
+          <ul className={styles.listButtons}>
+            <li className={styles.listBottom}>
+              <button className={styles.button}></button>
+            </li>
+            <li className={styles.listBottom}>
+              <button className={styles.button}></button>
+            </li>
+            <li className={styles.listBottom}>
+              <button className={styles.button}></button>
+            </li>
+          </ul>
+        </div>
       </header>
     </div>
   );
