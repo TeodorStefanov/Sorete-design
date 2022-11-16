@@ -7,6 +7,7 @@ const CartPage = () => {
   const context = useContext(UserContext);
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState([]);
+  const [checkCode, setCheckCode] = useState(false)
   const { user } = context;
   const handlePic = async () => {
     const promise = await fetch(`/cart/${user._id}`);
@@ -24,6 +25,9 @@ const CartPage = () => {
     });
     return allTotal.toFixed(2);
   };
+  const handleClick = () => {
+    setCheckCode(true)
+  }
   useEffect(() => {
     handlePic();
     allTotal();
@@ -60,7 +64,8 @@ const CartPage = () => {
             <div className={styles.bottomLeft}>
               <p>PROMO CODE</p>
               <input className={styles.input}></input>
-              <button>APPLY</button>
+              <button className={styles.applyButton} onClick={handleClick}>APPLY</button>
+              {checkCode ? <p>Please enter valid Promo code</p> : ''}
             </div>
             <div className={styles.bottomRight}>
               <p>Total</p>
