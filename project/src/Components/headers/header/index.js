@@ -14,10 +14,6 @@ const Header = () => {
   const handleSubmit = () => {
     navigate("/");
   };
-  useEffect(() => {
-    const interval = setInterval(changeImage, 10000);
-    return () => clearInterval(interval);
-  }, [currentImg]);
   const changeImage = () => {
     let newCurrentImg = 0;
     const length = pictures.length;
@@ -27,6 +23,10 @@ const Header = () => {
 
     setCurrentImg(newCurrentImg);
   };
+  useEffect(() => {
+    const interval = setInterval(changeImage, 10000);
+    return () => clearInterval(interval);
+  }, [currentImg]);
   return (
     <div onClick={handleSubmit}>
       <header>
@@ -34,13 +34,31 @@ const Header = () => {
           <img className={styles.picture} src={pictures[currentImg]} alt="" />
           <ul className={styles.listButtons}>
             <li className={styles.listBottom}>
-              <button className={styles.button}></button>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={() => {
+                  setCurrentImg(0);
+                }}
+              ></button>
             </li>
             <li className={styles.listBottom}>
-              <button className={styles.button}></button>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={() => {
+                  setCurrentImg(1);
+                }}
+              ></button>
             </li>
             <li className={styles.listBottom}>
-              <button className={styles.button}></button>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={() => {
+                  setCurrentImg(2);
+                }}
+              ></button>
             </li>
           </ul>
         </div>
