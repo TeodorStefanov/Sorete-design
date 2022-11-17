@@ -34,5 +34,6 @@
   text-align: right;
 }
 .button {
+  cursor: pointer;
   margin-top: 50px;
 }

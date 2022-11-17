@@ -5,14 +5,14 @@ const Size = ({ value, onClickMinus, onClickPlus, price, size, onChange }) => {
     <div className={styles.main}>
       <span className={styles.size}>{size}</span>
       <div className={styles.qualityNumber}>
-        <span onClick={onClickMinus}>-</span>
+        <span className={styles.span} onClick={onClickMinus}>-</span>
         <input
           type="text"
           className={styles.valueNumber}
           value={value}
           onChange={onChange}
         />
-        <span onClick={onClickPlus}>+</span>
+        <span className={styles.span} onClick={onClickPlus}>+</span>
       </div>
       <span className={styles.price}>{price} BGN</span>
     </div>

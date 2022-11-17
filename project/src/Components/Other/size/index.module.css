@@ -1,6 +1,7 @@
 .main {
   display: flex;
   margin-top: 2%;
+  user-select: none;
 }
 .size {
   width: 20%;
@@ -11,6 +12,9 @@
 .qualityNumber {
   width: 60%;
   text-align: center;
+  cursor: pointer;
+}
+.span{
   cursor: pointer;
 }
 .valueNumber {
