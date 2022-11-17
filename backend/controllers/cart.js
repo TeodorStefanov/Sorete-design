@@ -35,7 +35,24 @@ const updatedCart = async (req, res) => {
     console.log(err);
   }
 };
+const deleteItem = async (req, res) => {
+  const { id, product, quantity } = req.body;
+  try {
+    const cart = await Cart.findOneAndUpdate(
+      { _id: id },
+      {
+        product,
+        quantity,
+      }
+    );
+    
+    return cart;
+  } catch (err) {
+    console.log;
+  }
+};
 module.exports = {
   cartAdd,
   updatedCart,
+  deleteItem,
 };

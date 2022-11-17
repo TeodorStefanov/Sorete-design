@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./index.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import UserContext from "../../../Context";
 const CartItem = ({
   imageUrl,
   name,
@@ -11,7 +12,30 @@ const CartItem = ({
   quantityS,
   price,
   total,
+  products,
+  quantity,
+  index,
 }) => {
+  const context = useContext(UserContext);
+  const { user, logIn } = context;
+  const handleClick = async () => {
+    const newProducts = products.splice(index, 1);
+    const newQuantity = quantity.splice(index, 1);
+    const promise = await fetch("/deleteItem", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: user.cart,
+        product: newProducts,
+        quantity: newQuantity,
+      }),
+    })
+    const response = await promise.json();
+    console.log(response);
+    logIn(user)
+  };
   return (
     <div className={styles.container}>
       <img className={styles.picture} src={imageUrl}></img>
@@ -29,7 +53,11 @@ const CartItem = ({
           <p>
             <b>{total} BGN</b>
           </p>
-          <FontAwesomeIcon className={styles.button} icon={faTrashCan} />
+          <FontAwesomeIcon
+            className={styles.button}
+            icon={faTrashCan}
+            onClick={handleClick}
+          />
         </div>
       </div>
     </div>
