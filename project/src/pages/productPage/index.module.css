@@ -33,8 +33,20 @@
 .addToCart {
   width: 80%;
   height: 40px;
-  background-color: black;
+  background-color: #2f3526;
+  border-color: #2f3526;
   color: white;
+}
+.addToCart:hover {
+  background-color: black;
+  border-color: black;
+}
+.valueError {
+  margin-top: 20px;
+  width: 80%;
+  height: 20px;
+  border: solid 2px #eea866;
+  background-color: #fdf1e6;
 }
 .size {
   border-top: solid 1px;
@@ -80,9 +92,8 @@ input {
   width: 60%;
   text-align: center;
   cursor: pointer;
-  
 }
-.valueNumber{
+.valueNumber {
   width: 18%;
   margin-right: 12px;
   margin-left: 12px;
