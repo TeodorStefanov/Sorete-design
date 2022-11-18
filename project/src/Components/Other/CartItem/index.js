@@ -28,13 +28,13 @@ const CartItem = ({
       },
       body: JSON.stringify({
         id: user.cart,
-        product: newProducts,
-        quantity: newQuantity,
+        product: products,
+        quantity: quantity,
       }),
-    })
+    });
     const response = await promise.json();
     console.log(response);
-    logIn(user)
+    logIn(user);
   };
   return (
     <div className={styles.container}>

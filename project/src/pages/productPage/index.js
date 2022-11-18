@@ -13,6 +13,7 @@ const ProductPage = () => {
   const [valueL, setValueL] = useState(0);
   const [valueM, setValueM] = useState(0);
   const [valueS, setValueS] = useState(0);
+  const [valueError, setValueError] = useState(false);
   const params = useParams();
   const context = useContext(UserContext);
   const { user } = context;
@@ -29,8 +30,16 @@ const ProductPage = () => {
     }
   };
   const handleSubmit = async () => {
+    if (valueL === 0 && valueM === 0 && valueS === 0) {
+      setValueError(true);
+    }
     const id = params.id;
-    if (valueL <= 9 && valueM <= 9 && valueS <= 9) {
+    if (
+      valueL <= 9 &&
+      valueM <= 9 &&
+      valueS <= 9 &&
+      (valueL > 0 || valueM > 0 || valueS > 0)
+    ) {
       if (!user.cart) {
         console.log("1");
         const promise = await fetch("/addToCart", {
@@ -105,6 +114,7 @@ const ProductPage = () => {
   useEffect(() => {
     getData();
   }, []);
+  const total = valueL + valueM + valueS;
   return (
     <PageWrapper>
       <div className={styles.container}>
@@ -171,7 +181,13 @@ const ProductPage = () => {
             onClick={handleSubmit}
           >
             Add to cart
+            {total !== 0 ? ` - ${(total * price).toFixed(2)} BGN` : ""}
           </button>
+          {valueError ? (
+            <div className={styles.valueError}>Please select a size</div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </PageWrapper>

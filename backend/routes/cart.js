@@ -16,7 +16,7 @@ router.put("/updateCart", async (req, res) => {
 });
 router.put("/deleteItem", async (req, res) => {
   const cart = await deleteItem(req, res);
-  console.log(cart)
-  res.status(200).send(cart)
+  console.log(cart);
+  res.status(200).send(cart);
 });
 module.exports = router;
