@@ -70,7 +70,7 @@ const CartPage = () => {
               <button className={styles.applyButton} onClick={handleClick}>
                 APPLY
               </button>
-              {checkCode ? <p>Please enter valid Promo code</p> : ""}
+              {checkCode ? <p className={styles.promoCode}>Please enter valid Promo code</p> : ""}
             </div>
             <div className={styles.bottomRight}>
               <p>Total (Tax incl.)</p>
