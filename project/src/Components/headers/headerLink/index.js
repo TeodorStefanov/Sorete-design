@@ -11,7 +11,10 @@ const HeaderLink = () => {
   const handleClick = () => {
     const id = user._id;
     navigate(`/${id}/cart`);
-  };
+  }
+  const handleClickNew = () => {
+    navigate('/profile')
+  }
   const handleProductCart = async () => {
     const promise = await fetch(`/cart/${user._id}`);
     if (promise) {
@@ -22,7 +25,7 @@ const HeaderLink = () => {
   };
   useEffect(() => {
     handleProductCart();
-  });
+  },[]);
   return (
     <div className={styles.container}>
       <Link to="/about" className={styles.about}>
@@ -40,7 +43,7 @@ const HeaderLink = () => {
             <span className={styles.span} onClick={handleClick}>
               {quantityCart > 0 ? quantityCart : ""}
             </span>
-            <img src={user.picture} className={styles.picture} />
+            <img src={user.picture} className={styles.picture} onClick={handleClickNew}/>
             <Link to="/" className={styles.link} onClick={logOut}>
               Изход
             </Link>

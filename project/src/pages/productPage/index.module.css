@@ -48,6 +48,14 @@
   border: solid 2px #eea866;
   background-color: #fdf1e6;
 }
+.valueComplate {
+  font-size: 20px;
+  margin-top: 20px;
+  width: 80%;
+  height: 20px;
+  border: solid 2px rgb(87, 168, 25);
+  background-color: rgb(114, 206, 33);
+}
 .size {
   border-top: solid 1px;
   border-color: #d8d8d8;
@@ -103,4 +111,19 @@ input {
   height: 100%;
   text-align: center;
   padding-top: 2%;
+}
+
+.modalContainer {
+  border: solid 2px yellow;
+  background-color: yellow;
+  z-index: 1;
+  width: 320px;
+  height: 608px;
+  position: fixed;
+  top: 48px;
+  left: 1200px;
+}
+.pictureModal{
+  width: 40px;
+  height: 40px;
 }

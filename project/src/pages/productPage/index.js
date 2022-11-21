@@ -14,10 +14,11 @@ const ProductPage = () => {
   const [valueM, setValueM] = useState(0);
   const [valueS, setValueS] = useState(0);
   const [valueError, setValueError] = useState(false);
+  const [valueComplate, setValueComplate] = useState(false);
+  const [clickModal, setClickModal] = useState(false);
   const params = useParams();
   const context = useContext(UserContext);
   const { user } = context;
-  const navigate = useNavigate();
 
   const getData = async () => {
     const id = params.id;
@@ -33,6 +34,14 @@ const ProductPage = () => {
   const handleSubmit = async () => {
     if (valueL === 0 && valueM === 0 && valueS === 0) {
       setValueError(true);
+      setTimeout(() => {
+        setValueError(false);
+      }, 1000);
+    } else {
+      setValueComplate(true);
+      setTimeout(() => {
+        setValueComplate(false);
+      }, 1000);
     }
     const id = params.id;
     if (
@@ -42,7 +51,6 @@ const ProductPage = () => {
       (valueL > 0 || valueM > 0 || valueS > 0)
     ) {
       if (!user.cart) {
-        console.log("1");
         const promise = await fetch("/addToCart", {
           method: "POST",
           headers: {
@@ -70,7 +78,7 @@ const ProductPage = () => {
             }),
           });
           const newResponse = await newPromise.json();
-          navigate(`/products/${params.id}`);
+          setClickModal(true);
         }
       } else {
         const cart = user.cart;
@@ -90,9 +98,12 @@ const ProductPage = () => {
           }),
         });
         const response2 = await promise2.json();
-        navigate(`/products/${params.id}`);
+        setClickModal(true);
       }
     }
+    setValueL(0);
+    setValueM(0);
+    setValueS(0);
   };
   const setMinusL = () => {
     setValueL(handleMinus(valueL));
@@ -189,7 +200,28 @@ const ProductPage = () => {
           ) : (
             ""
           )}
+          {valueComplate ? (
+            <div className={styles.valueComplate}>Your order has been send</div>
+          ) : (
+            ""
+          )}
         </div>
+        {clickModal ? (
+          <div className={styles.modalContainer}>
+            <img src={imageUrl} className={styles.pictureModal}></img>
+            <div>
+              <h1>{name}</h1>
+              <ul>
+                Quantity:
+                <li>Size L: {valueL}</li>
+                <li>Size M: {valueM}</li>
+                <li>Size S: {valueS}</li>
+              </ul>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </PageWrapper>
   );
