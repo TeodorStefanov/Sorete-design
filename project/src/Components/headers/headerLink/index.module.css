@@ -36,11 +36,28 @@
   color: black;
   transition: ease-in-out;
 }
-.cartShopping{
+.cartShopping {
   height: 20px;
+  position: absolute;
+  top: 15px;
+  right: 310px;
+  cursor: pointer;
 }
-.cartShopping:hover{
+.cartShopping:hover {
   box-shadow: 2px 2px 10px 2px #e5e8e9;
+}
+.span {
+  width: 25px;
+  height: 25px;
+  font-size: 12px;
+  border: solid 2px red;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  position: relative;
+  top: -12px;
+  right: -5px;
+  cursor: pointer;
 }
 .picture {
   vertical-align: middle;
@@ -49,6 +66,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .picture:hover {
   box-shadow: 2px 2px 2px 2px grey;
