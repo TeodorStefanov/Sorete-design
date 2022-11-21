@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,10 +7,22 @@ import UserContext from "../../../Context";
 const HeaderLink = () => {
   const navigate = useNavigate();
   const { loggedIn, logOut, user } = useContext(UserContext);
+  const [quantityCart, setQuantityCart] = useState(0);
   const handleClick = () => {
     const id = user._id;
     navigate(`/${id}/cart`);
   };
+  const handleProductCart = async () => {
+    const promise = await fetch(`/cart/${user._id}`);
+    if (promise) {
+      const response = await promise.json();
+      const products = response.cart.product;
+      setQuantityCart(products.length);
+    }
+  };
+  useEffect(() => {
+    handleProductCart();
+  });
   return (
     <div className={styles.container}>
       <Link to="/about" className={styles.about}>
@@ -25,6 +37,9 @@ const HeaderLink = () => {
               icon={faCartShopping}
               onClick={handleClick}
             />
+            <span className={styles.span} onClick={handleClick}>
+              {quantityCart > 0 ? quantityCart : ""}
+            </span>
             <img src={user.picture} className={styles.picture} />
             <Link to="/" className={styles.link} onClick={logOut}>
               Изход

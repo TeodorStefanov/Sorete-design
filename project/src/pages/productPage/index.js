@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import PageWrapper from "../../Components/page-wrapper";
 import UserContext from "../../Context";
 import styles from "./index.module.css";
@@ -17,6 +17,7 @@ const ProductPage = () => {
   const params = useParams();
   const context = useContext(UserContext);
   const { user } = context;
+  const navigate = useNavigate();
 
   const getData = async () => {
     const id = params.id;
@@ -69,7 +70,7 @@ const ProductPage = () => {
             }),
           });
           const newResponse = await newPromise.json();
-          console.log(newResponse);
+          navigate(`/products/${params.id}`);
         }
       } else {
         const cart = user.cart;
@@ -89,7 +90,7 @@ const ProductPage = () => {
           }),
         });
         const response2 = await promise2.json();
-        console.log(response2);
+        navigate(`/products/${params.id}`);
       }
     }
   };
