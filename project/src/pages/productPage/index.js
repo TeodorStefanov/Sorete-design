@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageWrapper from "../../Components/page-wrapper";
 import UserContext from "../../Context";
 import styles from "./index.module.css";
@@ -17,8 +17,7 @@ const ProductPage = () => {
   const [clickModal, setClickModal] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
-  const context = useContext(UserContext);
-  const { user } = context;
+  const { user, logIn } = useContext(UserContext);
 
   const getData = async () => {
     const id = params.id;
@@ -30,15 +29,6 @@ const ProductPage = () => {
       setImageUrl(response.imageUrl);
       setPrice(response.price.toFixed(2));
     }
-  };
-  const handleCheckout = () => {
-    navigate(`/${user._id}/cart`);
-  };
-  const handleContinue = () => {
-    setValueL(0);
-    setValueM(0);
-    setValueS(0);
-    setClickModal(false);
   };
   const handleSubmit = async () => {
     if (valueL === 0 && valueM === 0 && valueS === 0) {
@@ -124,6 +114,15 @@ const ProductPage = () => {
   const setPlusS = () => {
     setValueS(handlePlus(valueS));
   };
+  const handleCheckout = () => {
+    navigate(`/${user._id}/cart`);
+  };
+  const handleContinue = () => {
+    setValueL(0);
+    setValueM(0);
+    setValueS(0);
+    setClickModal(false);
+  };
   useEffect(() => {
     getData();
   }, []);
@@ -202,7 +201,9 @@ const ProductPage = () => {
             ""
           )}
         </div>
-        {clickModal ? (
+      </div>
+      {clickModal ? (
+        <div className={styles.containerModal}>
           <div className={styles.modalContainer}>
             <div className={styles.topModal}>
               <img src={imageUrl} className={styles.pictureModal}></img>
@@ -232,10 +233,11 @@ const ProductPage = () => {
               Continue shopping
             </button>
           </div>
-        ) : (
-          ""
-        )}
-      </div>
+          <div className={styles.overlay}></div>
+        </div>
+      ) : (
+        ""
+      )}
     </PageWrapper>
   );
 };

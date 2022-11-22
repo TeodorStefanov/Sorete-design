@@ -89,7 +89,7 @@ const verifyUser = async (req, res) => {
   const obj = req.body;
   const { username, password } = obj;
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).populate("cart");
     if (!user) {
       return {
         error: true,
@@ -128,8 +128,11 @@ const checkAuthentication = async (req, res) => {
     const decoded = jwt.verify(token, config.privetKey);
     if (decoded) {
       const { username } = decoded;
-      const user = await User.findOne({ username });
-
+      const user = await User.findOne({ username }).populate("cart");
+      console.log(user);
+      if (user.cart) {
+        const newUser = await user.cart.populate("product");
+      }
       return user;
     }
   } catch (err) {
