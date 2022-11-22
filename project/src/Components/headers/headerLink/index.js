@@ -11,21 +11,11 @@ const HeaderLink = () => {
   const handleClick = () => {
     const id = user._id;
     navigate(`/${id}/cart`);
-  }
-  const handleClickNew = () => {
-    navigate('/profile')
-  }
-  const handleProductCart = async () => {
-    const promise = await fetch(`/cart/${user._id}`);
-    if (promise) {
-      const response = await promise.json();
-      const products = response.cart.product;
-      setQuantityCart(products.length);
-    }
   };
-  useEffect(() => {
-    handleProductCart();
-  },[]);
+  const handleClickNew = () => {
+    navigate("/profile");
+  };
+ 
   return (
     <div className={styles.container}>
       <Link to="/about" className={styles.about}>
@@ -40,10 +30,18 @@ const HeaderLink = () => {
               icon={faCartShopping}
               onClick={handleClick}
             />
-            <span className={styles.span} onClick={handleClick}>
-              {quantityCart > 0 ? quantityCart : ""}
-            </span>
-            <img src={user.picture} className={styles.picture} onClick={handleClickNew}/>
+            {user.cart && user.cart.product.length > 0 ? (
+              <span className={styles.span} onClick={handleClick}>
+                {quantityCart}
+              </span>
+            ) : (
+              ""
+            )}
+            <img
+              src={user.picture}
+              className={styles.picture}
+              onClick={handleClickNew}
+            />
             <Link to="/" className={styles.link} onClick={logOut}>
               Изход
             </Link>

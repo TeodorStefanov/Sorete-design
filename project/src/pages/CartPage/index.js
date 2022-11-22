@@ -4,11 +4,10 @@ import PageWrapper from "../../Components/page-wrapper";
 import UserContext from "../../Context";
 import styles from "./index.module.css";
 const CartPage = () => {
-  const context = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState([]);
   const [checkCode, setCheckCode] = useState(false);
-  const { user } = context;
   const handlePic = async () => {
     const promise = await fetch(`/cart/${user._id}`);
     const response = await promise.json();
@@ -70,7 +69,13 @@ const CartPage = () => {
               <button className={styles.applyButton} onClick={handleClick}>
                 APPLY
               </button>
-              {checkCode ? <p className={styles.promoCode}>Please enter valid Promo code</p> : ""}
+              {checkCode ? (
+                <p className={styles.promoCode}>
+                  Please enter valid Promo code
+                </p>
+              ) : (
+                ""
+              )}
             </div>
             <div className={styles.bottomRight}>
               <p>Total (Tax incl.)</p>
