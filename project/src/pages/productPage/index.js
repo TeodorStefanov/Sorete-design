@@ -14,9 +14,9 @@ const ProductPage = () => {
   const [valueM, setValueM] = useState(0);
   const [valueS, setValueS] = useState(0);
   const [valueError, setValueError] = useState(false);
-  const [valueComplate, setValueComplate] = useState(false);
   const [clickModal, setClickModal] = useState(false);
   const params = useParams();
+  const navigate = useNavigate();
   const context = useContext(UserContext);
   const { user } = context;
 
@@ -31,16 +31,20 @@ const ProductPage = () => {
       setPrice(response.price.toFixed(2));
     }
   };
+  const handleCheckout = () => {
+    navigate(`/${user._id}/cart`);
+  };
+  const handleContinue = () => {
+    setValueL(0);
+    setValueM(0);
+    setValueS(0);
+    setClickModal(false);
+  };
   const handleSubmit = async () => {
     if (valueL === 0 && valueM === 0 && valueS === 0) {
       setValueError(true);
       setTimeout(() => {
         setValueError(false);
-      }, 1000);
-    } else {
-      setValueComplate(true);
-      setTimeout(() => {
-        setValueComplate(false);
       }, 1000);
     }
     const id = params.id;
@@ -101,9 +105,6 @@ const ProductPage = () => {
         setClickModal(true);
       }
     }
-    setValueL(0);
-    setValueM(0);
-    setValueS(0);
   };
   const setMinusL = () => {
     setValueL(handleMinus(valueL));
@@ -200,24 +201,36 @@ const ProductPage = () => {
           ) : (
             ""
           )}
-          {valueComplate ? (
-            <div className={styles.valueComplate}>Your order has been send</div>
-          ) : (
-            ""
-          )}
         </div>
         {clickModal ? (
           <div className={styles.modalContainer}>
-            <img src={imageUrl} className={styles.pictureModal}></img>
-            <div>
-              <h1>{name}</h1>
-              <ul>
-                Quantity:
-                <li>Size L: {valueL}</li>
-                <li>Size M: {valueM}</li>
-                <li>Size S: {valueS}</li>
-              </ul>
+            <div className={styles.topModal}>
+              <img src={imageUrl} className={styles.pictureModal}></img>
+              <div className={styles.nameQuantity}>
+                <h1 className={styles.nameModal}>{name}</h1>
+                <ul>
+                  <b>Quantity</b>
+                  <li>Size L: {valueL}</li>
+                  <li>Size M: {valueM}</li>
+                  <li>Size S: {valueS}</li>
+                </ul>
+                <span>Total {(total * price).toFixed(2)} BGN</span>
+              </div>
             </div>
+            <button
+              type="button"
+              className={styles.buttonModal}
+              onClick={handleCheckout}
+            >
+              Proceed to checkout
+            </button>
+            <button
+              type="button"
+              className={styles.buttonModal}
+              onClick={handleContinue}
+            >
+              Continue shopping
+            </button>
           </div>
         ) : (
           ""

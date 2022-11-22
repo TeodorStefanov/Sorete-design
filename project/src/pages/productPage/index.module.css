@@ -114,16 +114,38 @@ input {
 }
 
 .modalContainer {
-  border: solid 2px yellow;
-  background-color: yellow;
+  border: solid 2px #f8f9fa;
+  background-color: #f8f9fa;
   z-index: 1;
   width: 320px;
-  height: 608px;
+  height: 240px;
   position: fixed;
   top: 48px;
   left: 1200px;
+  align-items: center;
 }
-.pictureModal{
-  width: 40px;
-  height: 40px;
+.topModal {
+  display: flex;
+}
+.pictureModal {
+  width: 120px;
+  height: 140px;
+}
+.nameQuantity {
+  width: 100%;
+}
+.nameModal {
+  font-size: 18px;
+}
+.buttonModal {
+  width: 98%;
+  height: 20px;
+  margin-top: 10px;
+  border: solid 2px #828282;
+  background-color: #828282;
+  color: white;
+}
+.buttonModal:hover {
+  border: solid 2px #5b5a5a;
+  background-color: #5b5a5a;
 }
