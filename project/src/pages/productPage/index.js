@@ -17,7 +17,7 @@ const ProductPage = () => {
   const [clickModal, setClickModal] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
-  const { user, logIn } = useContext(UserContext);
+  const { user, setCartItems } = useContext(UserContext);
 
   const getData = async () => {
     const id = params.id;
@@ -73,6 +73,7 @@ const ProductPage = () => {
           });
           const newResponse = await newPromise.json();
           setClickModal(true);
+          setCartItems(newResponse.cart.product.length);
         }
       } else {
         const cart = user.cart;
@@ -93,6 +94,8 @@ const ProductPage = () => {
         });
         const response2 = await promise2.json();
         setClickModal(true);
+        console.log(response2)
+        setCartItems(response2.product.length);
       }
     }
   };

@@ -26,7 +26,7 @@ const updatedCart = async (req, res) => {
         },
       },
       {
-        new: false,
+        new: true,
       }
     );
     console.log(newCart);
@@ -43,9 +43,10 @@ const deleteItem = async (req, res) => {
       {
         product,
         quantity,
-      }
+      },
+      { new: true }
     );
-    
+
     return cart;
   } catch (err) {
     console.log;
