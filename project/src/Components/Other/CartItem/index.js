@@ -17,7 +17,7 @@ const CartItem = ({
   index,
 }) => {
   const context = useContext(UserContext);
-  const { user, logIn } = context;
+  const { user, setCartItems } = context;
   const handleClick = async () => {
     const newProducts = products.splice(index, 1);
     const newQuantity = quantity.splice(index, 1);
@@ -33,8 +33,8 @@ const CartItem = ({
       }),
     });
     const response = await promise.json();
-    console.log(response);
-    logIn(user);
+    console.log(response)
+    setCartItems(response.product.length);
   };
   return (
     <div className={styles.container}>

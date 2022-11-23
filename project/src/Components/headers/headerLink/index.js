@@ -6,7 +6,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import UserContext from "../../../Context";
 const HeaderLink = () => {
   const navigate = useNavigate();
-  const { loggedIn, logOut, user } = useContext(UserContext);
+  const { loggedIn, logOut, user, cartItems } = useContext(UserContext);
   const [quantityCart, setQuantityCart] = useState(0);
   const handleClick = () => {
     const id = user._id;
@@ -15,7 +15,7 @@ const HeaderLink = () => {
   const handleClickNew = () => {
     navigate("/profile");
   };
- 
+
   return (
     <div className={styles.container}>
       <Link to="/about" className={styles.about}>
@@ -30,9 +30,9 @@ const HeaderLink = () => {
               icon={faCartShopping}
               onClick={handleClick}
             />
-            {user.cart && user.cart.product.length > 0 ? (
+            {cartItems > 0 ? (
               <span className={styles.span} onClick={handleClick}>
-                {quantityCart}
+                {cartItems}
               </span>
             ) : (
               ""

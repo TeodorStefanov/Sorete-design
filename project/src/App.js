@@ -12,17 +12,26 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       user: null,
+      cartItems: 0,
       error: false,
     };
   }
+  setCartItems = (number) => {
+    console.log("asdddd", number);
+    this.setState({ cartItems: number });
+    console.log( 'asdddd', number);
+  };
   logIn = (user) => {
+    console.log(user.cart.product.length);
     this.setState({
       loggedIn: true,
       user,
+      cartItems: user.cart.product.length,
     });
   };
   logOut = () => {
-    document.cookie = "aid= ; expires = Thu, 21 Aug 2014 20:00:00 GMT";
+    document.cookie = "aid= ; expires = Thu, 1 Jan 1970 00:00:01 GMT;path=/";
+    console.log("asd");
     this.setState({
       loggedIn: false,
       user: null,
@@ -56,7 +65,7 @@ class App extends Component {
     }
   }
   render() {
-    const { loggedIn, user } = this.state;
+    const { loggedIn, user, cartItems } = this.state;
     if (!this.state.error) {
       return "";
     }
@@ -65,6 +74,8 @@ class App extends Component {
         value={{
           loggedIn,
           user,
+          cartItems,
+          setCartItems: this.setCartItems,
           logIn: this.logIn,
           logOut: this.logOut,
         }}

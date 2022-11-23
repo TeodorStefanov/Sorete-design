@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
 const UserContext = React.createContext({
-    loggedIn: false,
-    user: null,
-    logIn: () => {},
-    logOut: () => {}
-})
+  loggedIn: false,
+  user: null,
+  cartItems: 0,
+  setCartItems: () => {},
+  logIn: () => {},
+  logOut: () => {},
+});
 
-
-export default UserContext
+export default UserContext;
