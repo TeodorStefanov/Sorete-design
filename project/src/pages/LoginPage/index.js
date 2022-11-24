@@ -33,7 +33,7 @@ const LoginPage = () => {
       context.logIn(response);
       navigate("/");
     }
-    if (promise.status === 401) {
+    if (promise.status === 401) { 
       setIsFailed(true);
       //context2.isError2();
     }

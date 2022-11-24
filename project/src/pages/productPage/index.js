@@ -5,6 +5,7 @@ import UserContext from "../../Context";
 import styles from "./index.module.css";
 import { handleMinus, handlePlus } from "../../utils/size";
 import Size from "../../Components/Other/size";
+
 const ProductPage = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -17,7 +18,8 @@ const ProductPage = () => {
   const [clickModal, setClickModal] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
-  const { user, setCartItems } = useContext(UserContext);
+  const { user, setCartItems, setCartProduct, setCartQuantity } =
+    useContext(UserContext);
 
   const getData = async () => {
     const id = params.id;
@@ -38,6 +40,10 @@ const ProductPage = () => {
       }, 1000);
     }
     const id = params.id;
+    if(!user){
+      navigate('/login')
+      return
+    }
     if (
       valueL <= 9 &&
       valueM <= 9 &&
@@ -72,8 +78,11 @@ const ProductPage = () => {
             }),
           });
           const newResponse = await newPromise.json();
+          console.log(newResponse)
           setClickModal(true);
           setCartItems(newResponse.cart.product.length);
+          setCartProduct(newResponse.cart.product);
+          setCartQuantity(newResponse.cart.quantity);
         }
       } else {
         const cart = user.cart;
@@ -93,9 +102,11 @@ const ProductPage = () => {
           }),
         });
         const response2 = await promise2.json();
+        console.log(response2);
         setClickModal(true);
-        console.log(response2)
         setCartItems(response2.product.length);
+        setCartProduct(response2.product);
+        setCartQuantity(response2.quantity);
       }
     }
   };

@@ -4,20 +4,9 @@ import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import UserContext from "../../../Context";
-const CartItem = ({
-  imageUrl,
-  name,
-  quantityL,
-  quantityM,
-  quantityS,
-  price,
-  total,
-  products,
-  quantity,
-  index,
-}) => {
+const CartItem = ({ imageUrl, name, total, products, quantity, index }) => {
   const context = useContext(UserContext);
-  const { user, setCartItems } = context;
+  const { user, setCartItems, cartProducts } = context;
   const handleClick = async () => {
     const newProducts = products.splice(index, 1);
     const newQuantity = quantity.splice(index, 1);
@@ -33,7 +22,6 @@ const CartItem = ({
       }),
     });
     const response = await promise.json();
-    console.log(response)
     setCartItems(response.product.length);
   };
   return (
@@ -44,9 +32,9 @@ const CartItem = ({
           <h1 className={styles.name}>{name}</h1>
           <ul className={styles.price}>
             Quantity:
-            <li>Size L: {quantityL}</li>
-            <li>Size M: {quantityM}</li>
-            <li>Size S: {quantityS}</li>
+            <li>Size L: {quantity[index].L}</li>
+            <li>Size M: {quantity[index].M}</li>
+            <li>Size S: {quantity[index].S}</li>
           </ul>
         </div>
         <div className={styles.right}>

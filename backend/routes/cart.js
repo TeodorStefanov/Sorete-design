@@ -9,7 +9,7 @@ router.post("/addToCart", async (req, res) => {
   }
 });
 router.put("/updateCart", async (req, res) => {
-  const cart = await updatedCart(req, res);
+  const cart = await updatedCart(req, res)
   if (cart) {
     res.status(200).send(cart);
   }

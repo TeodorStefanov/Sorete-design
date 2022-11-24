@@ -4,22 +4,13 @@ import PageWrapper from "../../Components/page-wrapper";
 import UserContext from "../../Context";
 import styles from "./index.module.css";
 const CartPage = () => {
-  const { user } = useContext(UserContext);
-  const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState([]);
+  const { cartProducts, cartQuantity } = useContext(UserContext);
   const [checkCode, setCheckCode] = useState(false);
-  const handlePic = async () => {
-    const promise = await fetch(`/cart/${user._id}`);
-    const response = await promise.json();
-    if (response) {
-      setProducts(response.cart.product);
-      setQuantity(response.cart.quantity);
-    }
-  };
   const allTotal = () => {
     let allTotal = 0;
-    products.map((el, index) => {
-      const total = quantity[index].L + quantity[index].M + quantity[index].S;
+    cartProducts.map((el, index) => {
+      const total =
+        cartQuantity[index].L + cartQuantity[index].M + cartQuantity[index].S;
       allTotal += total * el.price;
     });
     return allTotal.toFixed(2);
@@ -27,35 +18,31 @@ const CartPage = () => {
   const handleClick = () => {
     setCheckCode(true);
   };
-  useEffect(() => {
-    handlePic();
-    allTotal();
-  }, []);
+
   return (
     <PageWrapper>
-      {products.length > 0 ? (
+      {cartProducts ? (
         <div className={styles.container}>
           <div className={styles.main}>
             <div className={styles.cartSummary}>
               <p>
-                <b>SHOPPING CART </b>({products.length} Products)
+                <b>SHOPPING CART </b>({cartProducts.length} Products)
               </p>
               <p>Confirm the products and quantities of your order</p>
             </div>
-            {products.map((el, index) => {
+            {cartProducts.map((el, index) => {
               const total =
-                quantity[index].L + quantity[index].M + quantity[index].S;
+                cartQuantity[index].L +
+                cartQuantity[index].M +
+                cartQuantity[index].S;
               return (
                 <CartItem
                   imageUrl={el.imageUrl}
                   name={el.name}
-                  quantityL={quantity[index].L}
-                  quantityM={quantity[index].M}
-                  quantityS={quantity[index].S}
                   price={el.price.toFixed(2)}
                   key={index}
-                  products={products}
-                  quantity={quantity}
+                  products={cartProducts}
+                  quantity={cartQuantity}
                   index={index}
                   total={(el.price * total).toFixed(2)}
                 />
@@ -80,9 +67,7 @@ const CartPage = () => {
             <div className={styles.bottomRight}>
               <p>Total (Tax incl.)</p>
               <p>{allTotal()} BGN</p>
-              <button className={styles.button} onClick={handlePic}>
-                BUY
-              </button>
+              <button className={styles.button}>BUY</button>
             </div>
           </div>
         </div>
