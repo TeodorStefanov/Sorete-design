@@ -13,21 +13,35 @@ class App extends Component {
       loggedIn: false,
       user: null,
       cartItems: 0,
+      cartProducts: [],
+      cartQuantity: [],
       error: false,
     };
   }
   setCartItems = (number) => {
     console.log("asdddd", number);
     this.setState({ cartItems: number });
-    console.log( 'asdddd', number);
+    console.log("asdddd", number);
+  };
+  setCartProduct = (products) => {
+    this.setState({ cartProducts: products });
+  };
+  setCartQuantity = (quantity) => {
+    this.setState({ cartQuantity: quantity });
   };
   logIn = (user) => {
-    console.log(user.cart.product.length);
     this.setState({
       loggedIn: true,
       user,
-      cartItems: user.cart.product.length,
+      
     });
+    if (user.cart) {
+      this.setState({
+        cartItems: user.cart.product.length,
+        cartProducts: user.cart.product,
+        cartQuantity: user.cart.quantity,
+      });
+    }
   };
   logOut = () => {
     document.cookie = "aid= ; expires = Thu, 1 Jan 1970 00:00:01 GMT;path=/";
@@ -35,6 +49,9 @@ class App extends Component {
     this.setState({
       loggedIn: false,
       user: null,
+      cartItems: 0,
+      cartProducts: null,
+      cartQuantity: null
     });
   };
 
@@ -65,7 +82,8 @@ class App extends Component {
     }
   }
   render() {
-    const { loggedIn, user, cartItems } = this.state;
+    const { loggedIn, user, cartItems, cartProducts, cartQuantity } =
+      this.state;
     if (!this.state.error) {
       return "";
     }
@@ -75,7 +93,11 @@ class App extends Component {
           loggedIn,
           user,
           cartItems,
+          cartProducts,
+          cartQuantity,
           setCartItems: this.setCartItems,
+          setCartProduct: this.setCartProduct,
+          setCartQuantity: this.setCartQuantity,
           logIn: this.logIn,
           logOut: this.logOut,
         }}

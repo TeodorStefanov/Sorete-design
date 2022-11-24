@@ -3,6 +3,7 @@ const User = require("../models/user");
 
 const config = require("../config/config");
 const jwt = require("jsonwebtoken");
+const cart = require("../models/cart");
 
 const generateToken = (data) => {
   const token = jwt.sign(data, config.privetKey, { expiresIn: "1h" });
@@ -90,6 +91,10 @@ const verifyUser = async (req, res) => {
   const { username, password } = obj;
   try {
     const user = await User.findOne({ username }).populate("cart");
+    if (user.cart) {
+      const newUser = await user.cart.populate("product");
+    }
+
     if (!user) {
       return {
         error: true,
@@ -112,6 +117,7 @@ const verifyUser = async (req, res) => {
       user,
     };
   } catch (err) {
+    console.log(err);
     return {
       error: true,
       message: "No user",
@@ -197,7 +203,9 @@ const createCart = async (req, res) => {
       {
         cart: cartId,
       }
-    ).then((updatedUser) => res.send(updatedUser));
+    ).populate('cart')
+    const  newUser = await user.cart.populate('product')
+    return user
   } catch (err) {
     console.log(err);
   }

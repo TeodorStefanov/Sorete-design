@@ -28,7 +28,7 @@ const updatedCart = async (req, res) => {
       {
         new: true,
       }
-    );
+    ).populate("product");
     console.log(newCart);
     return newCart;
   } catch (err) {
