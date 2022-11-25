@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../Components/headers/header";
 import BestItems from "../../Components/Main/bestItems";
+import ConceptMenu from "../../Components/Main/conceptMenu";
 import ItemMenu from "../../Components/Main/itemMenu";
 import Items from "../../Components/Main/items";
 import PageWrapper from "../../Components/page-wrapper";
@@ -12,10 +13,11 @@ const HomePage = () => {
       <Header />
       <div className={styles.container}>
         <span>New Collection</span>
-        <h1>Best Sellers</h1>
+        <h1 className={styles.topBottom}>Best Sellers</h1>
       </div>
       <BestItems />
       <ItemMenu />
+      <ConceptMenu />
     </PageWrapper>
   );
 };

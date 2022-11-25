@@ -15,3 +15,4 @@ const BestItem = ({ picture, name, price, id }) => {
   );
 };
 export default BestItem
+
