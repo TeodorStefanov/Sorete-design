@@ -11,6 +11,7 @@ class Admin extends Component {
       description: "",
       imageUrl: "",
       price: "",
+      category: "",
     };
   }
 
@@ -22,7 +23,6 @@ class Admin extends Component {
   };
   handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state);
     try {
       const promise = await fetch(`/create`, {
         method: "POST",
@@ -32,8 +32,7 @@ class Admin extends Component {
 
         body: JSON.stringify(this.state),
       });
-      const response = await promise.json();
-      if (response) {
+      if (promise.status(200)) {
         this.props.history("/");
       }
     } catch (e) {
@@ -61,7 +60,7 @@ class Admin extends Component {
   };
 
   render() {
-    const { name, description, price } = this.state;
+    const { name, description, price, category } = this.state;
     return (
       <PageWrapper>
         <div className={styles.container}>
@@ -93,6 +92,13 @@ class Admin extends Component {
               value={price}
               step={0.1}
               onChange={(e) => this.onChange(e, "price")}
+            />
+            <Input
+              name="category"
+              lebal="category"
+              type="text"
+              value={category}
+              onChange={(e) => this.onChange(e, "category")}
             />
             <button type="submit">login</button>
           </form>
