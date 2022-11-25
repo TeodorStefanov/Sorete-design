@@ -2,7 +2,7 @@ const Item = require("../models/item");
 
 const createItem = async (req, res) => {
   const obj = req.body;
-  const { name, description, imageUrl, price } = obj;
+  const { name, description, imageUrl, price, category } = obj;
 
   try {
     const item = new Item({
@@ -10,14 +10,15 @@ const createItem = async (req, res) => {
       description: description.trim(),
       imageUrl,
       price,
+      category,
     });
     await item.save();
-    return item
+    return item;
   } catch (err) {
-    return res.render("create", {
-      title: "Create Cube | Cube Workshop",
-      error: "Cube details is not valid",
-    });
+    return {
+      error: true,
+      message: err,
+    };
   }
 };
 const getItem = async (req, res) => {
@@ -39,7 +40,20 @@ const getItem = async (req, res) => {
     };
   }
 };
+const getGaufreProducts = async (req, res) => {
+  try {
+    const products = await Item.find({ category: "GAUFRE" });
+    console.log(products)
+    return products;
+  } catch (err) {
+    return {
+      error: true,
+      message: err,
+    };
+  }
+};
 module.exports = {
   createItem,
   getItem,
+  getGaufreProducts,
 };

@@ -7,13 +7,12 @@ class Kartichki extends Component {
     super(props);
     this.state = {
       items: [],
-    }; 
+    };
   }
 
   getItems = async () => {
     const promise = await fetch("http://localhost:9000/");
     const items = await promise.json();
-    console.log(items);
     this.setState({ items });
   };
   renderItems = () => {
