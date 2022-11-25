@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../Components/headers/header";
 import BestItems from "../../Components/Main/bestItems";
+import BottomPictures from "../../Components/Main/bottomPictures";
 import ConceptMenu from "../../Components/Main/conceptMenu";
 import ItemMenu from "../../Components/Main/itemMenu";
 import Items from "../../Components/Main/items";
@@ -18,6 +19,7 @@ const HomePage = () => {
       <BestItems />
       <ItemMenu />
       <ConceptMenu />
+      <BottomPictures/>
     </PageWrapper>
   );
 };
