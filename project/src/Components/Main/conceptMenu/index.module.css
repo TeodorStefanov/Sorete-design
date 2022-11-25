@@ -24,7 +24,8 @@
   background-color: white;
   border: solid 0.5px #747474;
   color: #747474;
+  cursor: pointer;
 }
-.button:hover{
-    color: #a7a4a4;
+.button:hover {
+  color: #a7a4a4;
 }
