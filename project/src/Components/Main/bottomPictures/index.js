@@ -1,6 +1,6 @@
 import React from "react";
-import picOne from "../../../images/bottomPictures/1643905766_394e7ca207a0c8c6bf1cb71760cd3f9d.jpg";
-import picTwo from "../../../images/bottomPictures/block1_48.jpg";
+import picOne from "../../../images/bottomPictures/block1_48.jpg";
+import picTwo from "../../../images/bottomPictures/block3_48 (2).jpg";
 import styles from "./index.module.css";
 const BottomPictures = () => {
   return (
@@ -15,10 +15,13 @@ const BottomPictures = () => {
       </div>
       <div className={styles.right}>
         <img src={picTwo} className={styles.rightPicture}></img>
-        <p className={styles.rightTop}>SUSTAINABLE BATH LINENS</p>
-        <p className={styles.rightBottоm}>
-          The perfect combination of sustainability and comfort.
-        </p>
+        <div className={styles.rightBottom}>
+          <p className={styles.rightBottomTop}>SUSTAINABLE BATH LINENS</p>
+          <p className={styles.rightBottоmBottom}>
+            The perfect combination of sustainability and comfort.
+          </p>
+          <button className={styles.rightButton}>SHOP NOW</button>
+        </div>
       </div>
     </div>
   );
