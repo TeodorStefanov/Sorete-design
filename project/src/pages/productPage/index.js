@@ -40,9 +40,9 @@ const ProductPage = () => {
       }, 1000);
     }
     const id = params.id;
-    if(!user){
-      navigate('/login')
-      return
+    if (!user) {
+      navigate("/login");
+      return;
     }
     if (
       valueL <= 9 &&
@@ -78,7 +78,7 @@ const ProductPage = () => {
             }),
           });
           const newResponse = await newPromise.json();
-          console.log(newResponse)
+          console.log(newResponse);
           setClickModal(true);
           setCartItems(newResponse.cart.product.length);
           setCartProduct(newResponse.cart.product);

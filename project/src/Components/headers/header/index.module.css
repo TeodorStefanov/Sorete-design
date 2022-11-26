@@ -12,13 +12,11 @@
   position: absolute;
   top: 90%;
   left: 50%;
-  border: solid 2px rgb(54, 54, 50);
   border-radius: 10px;
   transform: translate(-50%, -50%);
   align-items: center;
-  background-color: rgb(54, 54, 50);
   padding: 0;
-  opacity: 0.5;
+  z-index: 5;
 }
 .listBottom {
   display: inline-block;
@@ -31,10 +29,20 @@
   border-radius: 10px;
   background-color: #c3c2be;
   margin: 2px;
-  opacity: 1;
 }
 .button:hover {
   border: solid 1px white;
   background-color: white;
-  opacity: 1;
+}
+.overlay {
+  position: absolute;
+  background-color: rgb(54, 54, 50);
+  width: 82px;
+  height: 20px;
+  top: 90.8%;
+  left: 47.2%;
+  border: 2px solid rgb(54, 54, 50);
+  border-radius: 20px;
+  opacity: 0.5;
+  z-index: 1;
 }

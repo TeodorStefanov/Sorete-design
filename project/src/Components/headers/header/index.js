@@ -61,6 +61,7 @@ const Header = () => {
               ></button>
             </li>
           </ul>
+          <div className={styles.overlay}></div>
         </div>
       </header>
     </div>
