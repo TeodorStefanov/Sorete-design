@@ -23,10 +23,13 @@ router.get("/item/:id", async (req, res) => {
     res.status(200).send(item);
   }
 });
-router.get("/products/gaufre", async (req, res) => {
-  const products = await getGaufreProducts(req, res);
-  if (products) {
-    res.status(200).send(products);
+router.get("/products/gaufreColors", async (req, res) => {
+  const { products, productsColors } = await getGaufreProducts(req, res);
+  if (products && productsColors) {
+    res.status(200).send({
+      products,
+      productsColors,
+    });
   }
 });
 

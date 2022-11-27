@@ -43,8 +43,12 @@ const getItem = async (req, res) => {
 const getGaufreProducts = async (req, res) => {
   try {
     const products = await Item.find({ category: "GAUFRE" });
-    console.log(products)
-    return products;
+    const productsColors = await Item.find({ category: "colors" });
+    console.log(products);
+    return {
+      products,
+      productsColors,
+    };
   } catch (err) {
     return {
       error: true,
