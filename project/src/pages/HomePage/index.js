@@ -20,6 +20,7 @@ const HomePage = () => {
       <ItemMenu />
       <ConceptMenu />
       <BottomPictures/>
+      <div className={styles.bottom}></div>
     </PageWrapper>
   );
 };

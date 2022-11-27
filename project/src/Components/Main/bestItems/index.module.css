@@ -6,3 +6,26 @@
   gap: 10px;
   margin-bottom: 80px;
 }
+.productsButton {
+  width: 200px;
+  height: 40px;
+  font-size: 12px;
+  background-color: white;
+  border: solid 1px #5d5c5c;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.productsColorsButton {
+  width: 100px;
+  height: 40px;
+  font-size: 12px;
+  background-color: white;
+  border: solid 1px #5d5c5c;
+  cursor: pointer;
+}
+.productsButton:hover {
+  border: solid 1px #b6b4b4;
+}
+.productsColorsButton:hover {
+  border: solid 1px #b6b4b4;
+}
