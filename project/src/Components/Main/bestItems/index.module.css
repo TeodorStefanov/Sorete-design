@@ -11,7 +11,7 @@
   height: 40px;
   font-size: 12px;
   background-color: white;
-  border: solid 1px #5d5c5c;
+  border: solid 1px #b6b4b4;
   margin-right: 10px;
   cursor: pointer;
 }
@@ -20,12 +20,18 @@
   height: 40px;
   font-size: 12px;
   background-color: white;
-  border: solid 1px #5d5c5c;
+  border: solid 1px #b6b4b4;
   cursor: pointer;
 }
 .productsButton:hover {
-  border: solid 1px #b6b4b4;
+  border: solid 1px #5d5c5c;
+}
+.productsButton:focus {
+  border: solid 1px #5d5c5c;
 }
 .productsColorsButton:hover {
-  border: solid 1px #b6b4b4;
+  border: solid 1px #5d5c5c;
+}
+.productsColorsButton:focus {
+  border: solid 1px #5d5c5c;
 }

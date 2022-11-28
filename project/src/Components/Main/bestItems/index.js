@@ -38,12 +38,6 @@ const BestItems = () => {
       );
     });
   };
-  const handleClickProducts = () => {
-    setChangeProducts(true);
-  };
-  const handleClickProductsColors = () => {
-    setChangeProducts(false);
-  };
   useEffect(() => {
     getGaufreProducts();
   }, []);
@@ -54,14 +48,18 @@ const BestItems = () => {
         <button
           type="button"
           className={styles.productsButton}
-          onClick={handleClickProducts}
+          onClick={() => {
+            setChangeProducts(true);
+          }}
         >
           SUSTAINABLE COLLECTIONS
         </button>
         <button
           type="button"
           className={styles.productsColorsButton}
-          onClick={handleClickProductsColors}
+          onClick={() => {
+            setChangeProducts(false);
+          }}
         >
           NEW COLORS
         </button>
