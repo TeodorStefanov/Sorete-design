@@ -1,0 +1,29 @@
+.pictures {
+  display: flex;
+  width: 100%;
+  height: 400px;
+  align-items: center;
+  gap: 10px;
+}
+.left {
+  width: 480px;
+  height: 100%;
+  margin-left: 100px;
+  position: relative;
+}
+.pictureOne {
+  width: 100%;
+  height: 100%;
+}
+.leftMiddle {
+  position: absolute;
+  color: #7b7d7e;
+  top: 50%;
+  left: 10%;
+  transform: translate(-6%, -50%);
+}
+.pictureTwo {
+  width: 850px;
+  height: 100%;
+  margin-right: 100px;
+}
