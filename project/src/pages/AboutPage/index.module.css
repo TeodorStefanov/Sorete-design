@@ -13,20 +13,19 @@
   margin-left: 400px;
   font-size: 20px;
   margin-bottom: 100px;
-  color: black;
+  color: rgb(72, 57, 52);
 }
 .mainP {
   font-size: 38px;
   padding: 4px 0 4px;
-
-  font-weight: 200;
-  font-size: 38px;
+  font-weight: 100;
   line-height: 106%;
 }
 .middle {
   width: 100%;
   height: auto;
   background-color: #f9f8f6;
+  color: #7b7d7e;
 }
 .upperM {
   display: flex;
@@ -41,7 +40,7 @@
   margin-top: 180px;
   margin-right: 180px;
   margin-left: 40x;
-  color: black;
+  color: #7b7d7e;
 }
 .middleM {
   display: flex;
@@ -54,7 +53,7 @@
   margin-top: 100px;
   margin-right: 50px;
   margin-left: 150px;
-  color: black;
+  color: #7b7d7e;
 }
 .middlePic {
   width: 80%;
@@ -81,6 +80,7 @@
   width: 40%;
   text-align: left;
   margin: 100px;
+  color: rgb(72, 57, 52);
 }
 .footerVideo {
   width: 60%;
