@@ -5,7 +5,7 @@ import headerPic from "../../images/about/block1_273.jpg";
 import firstPic from "../../images/about/firstPic.jpg";
 import secondPic from "../../images/about/secondPic.jpg";
 import thirdPic from "../../images/about/thirdPic.jpg";
-import video from '../../images/about/video2_280.mp4'
+import video from "../../images/about/video2_280.mp4";
 const AboutPage = () => {
   return (
     <PageWrapper>
@@ -28,7 +28,7 @@ const AboutPage = () => {
             <img className={styles.upperPic} src={firstPic} />
             <p className={styles.upperText}>
               Created by Manuel and Duarte Relvas in 1974, the early days were
-              not easy for this father and son venture due to the Portuguese
+              not easy for this father and son venture due to the Bulgarian
               revolution. But the company persevered and grew, with product
               development and design being the company's motto and making it the
               oldest existing in Europe producing bath rugs.
@@ -47,7 +47,7 @@ const AboutPage = () => {
           <div className={styles.bottomM}>
             <img className={styles.bottomPic} src={thirdPic} />
             <p className={styles.bottomText}>
-              With more than 140 employees, the Sorema family continues to grow,
+              With more than 140 employees, the Sorete family continues to grow,
               confident in its work, and always ready for whatever the future
               brings, certain that family bonds will continue to be the key to
               success.
@@ -62,8 +62,15 @@ const AboutPage = () => {
             manufacturing techniques are used in our products: to ensure that
             they are not only stylish but durable, safe and comfortable.
           </span>
-          <video width='380' height='380' className={styles.footerVideo} autoPlay={true} loop muted>
-            <source src={video} type='video/mp4'/>
+          <video
+            width="380"
+            height="380"
+            className={styles.footerVideo}
+            autoPlay={true}
+            loop
+            muted
+          >
+            <source src={video} type="video/mp4" />
           </video>
         </div>
       </div>
