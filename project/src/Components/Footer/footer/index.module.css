@@ -3,6 +3,7 @@
   height: 200px;
   position: static;
   bottom: 0px;
+  margin-top: 40px;
 }
 .footerText {
   color: white;
