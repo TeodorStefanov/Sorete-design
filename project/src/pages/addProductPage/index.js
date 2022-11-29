@@ -10,6 +10,7 @@ class Admin extends Component {
       name: "",
       description: "",
       imageUrl: "",
+      imageUrlTwo: "",
       price: "",
       category: "",
     };
@@ -58,6 +59,25 @@ class Admin extends Component {
     );
     widget.open();
   };
+  openWidgetTwo = () => {
+    const widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "daqcaszkf",
+        uploadPreset: "softuni",
+      },
+      (error, result) => {
+        if (error) {
+          console.log("Error:", error);
+        }
+        if (result.event === "success") {
+          const newState = {};
+          newState["imageUrlTwo"] = result.info.url;
+          this.setState(newState);
+        }
+      }
+    );
+    widget.open();
+  };
 
   render() {
     const { name, description, price, category } = this.state;
@@ -83,6 +103,12 @@ class Admin extends Component {
               Image:
               <button type="button" onClick={this.openWidget}>
                 Upload image
+              </button>
+            </div>
+            <div>
+              Image:
+              <button type="button" onClick={this.openWidgetTwo}>
+                Upload imageTwo
               </button>
             </div>
             <Input

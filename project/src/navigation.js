@@ -5,12 +5,6 @@ import {
     Route,
     Navigate
 } from 'react-router-dom'
-
-
-
-
-
-
 import Admin from './pages/addProductPage'
 import Admin2 from './pages/admin2'
 import HomePage from './pages/HomePage'
@@ -18,12 +12,11 @@ import LoginPage from './pages/LoginPage'
 import Profile from './pages/profile'
 import RegisterPage from './pages/RegisterPage'
 import ProfileEdit from './pages/profileEdit'
-
 import UserContext from './Context'
 import ProductPage from './pages/productPage'
 import CartPage from './pages/CartPage'
 import AboutPage from './pages/AboutPage'
-
+import TowelsPage from './pages/TowelsPage'
 const Navigation = () => {
     const {
         loggedIn,
@@ -32,6 +25,7 @@ const Navigation = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<HomePage />} />
+                <Route path='/Towels' element={<TowelsPage />} />
                 <Route path='/about' element={<AboutPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 {loggedIn ? (<Route path='/add' element={<Admin />} />) : <Route path='/add' element={<Navigate to='/login' />} />}

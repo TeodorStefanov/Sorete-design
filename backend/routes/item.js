@@ -4,6 +4,7 @@ const {
   getItem,
   createItem,
   getGaufreProducts,
+  getTowels,
 } = require("../controllers/items");
 const router = express.Router();
 const Item = require("../models/item");
@@ -30,6 +31,12 @@ router.get("/products/gaufreColors", async (req, res) => {
       products,
       productsColors,
     });
+  }
+});
+router.get("/towels", async (req, res) => {
+  const towels = await getTowels(req, res);
+  if (towels) {
+    res.status(200).send(towels);
   }
 });
 

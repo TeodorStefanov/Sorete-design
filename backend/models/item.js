@@ -8,12 +8,15 @@ const itemSchema = new mongoose.Schema({
   description: {
     type: String,
     require: true,
-    match: [/^[A-Za-z0-9.,\- ]+$/, "Item name is not Valid"],
+    match: [/.*/, "Item name is not Valid"],
     minLength: 5,
   },
   imageUrl: {
     type: String,
     require: true,
+  },
+  imageUrlTwo: {
+    type: String,
   },
   price: {
     type: Number,

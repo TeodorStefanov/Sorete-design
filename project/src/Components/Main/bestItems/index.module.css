@@ -23,15 +23,7 @@
   border: solid 1px #b6b4b4;
   cursor: pointer;
 }
-.productsButton:hover {
-  border: solid 1px #5d5c5c;
-}
-.productsButton:focus {
-  border: solid 1px #5d5c5c;
-}
-.productsColorsButton:hover {
-  border: solid 1px #5d5c5c;
-}
-.productsColorsButton:focus {
-  border: solid 1px #5d5c5c;
+
+.productsButtonPressed{
+    border: solid 1px #5d5c5c;
 }
