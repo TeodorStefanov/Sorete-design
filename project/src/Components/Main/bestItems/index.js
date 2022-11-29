@@ -47,7 +47,9 @@ const BestItems = () => {
       <div>
         <button
           type="button"
-          className={styles.productsButton}
+          className={`${styles.productsButton} ${
+            changeProducts ? styles.productsButtonPressed : ""
+          }`}
           onClick={() => {
             setChangeProducts(true);
           }}
@@ -56,7 +58,9 @@ const BestItems = () => {
         </button>
         <button
           type="button"
-          className={styles.productsColorsButton}
+          className={`${styles.productsColorsButton} ${
+            !changeProducts ? styles.productsButtonPressed : ""
+          }`}
           onClick={() => {
             setChangeProducts(false);
           }}
