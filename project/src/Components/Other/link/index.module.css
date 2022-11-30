@@ -4,8 +4,6 @@
   margin-right: 2%;
   cursor: pointer;
   padding-top: 0.8%;
-  margin: 0.1%;
-  width: 100px;
 }
 
 .link {
@@ -15,7 +13,7 @@
 }
 
 .link:hover {
-  font-weight: bold;
+  border-bottom: solid 1px white;
   color: white;
   transition: ease-in-out;
 }

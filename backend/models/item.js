@@ -9,7 +9,12 @@ const itemSchema = new mongoose.Schema({
     type: String,
     require: true,
     match: [/.*/, "Item name is not Valid"],
-    minLength: 5,
+  },
+  descriptionTwo: {
+    type: String,
+  },
+  composition: {
+    type: String,
   },
   imageUrl: {
     type: String,

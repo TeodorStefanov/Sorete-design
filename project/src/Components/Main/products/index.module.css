@@ -1,4 +1,6 @@
 .container {
+  display: inline-block;
+  margin: 10px;
   width: 23%;
   height: 400px;
   cursor: pointer;

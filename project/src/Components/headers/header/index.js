@@ -13,6 +13,7 @@ const Header = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
     navigate("/");
+    window.scrollTo(0, 0);
   };
   const changeImage = () => {
     let newCurrentImg = 0;

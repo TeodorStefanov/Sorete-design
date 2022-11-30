@@ -11,9 +11,11 @@ const HeaderLink = () => {
   const handleClick = () => {
     const id = user._id;
     navigate(`/${id}/cart`);
+    window.scrollTo(0, 0);
   };
   const handleClickNew = () => {
     navigate("/profile");
+    window.scrollTo(0, 0);
   };
 
   return (

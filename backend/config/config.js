@@ -9,4 +9,4 @@ const config = {
   production: {},
 };
 config / config.js;
-module.exports = config[env];
+module.exports = config[env]; 

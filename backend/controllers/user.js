@@ -201,13 +201,13 @@ const createCart = async (req, res) => {
     const user = await User.findOneAndUpdate(
       { _id: id },
       {
-        cart: cartId,
+        cart: cartId, 
       }
     ).populate('cart')
     const  newUser = await user.cart.populate('product')
     return user
   } catch (err) {
-    console.log(err);
+    console.log(err); 
   }
 };
 module.exports = {

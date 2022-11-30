@@ -33,7 +33,7 @@ router.get("/products/gaufreColors", async (req, res) => {
     });
   }
 });
-router.get("/towels", async (req, res) => {
+router.get("/:type", async (req, res) => {
   const towels = await getTowels(req, res);
   if (towels) {
     res.status(200).send(towels);

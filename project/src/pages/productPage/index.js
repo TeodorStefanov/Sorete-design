@@ -9,7 +9,10 @@ import Size from "../../Components/Other/size";
 const ProductPage = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [descriptionTwo, setDescriptionTwo] = useState("");
+  const [composition, setComposition] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [imageUrlTwo, setImageUrlTwo] = useState("");
   const [price, setPrice] = useState("");
   const [valueL, setValueL] = useState(0);
   const [valueM, setValueM] = useState(0);
@@ -28,7 +31,10 @@ const ProductPage = () => {
       const response = await promise.json();
       setName(response.name);
       setDescription(response.description);
+      setDescriptionTwo(response.descriptionTwo);
+      setComposition(response.composition);
       setImageUrl(response.imageUrl);
+      setImageUrlTwo(response.imageUrlTwo);
       setPrice(response.price.toFixed(2));
     }
   };
@@ -78,7 +84,6 @@ const ProductPage = () => {
             }),
           });
           const newResponse = await newPromise.json();
-          console.log(newResponse);
           setClickModal(true);
           setCartItems(newResponse.cart.product.length);
           setCartProduct(newResponse.cart.product);
@@ -130,6 +135,7 @@ const ProductPage = () => {
   };
   const handleCheckout = () => {
     navigate(`/${user._id}/cart`);
+    window.scrollTo(0, 0);
   };
   const handleContinue = () => {
     setValueL(0);
@@ -248,6 +254,19 @@ const ProductPage = () => {
             </button>
           </div>
           <div className={styles.overlay}></div>
+        </div>
+      ) : (
+        ""
+      )}
+      {imageUrlTwo ? (
+        <div className={styles.bottom}>
+          <div className={styles.bottomLeft}>
+            <p className={styles.bottomP}>Description</p>
+            <p className={styles.bottomStyle}>{descriptionTwo}</p>
+            <p className={styles.bottomP}>Composition</p>
+            <p className={styles.bottomStyle}>{composition}</p>
+          </div>
+          <img src={imageUrlTwo} className={styles.bottomPicture}></img>
         </div>
       ) : (
         ""
