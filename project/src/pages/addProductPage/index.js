@@ -9,6 +9,8 @@ class Admin extends Component {
     this.state = {
       name: "",
       description: "",
+      descriptionTwo: "",
+      composition: "",
       imageUrl: "",
       imageUrlTwo: "",
       price: "",
@@ -80,7 +82,8 @@ class Admin extends Component {
   };
 
   render() {
-    const { name, description, price, category } = this.state;
+    const { name, description, descriptionTwo, composition, price, category } =
+      this.state;
     return (
       <PageWrapper>
         <div className={styles.container}>
@@ -98,6 +101,20 @@ class Admin extends Component {
               type="text"
               value={description}
               onChange={(e) => this.onChange(e, "description")}
+            />
+            <Input
+              name="descriptionTwo"
+              lebal="descriptionTwo"
+              type="text"
+              value={descriptionTwo}
+              onChange={(e) => this.onChange(e, "descriptionTwo")}
+            />
+            <Input
+              name="composition"
+              lebal="composition"
+              type="text"
+              value={composition}
+              onChange={(e) => this.onChange(e, "composition")}
             />
             <div>
               Image:

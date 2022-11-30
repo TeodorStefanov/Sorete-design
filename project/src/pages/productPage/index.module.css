@@ -11,10 +11,6 @@
   align-items: center;
   text-align: center;
 }
-.picture {
-  width: 60%;
-  height: 100%;
-}
 
 .right {
   width: 40%;
@@ -164,4 +160,24 @@ input {
   z-index: 5;
   background-color: black;
   opacity: 0.4;
+}
+.bottom {
+  display: flex;
+  background-color: #f6f5f3;
+  justify-content: space-between;
+  align-items: center;
+}
+.bottomLeft {
+  margin-left: 20px;
+  width: 20%;
+}
+.bottomP {
+  text-align: left;
+  font-weight: bold;
+}
+.bottomStyle {
+  text-align: left;
+}
+.bottomPicture {
+  margin: 40px;
 }

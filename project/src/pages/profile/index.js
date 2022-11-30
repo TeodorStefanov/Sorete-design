@@ -14,6 +14,7 @@ const Profile = () => {
     e.preventDefault();
     let path = "/profile/edit";
     navigate(path);
+    window.scrollTo(0, 0);
   };
   useEffect(() => {
     if (user.picture) {

@@ -9,6 +9,10 @@ const getNavigation = (loggedIn, user) => {
       link: "/Towels",
     },
     {
+      title: "Bath Rugs and Mats",
+      link: "/Bath-Rugs-and-Mats",
+    },
+    {
       title: "Добави",
       link: "/add",
     },

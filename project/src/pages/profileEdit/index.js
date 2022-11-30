@@ -55,6 +55,7 @@ const ProfileEdit = () => {
       if (promise.status === 200) {
         context.logIn(response);
         navigate("/profile");
+        window.scrollTo(0, 0);
       } else {
         if (promise.status === 409) {
           setError(response.error);

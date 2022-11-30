@@ -2,12 +2,23 @@ const Item = require("../models/item");
 
 const createItem = async (req, res) => {
   const obj = req.body;
-  const { name, description, imageUrl, imageUrlTwo, price, category } = obj;
+  const {
+    name,
+    description,
+    descriptionTwo,
+    composition,
+    imageUrl,
+    imageUrlTwo,
+    price,
+    category,
+  } = obj;
 
   try {
     const item = new Item({
       name: name.trim(),
       description: description.trim(),
+      descriptionTwo,
+      composition,
       imageUrl,
       imageUrlTwo,
       price,
@@ -58,8 +69,9 @@ const getGaufreProducts = async (req, res) => {
   }
 };
 const getTowels = async (req, res) => {
+  
   try {
-    const towels = await Item.find({ category: "Towels" });
+    const towels = await Item.find({ category: req.params.type });
     if (towels) {
       return towels;
     }
@@ -74,5 +86,5 @@ module.exports = {
   createItem,
   getItem,
   getGaufreProducts,
-  getTowels
+  getTowels,
 };

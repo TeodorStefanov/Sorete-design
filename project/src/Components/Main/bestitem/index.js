@@ -5,6 +5,7 @@ const BestItem = ({ picture, name, price, id }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/products/${id}`);
+    window.scrollTo(0, 0);
   };
   return (
     <div className={styles.container} onClick={handleClick}>
@@ -14,5 +15,4 @@ const BestItem = ({ picture, name, price, id }) => {
     </div>
   );
 };
-export default BestItem
-
+export default BestItem;
