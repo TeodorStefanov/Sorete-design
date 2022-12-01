@@ -19,6 +19,7 @@ const TowelsPage = ({ type }) => {
           name={el.name}
           price={el.price}
           key={index}
+          product={el.category}
         />
       );
     });
