@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
-const Product = ({ id, imageUrl, name, price, imageUrlTwo }) => {
+const Product = ({ id, imageUrl, name, price, imageUrlTwo, product }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/towels/${id}`);
+    navigate(`/${product}/${id}`);
     window.scrollTo(0, 0);
   };
   return (
@@ -18,7 +18,7 @@ const Product = ({ id, imageUrl, name, price, imageUrlTwo }) => {
       ></img>
       <div className={styles.bottom}>
         <span className={styles.name}>{name}</span>
-        <span className={styles.price}>{price} BGN</span>
+        <span className={styles.price}>{price.toFixed(2)} BGN</span>
       </div>
     </div>
   );
