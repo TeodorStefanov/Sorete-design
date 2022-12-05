@@ -16,6 +16,7 @@ import UserContext from './Context'
 import ProductPage from './pages/productPage'
 import CartPage from './pages/CartPage'
 import AboutPage from './pages/AboutPage'
+import ContactPage from './pages/contactPage'
 import TowelsPage from './pages/TowelsPage'
 import Towels from './pages/TowelsPage/Towels'
 import BathRugsAndMats from './pages/TowelsPage/BathRugsAndMats'
@@ -35,6 +36,7 @@ const Navigation = () => {
                 <Route path='/Bathrobes' element={<Bathrobes/>} />
                 <Route path='/BathAccessories' element={<BathAccessories/>} />
                 <Route path='/about' element={<AboutPage />} />
+                <Route path='/contacts' element={<ContactPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 {loggedIn ? (<Route path='/add' element={<Admin />} />) : <Route path='/add' element={<Navigate to='/login' />} />}
                 {loggedIn ? (<Route path='/add2' element={<Admin2 />} />) : <Route path='/add2' element={<Navigate to='/login' />} />}

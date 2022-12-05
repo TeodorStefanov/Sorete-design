@@ -1,0 +1,53 @@
+.container {
+  width: 100%;
+  align-items: center;
+}
+.picture {
+  width: 100%;
+}
+.middle {
+  margin-top: 40px;
+  margin-left: 480px;
+  margin-right: 480px;
+  margin-bottom: 100px;
+}
+.bottom {
+  display: flex;
+  background-color: #f2eeea;
+  gap: 10px;
+  height: 540px;
+}
+.pictureTwo {
+  width: 400px;
+  height: 400px;
+  margin-top: 40px;
+  margin-left: 200px;
+  margin-right: 100px;
+  margin-bottom: 40px;
+}
+.bottomForm {
+  width: 800px;
+  height: 400px;
+  margin-top: 40px;
+  text-align: left;
+}
+.bottomP {
+  font-size: 24px;
+}
+.bottomInputName {
+  display: block;
+  width: 400px;
+}
+.bottomInputEmail {
+  display: block;
+  width: 200px;
+}
+.bottomInputMessage {
+  display: block;
+  width: 400px;
+  height: 100px;
+}
+.bottomButton {
+  width: 100px;
+  height: 40px;
+}
