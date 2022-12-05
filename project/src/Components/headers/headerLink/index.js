@@ -22,9 +22,14 @@ const HeaderLink = () => {
   };
   return (
     <div className={styles.container}>
-      <Link to="/about" className={styles.about}>
-        About us
-      </Link>
+      <div>
+        <Link to="/about" className={styles.about}>
+          About us
+        </Link>
+        <Link to="/contacts" className={styles.contact}>
+          Contact us
+        </Link>
+      </div>
       <div className={styles.logo} onClick={handleClickNew2}>
         Sorete Design
       </div>

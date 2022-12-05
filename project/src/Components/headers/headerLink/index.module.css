@@ -20,6 +20,15 @@
   color: #979595;
   transition: ease-in-out;
 }
+.contact {
+  margin-left: 10px;
+  text-decoration: none;
+  color: black;
+}
+.contact:hover {
+  color: #979595;
+  transition: ease-in-out;
+}
 .logo {
   font-family: italic sans-serif;
   font-size: 38px;
