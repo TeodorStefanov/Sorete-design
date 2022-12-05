@@ -7,7 +7,6 @@ import UserContext from "../../../Context";
 const HeaderLink = () => {
   const navigate = useNavigate();
   const { loggedIn, logOut, user, cartItems } = useContext(UserContext);
-  const [quantityCart, setQuantityCart] = useState(0);
   const handleClick = () => {
     const id = user._id;
     navigate(`/${id}/cart`);
@@ -17,13 +16,18 @@ const HeaderLink = () => {
     navigate("/profile");
     window.scrollTo(0, 0);
   };
-
+  const handleClickNew2 = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
   return (
     <div className={styles.container}>
       <Link to="/about" className={styles.about}>
         About us
       </Link>
-
+      <div className={styles.logo} onClick={handleClickNew2}>
+        Sorete Design
+      </div>
       <section className={styles.login}>
         {loggedIn ? (
           <div className={styles.logged}>
@@ -45,13 +49,18 @@ const HeaderLink = () => {
               onClick={handleClickNew}
             />
             <Link to="/" className={styles.link} onClick={logOut}>
-              Изход
+              Log Out
             </Link>
           </div>
         ) : (
-          <Link to="/login" className={styles.link}>
-            Вход
-          </Link>
+          <div className={styles.bottom}>
+            <Link to="/login" className={styles.link}>
+              Log In
+            </Link>
+            <Link to="/registration" className={styles.link}>
+              Registration
+            </Link>
+          </div>
         )}
       </section>
     </div>

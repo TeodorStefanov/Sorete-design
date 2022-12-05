@@ -1,7 +1,7 @@
 .container {
   display: flex;
   background-color: #f8f9fa;
-  height: 3em;
+  height: 4em;
   width: 100%;
   white-space: nowrap;
   justify-content: space-between;
@@ -17,8 +17,16 @@
   color: black;
 }
 .about:hover {
-  font-weight: bold;
+  color: #979595;
   transition: ease-in-out;
+}
+.logo {
+  font-family: italic sans-serif;
+  font-size: 38px;
+  cursor: pointer;
+}
+.logo:hover {
+  color: #979595;
 }
 
 .login {
@@ -32,19 +40,15 @@
 }
 
 .link:hover {
-  font-weight: bold;
-  color: black;
-  transition: ease-in-out;
+  color: #979595;
 }
 .cartShopping {
   height: 20px;
-  position: absolute;
-  top: 15px;
   right: 310px;
   cursor: pointer;
 }
 .cartShopping:hover {
-  box-shadow: 2px 2px 10px 2px #e5e8e9;
+  color: #979595;
 }
 .span {
   width: 25px;
@@ -56,23 +60,25 @@
   color: white;
   position: relative;
   top: -12px;
-  right: -5px;
   cursor: pointer;
 }
 .picture {
   vertical-align: middle;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
 }
 .picture:hover {
-  box-shadow: 2px 2px 2px 2px grey;
+  background-color: #979595;
 }
 
 .legged {
   display: flex;
-  width: 100px;
+}
+.bottom {
+  display: flex;
+  gap: 10px;
 }

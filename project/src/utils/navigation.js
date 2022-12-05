@@ -1,9 +1,27 @@
 const getNavigation = (loggedIn, user) => {
   const links = [
     {
-      title: "Картички",
-      link: "/",
+      title: "Towels",
+      link: "/Towels",
     },
+    {
+      title: "Bath Rugs and Mats",
+      link: "/Bath-Rugs-and-Mats",
+    },
+    {
+      title: "Bathrobes",
+      link: "/Bathrobes",
+    },
+    {
+      title: "BathAccessories",
+      link: "/BathAccessories",
+    },
+    {
+      title: "Добави",
+      link: "/add",
+    },
+  ];
+  const guestLinks = [
     {
       title: "Towels",
       link: "/Towels",
@@ -13,34 +31,12 @@ const getNavigation = (loggedIn, user) => {
       link: "/Bath-Rugs-and-Mats",
     },
     {
-      title: "Добави",
-      link: "/add",
+      title: "Bathrobes",
+      link: "/Bathrobes",
     },
     {
-      title: "Profile",
-      link: `/profile`,
-    },
-    {
-      title: "Регистрация",
-      link: "/registration",
-    },
-    {
-      title: "Вход",
-      link: "/login",
-    },
-  ];
-  const guestLinks = [
-    {
-      title: "Картички",
-      link: "/",
-    },
-    {
-      title: "Регистрация",
-      link: "/registration",
-    },
-    {
-      title: "Вход",
-      link: "/login",
+      title: "BathAccessories",
+      link: "/BathAccessories",
     },
   ];
   return loggedIn ? links : guestLinks;

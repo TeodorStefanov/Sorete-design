@@ -19,6 +19,9 @@ import AboutPage from './pages/AboutPage'
 import TowelsPage from './pages/TowelsPage'
 import Towels from './pages/TowelsPage/Towels'
 import BathRugsAndMats from './pages/TowelsPage/BathRugsAndMats'
+import Bathrobes from './pages/TowelsPage/Bathrobes'
+import BathAccessories from './pages/TowelsPage/BathAccessories'
+
 const Navigation = () => {
     const {
         loggedIn,
@@ -29,6 +32,8 @@ const Navigation = () => {
                 <Route path='/' element={<HomePage />} />
                 <Route path='/Towels' element={<Towels />} />
                 <Route path='/Bath-Rugs-and-Mats' element={<BathRugsAndMats />} />
+                <Route path='/Bathrobes' element={<Bathrobes/>} />
+                <Route path='/BathAccessories' element={<BathAccessories/>} />
                 <Route path='/about' element={<AboutPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 {loggedIn ? (<Route path='/add' element={<Admin />} />) : <Route path='/add' element={<Navigate to='/login' />} />}
