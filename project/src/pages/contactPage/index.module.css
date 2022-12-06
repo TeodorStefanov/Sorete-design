@@ -5,13 +5,13 @@
 .picture {
   width: 100%;
 }
-.middle {
+.top {
   margin-top: 40px;
   margin-left: 480px;
   margin-right: 480px;
   margin-bottom: 100px;
 }
-.bottom {
+.middle {
   display: flex;
   background-color: #f2eeea;
   gap: 10px;
@@ -21,33 +21,75 @@
   width: 400px;
   height: 400px;
   margin-top: 40px;
-  margin-left: 200px;
+  margin-left: 250px;
   margin-right: 100px;
   margin-bottom: 40px;
 }
-.bottomForm {
+.middleForm {
   width: 800px;
   height: 400px;
   margin-top: 40px;
   text-align: left;
 }
-.bottomP {
+.middleP {
   font-size: 24px;
 }
-.bottomInputName {
+.middleInputName {
   display: block;
   width: 400px;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 20px;
 }
-.bottomInputEmail {
+.middleInputEmail {
   display: block;
   width: 200px;
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 20px;
 }
-.bottomInputMessage {
+.middleInputMessage {
   display: block;
   width: 400px;
+  font-size: 14px;
   height: 100px;
+  text-align: left;
+  margin-bottom: 20px;
 }
-.bottomButton {
-  width: 100px;
+.middleButton {
+  width: 120px;
   height: 40px;
+  margin-top: 40px;
+  margin-left: 284px;
+  color: white;
+  background-color: #a09b9b;
+  border: solid 2px #a09b9b;
+}
+.middleButton:hover {
+  background-color: #828282;
+  border: solid 2px #828282;
+}
+.bottom {
+  display: flex;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  margin-left: 200px;
+  margin-right: 200px;
+  justify-content: space-around;
+}
+.bottomLeft {
+  width: 280px;
+  text-align: left;
+}
+.bottomMiddle {
+  width: 280px;
+  text-align: left;
+}
+.bottomRight {
+  width: 280px;
+  text-align: left;
+}
+.bottomP {
+  font-size: 14px;
+  color: rgb(165, 165, 156);
 }

@@ -9,6 +9,7 @@ const {
   editProfile,
   createCart,
   getCart,
+  constactsEmail,
 } = require("../controllers/user");
 
 router.post("/registration", async (req, res) => {
@@ -56,6 +57,9 @@ router.put("/user/createCart", async (req, res) => {
   if (updatedUser2) {
     res.status(200).send(updatedUser2);
   }
+});
+router.post("/contactsEmail", async (req, res) => {
+  const message = await constactsEmail(req, res);
 });
 
 module.exports = router;

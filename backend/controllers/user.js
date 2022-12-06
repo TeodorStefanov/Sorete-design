@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
-
 const config = require("../config/config");
 const jwt = require("jsonwebtoken");
 const cart = require("../models/cart");
+const nodemailer = require("nodemailer");
 
 const generateToken = (data) => {
   const token = jwt.sign(data, config.privetKey, { expiresIn: "1h" });
@@ -201,14 +201,17 @@ const createCart = async (req, res) => {
     const user = await User.findOneAndUpdate(
       { _id: id },
       {
-        cart: cartId, 
+        cart: cartId,
       }
-    ).populate('cart')
-    const  newUser = await user.cart.populate('product')
-    return user
+    ).populate("cart");
+    const newUser = await user.cart.populate("product");
+    return user;
   } catch (err) {
-    console.log(err); 
+    console.log(err);
   }
+};
+const constactsEmail = async (req, res) => {
+  
 };
 module.exports = {
   saveUser,
@@ -217,4 +220,5 @@ module.exports = {
   editProfile,
   getCart,
   createCart,
+  constactsEmail,
 };
