@@ -32,15 +32,14 @@ const LoginPage = () => {
       const response = await promise.json();
       context.logIn(response);
       navigate("/");
-      
     }
-    if (promise.status === 401) { 
+    if (promise.status === 401) {
       setIsFailed(true);
       //context2.isError2();
-    } 
+    }
   };
   const handleBlurUsername = () => {
-    setUsernameError(usernameValidator(username)); 
+    setUsernameError(usernameValidator(username));
   };
   const handleBlurPassword = () => {
     setPasswordError(passwordValidator(password));
