@@ -4,7 +4,6 @@ const config = require("../config/config");
 const jwt = require("jsonwebtoken");
 const cart = require("../models/cart");
 const nodemailer = require("nodemailer");
-
 const generateToken = (data) => {
   const token = jwt.sign(data, config.privetKey, { expiresIn: "1h" });
   return token;
@@ -211,7 +210,31 @@ const createCart = async (req, res) => {
   }
 };
 const constactsEmail = async (req, res) => {
-  
+  const obj = req.body;
+  const transporter = nodemailer.createTransport({
+    service: config.emailService,
+    auth: {
+      user: config.emailUser,
+      pass: config.emailPass,
+    },
+  });
+  try {
+    let info = await transporter.sendMail({
+      from: config.emailUser,
+      to: config.emailAdmin,
+      subject: "User send Message",
+      text: `You have new message from: ${obj.name}\nMessage: ${obj.message}\n user Email: ${obj.email}`,
+      html: `<b>You have new message from: ${obj.name}\nMessage: ${obj.message}\n User Email: ${obj.email}</b>`,
+    });
+    if (info) {
+      return { info };
+    }
+  } catch (err) {
+    return {
+      error: true,
+      message: err,
+    };
+  }
 };
 module.exports = {
   saveUser,

@@ -2,24 +2,57 @@ import React, { useState } from "react";
 import PageWrapper from "../../Components/page-wrapper";
 import picOne from "../../images/contactPage/block1_202.jpg";
 import imgTwo from "../../images/contactPage/block1_204.jpg";
+import {
+  nameValidator,
+  emailValidator,
+  messageValidator,
+} from "../../utils/email";
 import styles from "./index.module.css";
 const ContactPage = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [message, setMessage] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [messageError, setMessageError] = useState("");
+  const [successfulMessage, setSuccessfulMessage] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const promise = await fetch("/contactsEmail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-      }),
-    });
+    if (
+      name &&
+      email &&
+      message &&
+      nameError === "" &&
+      emailError === "" &&
+      messageError === ""
+    ) {
+      const promise = await fetch("/contactsEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+      if (promise.status === 200) {
+        alert("succesess");
+        setSuccessfulMessage(true);
+      } else {
+        setSuccessfulMessage(true);
+      }
+    }
+  };
+  const handleBlurName = () => {
+    setNameError(nameValidator(name));
+  };
+  const handleBlurEmail = () => {
+    setEmailError(emailValidator(email));
+  };
+  const handleBlurMessage = () => {
+    setMessageError(messageValidator(message));
   };
   return (
     <PageWrapper>
@@ -29,11 +62,9 @@ const ContactPage = () => {
           <h1>Contacts</h1>
           <p>
             We hope you've enjoyed our collections. We would love to hear from
-            you.
-            <div>
-              If you need any help or just want to say hi, please feel free to
-              get in touch with us.
-            </div>
+            you. <br />
+            If you need any help or just want to say hi, please feel free to get
+            in touch with us.
           </p>
         </div>
         <div className={styles.middle}>
@@ -45,33 +76,67 @@ const ContactPage = () => {
               Name
               <input
                 id="name"
-                className={styles.middleInputName}
+                className={`${styles.middleInputName} ${
+                  !nameError ? styles.errorDiv : ""
+                }`}
                 value={name}
+                onBlur={handleBlurName}
+                required
                 onChange={(e) => setName(e.target.value)}
               />
             </label>
+            {nameError ? (
+              <div className={styles.errorMessage}>{nameError}</div>
+            ) : (
+              ""
+            )}
             <label htmlFor="email" type="email">
               Email
               <input
                 id="email"
-                className={styles.middleInputEmail}
+                className={`${styles.middleInputEmail} ${
+                  !emailError ? styles.errorDiv : ""
+                }`}
+                onBlur={handleBlurEmail}
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </label>
+            {emailError ? (
+              <div className={styles.errorMessage}>{emailError}</div>
+            ) : (
+              ""
+            )}
             <label htmlFor="message" type="text">
               Message
               <input
                 id="message"
                 type="text"
-                className={styles.middleInputMessage}
+                onBlur={handleBlurMessage}
+                required
+                className={`${styles.middleInputMessage} ${
+                  !messageError ? styles.errorDiv : ""
+                }`}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
             </label>
+            {messageError ? (
+              <div className={styles.errorMessage}>{messageError}</div>
+            ) : (
+              ""
+            )}
             <button type="submit" className={styles.middleButton}>
               Send
             </button>
+            {successfulMessage ? (
+              <div className={styles.successfulMessage}>
+                Your message has been send!
+              </div>
+            ) : (
+              ""
+            )}
           </form>
         </div>
         <div className={styles.bottom}>
