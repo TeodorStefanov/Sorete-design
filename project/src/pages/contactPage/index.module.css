@@ -39,14 +39,12 @@
   width: 400px;
   font-size: 14px;
   text-align: left;
-  margin-bottom: 20px;
 }
 .middleInputEmail {
   display: block;
   width: 200px;
   font-size: 14px;
   text-align: left;
-  margin-bottom: 20px;
 }
 .middleInputMessage {
   display: block;
@@ -54,7 +52,6 @@
   font-size: 14px;
   height: 100px;
   text-align: left;
-  margin-bottom: 20px;
 }
 .middleButton {
   width: 120px;
@@ -92,4 +89,16 @@
 .bottomP {
   font-size: 14px;
   color: rgb(165, 165, 156);
+}
+.errorMessage {
+  color: rgb(231, 119, 119);
+  text-align: left;
+}
+.successfulMessage {
+  color: rgb(231, 119, 119);
+  text-align: left;
+  margin: 20px;
+}
+.errorDiv {
+  margin-bottom: 20px;
 }

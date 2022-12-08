@@ -59,7 +59,13 @@ router.put("/user/createCart", async (req, res) => {
   }
 });
 router.post("/contactsEmail", async (req, res) => {
-  const message = await constactsEmail(req, res);
+  const { error, info, message } = await constactsEmail(req, res);
+  if (info) {
+    res.status(200).send({ message: "Message has been send" });
+  }
+  if (error) {
+    res.status(401).send({ error: message });
+  }
 });
 
 module.exports = router;
