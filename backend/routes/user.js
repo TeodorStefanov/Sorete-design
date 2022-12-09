@@ -10,7 +10,9 @@ const {
   createCart,
   getCart,
   constactsEmail,
+  getVerification,
 } = require("../controllers/user");
+const verificationUser = require("../models/verificationUser");
 
 router.post("/registration", async (req, res) => {
   const { error, message } = await saveUser(req, res);
@@ -66,6 +68,9 @@ router.post("/contactsEmail", async (req, res) => {
   if (error) {
     res.status(401).send({ error: message });
   }
+});
+router.get("/localhost:3000/verify/:userId/:uniqueString", (req, res) => {
+  const user = getVerification(req, res);
 });
 
 module.exports = router;

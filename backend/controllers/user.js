@@ -4,11 +4,56 @@ const config = require("../config/config");
 const jwt = require("jsonwebtoken");
 const cart = require("../models/cart");
 const nodemailer = require("nodemailer");
+const { v4: uuidv4 } = require("uuid");
+const verificationUser = require("../models/verificationUser");
 const generateToken = (data) => {
   const token = jwt.sign(data, config.privetKey, { expiresIn: "1h" });
   return token;
 };
-
+const sendVerificationEmail = async ({ _id, email }) => {
+  const currentUrl = "http://localhost:3000/";
+  const uniqueString = uuidv4() + _id;
+  const transporter = nodemailer.createTransport({
+    service: config.emailService,
+    auth: {
+      user: config.emailUser,
+      pass: config.emailPass,
+    },
+  });
+  const mailOption = {
+    from: config.emailUser,
+    to: config.emailAdmin,
+    subject: "User send Message",
+    html: `<b>Verify your email adress to complete the signup and login into your account.</b><b>This link
+    <b>expires in 6 hours</b>.</b><b>Press <a href=${
+      currentUrl + "user/verify/" + _id + "/" + uniqueString
+    }>here</a> to proceed.</p>`,
+  };
+  const messageSend = await transporter.sendMail(mailOption);
+  if (!messageSend) {
+    return { error: "Wrong details" };
+  }
+  const saltRounds = 10;
+  bcrypt
+    .hash(uniqueString, saltRounds)
+    .then((hashedUniqueString) => {
+      const newVerification = new verificationUser({
+        userId: _id,
+        uniqueString: hashedUniqueString,
+        createdAt: Date.now(),
+        expiredAt: Date.now() + 21600000,
+      });
+      newVerification
+        .save()
+        .then()
+        .catch((error) => {
+          return { error: error };
+        });
+    })
+    .catch((error) => {
+      return { error: error };
+    });
+};
 const saveUser = async (req, res) => {
   const obj = req.body;
   const {
@@ -63,8 +108,18 @@ const saveUser = async (req, res) => {
       email,
       picture:
         "https://res.cloudinary.com/daqcaszkf/image/upload/v1666974741/blank-profile-picture-973460__340.jpc_hcuj2e.webp",
+      verified: false,
     });
     const userObj = await user.save();
+
+    const { error } = sendVerificationEmail(userObj);
+
+    if (error) {
+      return {
+        error: true,
+        message: error,
+      };
+    }
     return userObj;
   } catch (err) {
     if (err.code === 11000 && err.keyValue.email) {
@@ -236,6 +291,73 @@ const constactsEmail = async (req, res) => {
     };
   }
 };
+const getVerification = (req, res) => {
+  const { userId, uniqueString } = req.params;
+  verificationUser
+    .findOne({ userId })
+    .then((result) => {
+      if (result.length === 0) {
+        return {
+          status: "Error",
+          message:
+            "Account record dosn't exist or has been verified already. Plese signup or login",
+        };
+      }
+      const { expiredAt } = result[0];
+      const hashedUniqueString = result[0].uniqueSting;
+      if (expiredAt < Date.now()) {
+        verificationUser
+          .deleteOne({ userId })
+          .then(() => {
+            User.deleteOne({ _id: userId })
+              .then()
+              .catch((error) => {
+                console.log(error);
+                return;
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+            return {
+              status: "Error",
+              message: "Clearing verification User failed",
+            };
+          });
+        return {
+          status: "Error",
+          message: "Link has expired. Plese sign up again ",
+        };
+      }
+      bcrypt
+        .compare(uniqueString, hashedUniqueString)
+        .then((result) => {
+          if (result) {
+            User.updateOne({ _id: userId }, { verified: true })
+              .then(() => {
+                verificationUser
+                  .deleteOne({ userId })
+                  .then()
+                  .catch((error) => {
+                    return error;
+                  });
+              })
+              .catch((error) => {
+                return error;
+              });
+          }
+        })
+        .catch((error) => {
+          return error;
+        });
+    })
+    .catch((error) => {
+      return {
+        status: "Error",
+        message:
+          "An error occurred while checking for existing user verification record",
+      };
+    });
+};
 module.exports = {
   saveUser,
   verifyUser,
@@ -244,4 +366,5 @@ module.exports = {
   getCart,
   createCart,
   constactsEmail,
+  getVerification,
 };

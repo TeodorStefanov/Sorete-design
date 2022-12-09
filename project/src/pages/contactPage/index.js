@@ -15,7 +15,6 @@ const ContactPage = () => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [messageError, setMessageError] = useState("");
-  const [successfulMessage, setSuccessfulMessage] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -38,10 +37,12 @@ const ContactPage = () => {
         }),
       });
       if (promise.status === 200) {
-        alert("succesess");
-        setSuccessfulMessage(true);
+        alert("Your message has been sand.");
+        setName("");
+        setEmail("");
+        setMessage("");
       } else {
-        setSuccessfulMessage(true);
+        alert("An error occurred. Please try again.");
       }
     }
   };
@@ -130,13 +131,6 @@ const ContactPage = () => {
             <button type="submit" className={styles.middleButton}>
               Send
             </button>
-            {successfulMessage ? (
-              <div className={styles.successfulMessage}>
-                Your message has been send!
-              </div>
-            ) : (
-              ""
-            )}
           </form>
         </div>
         <div className={styles.bottom}>
