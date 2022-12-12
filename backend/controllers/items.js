@@ -56,7 +56,6 @@ const getGaufreProducts = async (req, res) => {
   try {
     const products = await Item.find({ category: "GAUFRE" });
     const productsColors = await Item.find({ category: "colors" });
-    console.log(products);
     return {
       products,
       productsColors,
@@ -69,7 +68,6 @@ const getGaufreProducts = async (req, res) => {
   }
 };
 const getTowels = async (req, res) => {
-  
   try {
     const towels = await Item.find({ category: req.params.type });
     if (towels) {
