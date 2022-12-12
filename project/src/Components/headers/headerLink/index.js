@@ -50,7 +50,9 @@ const HeaderLink = () => {
             )}
             <img
               src={user.picture}
-              className={styles.picture}
+              className={`${styles.picture} ${
+                cartItems === 0 ? styles.total : ""
+              }`}
               onClick={handleClickNew}
             />
             <Link to="/" className={styles.link} onClick={logOut}>

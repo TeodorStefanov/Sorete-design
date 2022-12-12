@@ -93,3 +93,6 @@
   display: flex;
   gap: 25px;
 }
+.total {
+  margin-left: 12px;
+}
