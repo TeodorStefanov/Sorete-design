@@ -147,7 +147,7 @@ const verifyUser = async (req, res) => {
   try {
     const user = await User.findOne({ username }).populate("cart");
     if (user.cart) {
-      const newUser = await user.cart.populate("product");
+      await user.cart.populate("product");
     }
 
     if (!user) {
@@ -197,7 +197,7 @@ const checkAuthentication = async (req, res) => {
     if (decoded) {
       const { username } = decoded;
       const user = await User.findOne({ username }).populate("cart");
-      console.log(user);
+
       if (user.cart) {
         const newUser = await user.cart.populate("product");
       }
@@ -219,7 +219,6 @@ const editProfile = async (req, res) => {
     email,
     picture,
   };
-  console.log(newObj);
   if (!_id || !firstName || !familyName || !phoneNumber || !email) {
     return {
       error: true,
@@ -250,7 +249,7 @@ const getCart = async (req, res) => {
   const id = req.params.id;
   try {
     const user = await User.findById({ _id: id }).populate("cart");
-    const userNew = await user.cart.populate("product");
+    await user.cart.populate("product");
     return user;
   } catch (err) {
     console.log(err);

@@ -24,7 +24,6 @@ router.post("/registration", async (req, res) => {
 });
 router.post("/login", async (req, res) => {
   const { token, user, error, message } = await verifyUser(req, res);
-  console.log(message);
   if (error) {
     if (message != "No user") {
       res.status(401).send({
