@@ -9,13 +9,11 @@ import App2 from "./App2";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App>
-      <ErrorBoundary>
-        <Navigation />
-      </ErrorBoundary>
-    </App>
-  </React.StrictMode>
+  <App>
+    <ErrorBoundary>
+      <Navigation />
+    </ErrorBoundary>
+  </App>
 );
 
 // If you want to start measuring performance in your app, pass a function

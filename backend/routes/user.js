@@ -23,10 +23,17 @@ router.post("/registration", async (req, res) => {
   }
 });
 router.post("/login", async (req, res) => {
-  const { token, user, error } = await verifyUser(req, res);
+  const { token, user, error, message } = await verifyUser(req, res);
+  console.log(message);
   if (error) {
+    if (message != "No user") {
+      res.status(401).send({
+        message: "Please check your email to verify your account",
+      });
+      return;
+    }
     res.status(401).send({
-      message: "unauthorized",
+      message: "Wrong username or password.",
     });
   }
   if (token) {
@@ -69,8 +76,17 @@ router.post("/contactsEmail", async (req, res) => {
     res.status(401).send({ error: message });
   }
 });
-router.get("/localhost:3000/verify/:userId/:uniqueString", (req, res) => {
-  const user = getVerification(req, res);
+router.get("/getVerification/:userId/:uniqueString", async (req, res) => {
+  const { error, message } = await getVerification(req, res);
+  console.log("message", message);
+  if (message) {
+    res.status(200).send({ message });
+  } else {
+    res.status(401).send({
+      message:
+        "Error. Your link has been acteveted already or wrong details.Plese sign up again.",
+    });
+  }
 });
 
 module.exports = router;

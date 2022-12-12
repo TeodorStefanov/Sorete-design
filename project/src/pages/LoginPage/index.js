@@ -11,7 +11,7 @@ import { usernameValidator, passwordValidator } from "../../utils/login";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isFailed, setIsFailed] = useState(false);
+  const [isFailed, setIsFailed] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -28,13 +28,13 @@ const LoginPage = () => {
       },
       body: JSON.stringify({ username, password }),
     });
+    const response = await promise.json();
     if (promise.status === 200) {
-      const response = await promise.json();
       context.logIn(response);
       navigate("/");
     }
     if (promise.status === 401) {
-      setIsFailed(true);
+      setIsFailed(response.message);
       //context2.isError2();
     }
   };
@@ -69,7 +69,7 @@ const LoginPage = () => {
           />
           <button className={styles.submit}>Login</button>
         </form>
-        {isFailed ? <WrongUser /> : ""}
+        {isFailed ? <WrongUser value={isFailed} /> : ""}
       </div>
     </PageWrapper>
   );

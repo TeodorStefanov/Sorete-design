@@ -6,6 +6,7 @@ const cart = require("../models/cart");
 const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 const verificationUser = require("../models/verificationUser");
+const user = require("../models/user");
 const generateToken = (data) => {
   const token = jwt.sign(data, config.privetKey, { expiresIn: "1h" });
   return token;
@@ -155,11 +156,18 @@ const verifyUser = async (req, res) => {
         message: "No user",
       };
     }
+
     const status = await bcrypt.compare(password, user.password);
     if (!status) {
       return {
         error: true,
         message: "No user",
+      };
+    }
+    if (!user.verified) {
+      return {
+        error: true,
+        message: "Please verify your email.",
       };
     }
     const token = generateToken({
@@ -291,73 +299,41 @@ const constactsEmail = async (req, res) => {
     };
   }
 };
-const getVerification = (req, res) => {
+const getVerification = async (req, res) => {
   const { userId, uniqueString } = req.params;
-  verificationUser
-    .findOne({ userId })
-    .then((result) => {
-      if (result.length === 0) {
-        return {
-          status: "Error",
-          message:
-            "Account record dosn't exist or has been verified already. Plese signup or login",
-        };
-      }
-      const { expiredAt } = result[0];
-      const hashedUniqueString = result[0].uniqueSting;
-      if (expiredAt < Date.now()) {
-        verificationUser
-          .deleteOne({ userId })
-          .then(() => {
-            User.deleteOne({ _id: userId })
-              .then()
-              .catch((error) => {
-                console.log(error);
-                return;
-              });
-          })
-          .catch((error) => {
-            console.log(error);
-            return {
-              status: "Error",
-              message: "Clearing verification User failed",
-            };
-          });
-        return {
-          status: "Error",
-          message: "Link has expired. Plese sign up again ",
-        };
-      }
-      bcrypt
-        .compare(uniqueString, hashedUniqueString)
-        .then((result) => {
-          if (result) {
-            User.updateOne({ _id: userId }, { verified: true })
-              .then(() => {
-                verificationUser
-                  .deleteOne({ userId })
-                  .then()
-                  .catch((error) => {
-                    return error;
-                  });
-              })
-              .catch((error) => {
-                return error;
-              });
-          }
-        })
-        .catch((error) => {
-          return error;
-        });
-    })
-    .catch((error) => {
+  try {
+    const verifyUser = await verificationUser.findOne({ userId });
+    if (!verifyUser) {
       return {
-        status: "Error",
-        message:
-          "An error occurred while checking for existing user verification record",
+        error: true,
       };
-    });
+    }
+    const hashedUniqueString = verifyUser.uniqueString;
+    const expiredAt = verifyUser.expiredAt;
+    if (expiredAt < Date.now()) {
+      await verificationUser.deleteOne({ userId });
+      await User.deleteOne({ _id: userId });
+
+      return {
+        message: "Link has expired. Please sign up again.",
+      };
+    }
+    const status = bcrypt.compareSync(uniqueString, hashedUniqueString);
+    if (status) {
+      await User.updateOne({ _id: userId }, { verified: true });
+      await verificationUser.deleteOne({ userId });
+
+      return {
+        message: "Verification complete !",
+      };
+    }
+  } catch (error) {
+    return {
+      error: true,
+    };
+  }
 };
+
 module.exports = {
   saveUser,
   verifyUser,
