@@ -1,9 +1,7 @@
 import React from "react";
-import styles from './index.module.css'
-const WrongUser = () => {
-  return (
-  <div className={styles.wrongUser}> Грешка: Несъответствие на въведената електронна поща и/или парола.</div>
-  )
+import styles from "./index.module.css";
+const WrongUser = ({ value }) => {
+  return <div className={styles.wrongUser}>{value} </div>;
 };
 
 export default WrongUser;
