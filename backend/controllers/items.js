@@ -80,9 +80,22 @@ const getTowels = async (req, res) => {
     };
   }
 };
+const getSearch = async (req, res) => {
+  const { searchMenu } = req.params;
+  try {
+    const items = await Item.find();
+    const itemsSearch = items.filter((el) =>
+      el.name.toLowerCase().includes(searchMenu.toLowerCase())
+    );
+    return itemsSearch;
+  } catch (err) {
+    console.log(err);
+  }
+};
 module.exports = {
   createItem,
   getItem,
   getGaufreProducts,
   getTowels,
+  getSearch,
 };
