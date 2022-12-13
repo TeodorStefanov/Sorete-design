@@ -18,3 +18,19 @@
   color: white;
   align-items: center;
 }
+.div {
+  display: inline-block;
+  position: absolute;
+  width: 200px;
+  height: 24px;
+  top: 12px;
+  right: 176px;
+  color: white;
+  background-color: #f8f9fa;
+}
+.magnifyingGlass {
+  position: absolute;
+  top: 17px;
+  right: 180px;
+  cursor: pointer;
+}
