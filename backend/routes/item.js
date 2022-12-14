@@ -41,7 +41,10 @@ router.get("/:type", async (req, res) => {
   }
 });
 router.get("/search/:searchMenu", async (req, res) => {
-  const search = await getSearch(req, res);
+  const itemsSearch = await getSearch(req, res);
+  if(itemsSearch){
+    res.status(200).send(itemsSearch)
+  }
 });
 
 module.exports = router;
