@@ -23,6 +23,7 @@ import BathRugsAndMats from './pages/TowelsPage/BathRugsAndMats'
 import Bathrobes from './pages/TowelsPage/Bathrobes'
 import BathAccessories from './pages/TowelsPage/BathAccessories'
 import VerifyUser from './pages/verifyUserPage'
+import SearchPage from './pages/SearchPage'
 
 const Navigation = () => {
     const {
@@ -47,6 +48,7 @@ const Navigation = () => {
                 <Route path='/:products/:id' element={<ProductPage />} />
                 <Route path='/:userID/cart' element={<CartPage/>} />
                 <Route path='/user/verify/:userId/:uniqueString' element={<VerifyUser/>} />
+                <Route path='/searchPage/:searchMenu' element={<SearchPage/>} />
             </Routes>
         </BrowserRouter>
     )

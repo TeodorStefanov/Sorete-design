@@ -21,11 +21,12 @@
 .div {
   display: inline-block;
   position: absolute;
+  font-size: 15px;
   width: 200px;
   height: 24px;
   top: 12px;
   right: 176px;
-  color: white;
+  color: #273540;
   background-color: #f8f9fa;
 }
 .magnifyingGlass {
