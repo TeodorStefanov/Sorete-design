@@ -31,7 +31,7 @@ const SearchPage = () => {
   };
   useEffect(() => {
     getSearch();
-  }, []);
+  }, [items]);
   return (
     <PageWrapper>
       {items.length > 0 ? (
