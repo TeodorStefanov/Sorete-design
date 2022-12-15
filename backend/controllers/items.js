@@ -89,7 +89,10 @@ const getSearch = async (req, res) => {
     );
     return itemsSearch;
   } catch (err) {
-    console.log(err);
+    return {
+      error: true,
+      message: err,
+    };
   }
 };
 module.exports = {

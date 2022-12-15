@@ -7,9 +7,13 @@ const SearchPage = () => {
   const params = useParams();
   const searchMenu = params.searchMenu;
   const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const getSearch = async () => {
     const promise = await fetch(`/search/${searchMenu}`);
     const response = await promise.json();
+    if (response) {
+      setIsLoading(false);
+    }
     if (promise.status === 200) {
       setItems(response);
     }
@@ -34,7 +38,9 @@ const SearchPage = () => {
   }, [items]);
   return (
     <PageWrapper>
-      {items.length > 0 ? (
+      {isLoading ? (
+        <div>Loading</div>
+      ) : items.length > 0 ? (
         <div className={styles.container}>{renderItems()}</div>
       ) : (
         <div>We did not find results for the search</div>
