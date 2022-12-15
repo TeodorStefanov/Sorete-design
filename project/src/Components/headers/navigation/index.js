@@ -14,8 +14,12 @@ const Aside = () => {
   const links = getNavigation(loggedIn, user);
   const navigate = useNavigate();
   const handleClick = async () => {
-    console.log(searchMenu)
-    navigate(`searchPage/${searchMenu}`);
+    navigate(`/searchPage/${searchMenu}`);
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleClick();
+    }
   };
 
   return (
@@ -30,6 +34,7 @@ const Aside = () => {
           className={styles.div}
           value={searchMenu}
           onChange={(event) => setSearchMenu(event.target.value)}
+          onKeyDown={handleKeyDown}
         ></input>
         <FontAwesomeIcon
           className={styles.magnifyingGlass}
