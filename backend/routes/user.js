@@ -11,6 +11,7 @@ const {
   getCart,
   constactsEmail,
   getVerification,
+  changePassword,
 } = require("../controllers/user");
 const verificationUser = require("../models/verificationUser");
 
@@ -85,6 +86,14 @@ router.get("/getVerification/:userId/:uniqueString", async (req, res) => {
       message:
         "Error. Your link has been acteveted already or wrong details.Plese sign up again.",
     });
+  }
+});
+router.get("/changePassword/:email", async (req, res) => {
+  const { error } = await changePassword(req, res);
+  if (!error) {
+    res
+      .status(200)
+      .send({ message: "Please check your email." });
   }
 });
 

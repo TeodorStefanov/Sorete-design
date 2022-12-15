@@ -38,6 +38,9 @@ const LoginPage = () => {
       //context2.isError2();
     }
   };
+  const handleClick = () => {
+    navigate("/forgotYourPassword");
+  };
   const handleBlurUsername = () => {
     setUsernameError(usernameValidator(username));
   };
@@ -47,7 +50,7 @@ const LoginPage = () => {
   return (
     <PageWrapper>
       <div className={styles.container}>
-        <h1>Влез</h1>
+        <h1>Log in</h1>
         <form onSubmit={handleSubmit}>
           <Input
             name="username"
@@ -67,6 +70,9 @@ const LoginPage = () => {
             placeHolder="Enter yoyr password"
             error={passwordError}
           />
+          <div className={styles.forgotYourPassword} onClick={handleClick}>
+            Forgot your password?
+          </div>
           <button className={styles.submit}>Login</button>
         </form>
         {isFailed ? <WrongUser value={isFailed} /> : ""}

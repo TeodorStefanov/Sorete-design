@@ -11,7 +11,7 @@ const generateToken = (data) => {
   const token = jwt.sign(data, config.privetKey, { expiresIn: "1h" });
   return token;
 };
-const sendVerificationEmail = async ({ _id, email }) => {
+const sendVerificationEmail = async ({ _id, email }, message) => {
   const currentUrl = "http://localhost:3000/";
   const uniqueString = uuidv4() + _id;
   const transporter = nodemailer.createTransport({
@@ -23,9 +23,9 @@ const sendVerificationEmail = async ({ _id, email }) => {
   });
   const mailOption = {
     from: config.emailUser,
-    to: config.emailAdmin,
+    to: email,
     subject: "User send Message",
-    html: `<b>Verify your email adress to complete the signup and login into your account.</b><b>This link
+    html: `${message} <b>This link
     <b>expires in 6 hours</b>.</b><b>Press <a href=${
       currentUrl + "user/verify/" + _id + "/" + uniqueString
     }>here</a> to proceed.</p>`,
@@ -34,26 +34,27 @@ const sendVerificationEmail = async ({ _id, email }) => {
   if (!messageSend) {
     return { error: "Wrong details" };
   }
+
   const saltRounds = 10;
-  bcrypt
-    .hash(uniqueString, saltRounds)
-    .then((hashedUniqueString) => {
-      const newVerification = new verificationUser({
-        userId: _id,
-        uniqueString: hashedUniqueString,
-        createdAt: Date.now(),
-        expiredAt: Date.now() + 21600000,
-      });
-      newVerification
-        .save()
-        .then()
-        .catch((error) => {
-          return { error: error };
-        });
-    })
-    .catch((error) => {
-      return { error: error };
+  const hashedUniqueString = await bcrypt.hash(uniqueString, saltRounds);
+  try {
+    const newVerification = new verificationUser({
+      userId: _id,
+      uniqueString: hashedUniqueString,
+      createdAt: Date.now(),
+      expiredAt: Date.now() + 21600000,
     });
+
+    await newVerification.save();
+    return {
+      newVerification,
+    };
+  } catch (err) {
+    return {
+      error: true,
+      message: err,
+    };
+  }
 };
 const saveUser = async (req, res) => {
   const obj = req.body;
@@ -112,10 +113,11 @@ const saveUser = async (req, res) => {
       verified: false,
     });
     const userObj = await user.save();
+    const message =
+      "<b>Verify your email adress to complete the signup and login into your account.</b>";
+    const newVerification = sendVerificationEmail(userObj, message);
 
-    const { error } = sendVerificationEmail(userObj);
-
-    if (error) {
+    if (!newVerification) {
       return {
         error: true,
         message: error,
@@ -332,6 +334,19 @@ const getVerification = async (req, res) => {
     };
   }
 };
+const changePassword = async (req, res) => {
+  const email = req.params.email;
+  const user = await User.findOne({ email: email });
+  if (user) {
+    const message = `<b>To change your password and login into your account.</b>`;
+    const newVerification = sendVerificationEmail(user, message);
+    return newVerification;
+  } else {
+    return {
+      error: true,
+    };
+  }
+};
 
 module.exports = {
   saveUser,
@@ -342,4 +357,5 @@ module.exports = {
   createCart,
   constactsEmail,
   getVerification,
+  changePassword,
 };
