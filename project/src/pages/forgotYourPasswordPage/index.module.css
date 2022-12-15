@@ -1,33 +1,33 @@
 .container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  height: auto;
 }
-
-.submit {
+.emailForm {
+  align-items: center;
+  margin-left: 400px;
+  margin-right: 400px;
+}
+.emailLabel {
+  margin: 20px;
+}
+.emailInput {
+  width: 200px;
+  margin: 20px;
+}
+.emailButton {
+  display: block;
   background: #273540;
   color: white;
   padding: 10px;
   width: 100px;
   border-radius: 5px;
-  display: block;
-  margin: 0 auto;
+  margin: auto;
   border: 2px solid white;
   border-radius: 21px;
   cursor: pointer;
 }
-
-.submit:hover {
+.emailButton:hover {
   background-color: white;
   border: 2px solid #273540;
   color: #273540;
   font-style: italic;
-}
-.forgotYourPassword {
-  margin: 12px;
-}
-.forgotYourPassword:hover {
-  color: rgb(231, 119, 119);
-  cursor: pointer;
 }
