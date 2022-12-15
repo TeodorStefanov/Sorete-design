@@ -42,8 +42,10 @@ router.get("/:type", async (req, res) => {
 });
 router.get("/search/:searchMenu", async (req, res) => {
   const itemsSearch = await getSearch(req, res);
-  if(itemsSearch){
-    res.status(200).send(itemsSearch)
+  if (itemsSearch) {
+    res.status(200).send(itemsSearch);
+  } else {
+    res.status(401).send({ message: "There is an error" });
   }
 });
 
