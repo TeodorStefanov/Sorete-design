@@ -31,10 +31,11 @@ const ForgotYourPasswordPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Enter your email"
+                type="Email"
               />
             </label>
             <button className={styles.emailButton} type="submit">
-              Submit
+              Enter
             </button>
           </form>
         </div>
