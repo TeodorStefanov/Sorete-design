@@ -25,6 +25,7 @@ import BathAccessories from './pages/TowelsPage/BathAccessories'
 import VerifyUser from './pages/verifyUserPage'
 import SearchPage from './pages/SearchPage'
 import ForgotYourPasswordPage from './pages/forgotYourPasswordPage'
+import ChangedPasswordPage from './pages/changedPasswordPage'
 
 const Navigation = () => {
     const {
@@ -51,6 +52,7 @@ const Navigation = () => {
                 <Route path='/user/verify/:userId/:uniqueString' element={<VerifyUser/>} />
                 <Route path='/searchPage/:searchMenu' element={<SearchPage/>} />
                 <Route path='/forgotYourPassword' element={<ForgotYourPasswordPage/>} />
+                <Route path='/user/changePassword/:userId/:uniqueString' element={<ChangedPasswordPage/>} />
             </Routes>
         </BrowserRouter>
     )

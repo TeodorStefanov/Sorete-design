@@ -12,6 +12,7 @@ const {
   constactsEmail,
   getVerification,
   changePassword,
+  changedPassword,
 } = require("../controllers/user");
 const verificationUser = require("../models/verificationUser");
 
@@ -77,14 +78,15 @@ router.post("/contactsEmail", async (req, res) => {
   }
 });
 router.get("/getVerification/:userId/:uniqueString", async (req, res) => {
-  const { error, message } = await getVerification(req, res);
+  const path = "email";
+  const { error, message } = await getVerification(req, res, path);
   console.log("message", message);
   if (message) {
     res.status(200).send({ message });
   } else {
     res.status(401).send({
       message:
-        "Error. Your link has been acteveted already or wrong details.Plese sign up again.",
+        "Error. Your link has been activeted already or wrong details.Plese sign up again.",
     });
   }
 });
@@ -94,6 +96,19 @@ router.get("/changePassword/:email", async (req, res) => {
     res.status(200).send({ message: "Please check your email." });
   } else {
     res.status(401).send({ message: "Enter valid email" });
+  }
+});
+router.post("/changePassword/:userId/:uniqueString", async (req, res) => {
+  const { error } = await changedPassword(req, res);
+  if (!error) {
+    res.status(200).send({ message: "Successfully changed password" });
+  }
+});
+router.get("/getVerified/:userId/:uniqueString", async (req, res) => {
+  const path = "varification";
+  const { error, message } = await getVerification(req, res, path);
+  if (message) {
+    res.status(200).send({ message });
   }
 });
 

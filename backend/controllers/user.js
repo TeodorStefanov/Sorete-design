@@ -11,7 +11,7 @@ const generateToken = (data) => {
   const token = jwt.sign(data, config.privetKey, { expiresIn: "1h" });
   return token;
 };
-const sendVerificationEmail = async ({ _id, email }, message) => {
+const sendVerificationEmail = async ({ _id, email }, message, path) => {
   const currentUrl = "http://localhost:3000/";
   const uniqueString = uuidv4() + _id;
   const transporter = nodemailer.createTransport({
@@ -27,7 +27,7 @@ const sendVerificationEmail = async ({ _id, email }, message) => {
     subject: "User send Message",
     html: `${message} <b>This link
     <b>expires in 6 hours</b>.</b><b>Press <a href=${
-      currentUrl + "user/verify/" + _id + "/" + uniqueString
+      currentUrl + `user/${path}/` + _id + "/" + uniqueString
     }>here</a> to proceed.</p>`,
   };
   const messageSend = await transporter.sendMail(mailOption);
@@ -53,6 +53,48 @@ const sendVerificationEmail = async ({ _id, email }, message) => {
     return {
       error: true,
       message: err,
+    };
+  }
+};
+const getVerification = async (req, res, path) => {
+  const { userId, uniqueString } = req.params;
+  try {
+    const verifyUser = await verificationUser.findOne({ userId });
+    if (!verifyUser) {
+      return {
+        error: true,
+      };
+    }
+    const hashedUniqueString = verifyUser.uniqueString;
+    const expiredAt = verifyUser.expiredAt;
+    if (expiredAt < Date.now()) {
+      if (path === "email") {
+        await verificationUser.deleteOne({ userId });
+        await User.deleteOne({ _id: userId });
+      } else if (path === "verification") {
+        await verificationUser.deleteOne({ userId });
+      }
+
+      return {
+        message: "Link has expired. Please try again.",
+      };
+    }
+    const status = bcrypt.compareSync(uniqueString, hashedUniqueString);
+    if (status) {
+      if (path === "email") {
+        await User.updateOne({ _id: userId }, { verified: true });
+        await verificationUser.deleteOne({ userId });
+      } else if (path === "password") {
+        await verificationUser.deleteOne({ userId });
+      }
+
+      return {
+        message: "Verification complate!",
+      };
+    }
+  } catch (error) {
+    return {
+      error: true,
     };
   }
 };
@@ -115,7 +157,8 @@ const saveUser = async (req, res) => {
     const userObj = await user.save();
     const message =
       "<b>Verify your email adress to complete the signup and login into your account.</b>";
-    const newVerification = sendVerificationEmail(userObj, message);
+    const path = "verify";
+    const newVerification = sendVerificationEmail(userObj, message, path);
 
     if (!newVerification) {
       return {
@@ -300,50 +343,56 @@ const constactsEmail = async (req, res) => {
     };
   }
 };
-const getVerification = async (req, res) => {
-  const { userId, uniqueString } = req.params;
-  try {
-    const verifyUser = await verificationUser.findOne({ userId });
-    if (!verifyUser) {
-      return {
-        error: true,
-      };
-    }
-    const hashedUniqueString = verifyUser.uniqueString;
-    const expiredAt = verifyUser.expiredAt;
-    if (expiredAt < Date.now()) {
-      await verificationUser.deleteOne({ userId });
-      await User.deleteOne({ _id: userId });
 
-      return {
-        message: "Link has expired. Please sign up again.",
-      };
-    }
-    const status = bcrypt.compareSync(uniqueString, hashedUniqueString);
-    if (status) {
-      await User.updateOne({ _id: userId }, { verified: true });
-      await verificationUser.deleteOne({ userId });
-
-      return {
-        message: "Verification complete !",
-      };
-    }
-  } catch (error) {
-    return {
-      error: true,
-    };
-  }
-};
 const changePassword = async (req, res) => {
   const email = req.params.email;
   const user = await User.findOne({ email: email });
   if (user) {
     const message = `<b>To change your password and login into your account.</b>`;
-    const newVerification = sendVerificationEmail(user, message);
+    const path = "changePassword";
+    const newVerification = sendVerificationEmail(user, message, path);
     return newVerification;
   } else {
     return {
       error: true,
+    };
+  }
+};
+const changedPassword = async (req, res) => {
+  const path = "password";
+  const { error, message } = await getVerification(req, res, path);
+  if (error) {
+    return {
+      error: true,
+    };
+  }
+  const { userId, uniqueString } = req.params;
+  const { password, rePassword } = req.body;
+  if (!password || !rePassword || password != rePassword) {
+    return {
+      error: true,
+    };
+  }
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const user = await User.findOneAndUpdate(
+      { _id: userId },
+      { password: hashedPassword }
+    );
+    if (user) {
+      return {
+        error: false,
+      };
+    } else {
+      return {
+        error: true,
+      };
+    }
+  } catch (err) {
+    return {
+      error: true,
+      message: err,
     };
   }
 };
@@ -358,4 +407,5 @@ module.exports = {
   constactsEmail,
   getVerification,
   changePassword,
+  changedPassword,
 };
