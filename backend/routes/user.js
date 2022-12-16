@@ -91,9 +91,9 @@ router.get("/getVerification/:userId/:uniqueString", async (req, res) => {
 router.get("/changePassword/:email", async (req, res) => {
   const { error } = await changePassword(req, res);
   if (!error) {
-    res
-      .status(200)
-      .send({ message: "Please check your email." });
+    res.status(200).send({ message: "Please check your email." });
+  } else {
+    res.status(401).send({ message: "Enter valid email" });
   }
 });
 
