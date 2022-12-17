@@ -4,9 +4,20 @@
   position: static;
   bottom: 0px;
   margin-top: 40px;
+  align-items: center;
 }
 .footerText {
   color: white;
   overflow: hidden;
+  margin-left: 640px;
+  margin-right: 640px;
+  align-items: center;
 }
-
+.icons {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+}
+.footerTop {
+  margin-top: 40px;
+}
