@@ -35,6 +35,7 @@ const Aside = () => {
           value={searchMenu}
           onChange={(event) => setSearchMenu(event.target.value)}
           onKeyDown={handleKeyDown}
+          placeholder="Search our catalog"
         ></input>
         <FontAwesomeIcon
           className={styles.magnifyingGlass}
