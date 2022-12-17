@@ -346,13 +346,19 @@ const constactsEmail = async (req, res) => {
 
 const changePassword = async (req, res) => {
   const email = req.params.email;
-  const user = await User.findOne({ email: email });
-  if (user) {
-    const message = `<b>To change your password and login into your account.</b>`;
-    const path = "changePassword";
-    const newVerification = sendVerificationEmail(user, message, path);
-    return newVerification;
-  } else {
+  try {
+    const user = await User.findOne({ email: email });
+    if (user) {
+      const message = `<b>To change your password and login into your account.</b>`;
+      const path = "changePassword";
+      const newVerification = sendVerificationEmail(user, message, path);
+      return newVerification;
+    } else {
+      return {
+        error: true,
+      };
+    }
+  } catch (err) {
     return {
       error: true,
     };
