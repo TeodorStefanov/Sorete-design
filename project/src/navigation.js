@@ -6,7 +6,6 @@ import {
     Navigate
 } from 'react-router-dom'
 import Admin from './pages/addProductPage'
-import Admin2 from './pages/admin2'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage' 
 import Profile from './pages/profile'
@@ -17,7 +16,6 @@ import ProductPage from './pages/productPage'
 import CartPage from './pages/CartPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/contactPage'
-import TowelsPage from './pages/TowelsPage'
 import Towels from './pages/TowelsPage/Towels'
 import BathRugsAndMats from './pages/TowelsPage/BathRugsAndMats'
 import Bathrobes from './pages/TowelsPage/Bathrobes'
@@ -30,6 +28,7 @@ import ChangedPasswordPage from './pages/changedPasswordPage'
 const Navigation = () => {
     const {
         loggedIn,
+        isAdmin
     } = useContext(UserContext)
     return (
         <BrowserRouter>
@@ -41,18 +40,17 @@ const Navigation = () => {
                 <Route path='/BathAccessories' element={<BathAccessories/>} />
                 <Route path='/about' element={<AboutPage />} />
                 <Route path='/contacts' element={<ContactPage />} />
-                <Route path='/login' element={<LoginPage />} />
-                {loggedIn ? (<Route path='/add' element={<Admin />} />) : <Route path='/add' element={<Navigate to='/login' />} />}
-                {loggedIn ? (<Route path='/add2' element={<Admin2 />} />) : <Route path='/add2' element={<Navigate to='/login' />} />}
-                <Route path='/registration' element={<RegisterPage />} />
+                {!loggedIn ? <Route path='/login' element={<LoginPage />} /> :  <Route path='/login' element={<Navigate to='/' />} />}
+                {isAdmin ? (<Route path='/add' element={<Admin />} />) : <Route path='/add' element={<Navigate to='/' />} />}
+                {!loggedIn ? <Route path='/registration' element={<RegisterPage />} /> :  <Route path='/registration' element={<Navigate to='/' />} />}
                 {loggedIn ? (<Route path='/profile' element={<Profile />} />) : <Route path='/profile' element={<Navigate to='/login' />} />}
                 {loggedIn ? (<Route path='/profile/edit' element={<ProfileEdit />} />) : <Route path='/profile/edit' element={<Navigate to='/login' />} />}
                 <Route path='/:products/:id' element={<ProductPage />} />
-                <Route path='/:userID/cart' element={<CartPage/>} />
+                {loggedIn ? <Route path='/:userID/cart' element={<CartPage/>} /> :  <Route path='/:userID/cart' element={<Navigate to='/' />} />}
                 <Route path='/user/verify/:userId/:uniqueString' element={<VerifyUser/>} />
                 <Route path='/searchPage/:searchMenu' element={<SearchPage/>} />
-                <Route path='/forgotYourPassword' element={<ForgotYourPasswordPage/>} />
-                <Route path='/user/changePassword/:userId/:uniqueString' element={<ChangedPasswordPage/>} />
+                {loggedIn ? <Route path='/forgotYourPassword' element={<ForgotYourPasswordPage/>} /> : <Route path='/forgotYourPassword' element={<Navigate to='/' />} />}
+                {loggedIn ? <Route path='/user/changePassword/:userId/:uniqueString' element={<ChangedPasswordPage/>} /> : <Route path='/user/changePassword/:userId/:uniqueString' element={<Navigate to='/' />} />}
             </Routes>
         </BrowserRouter>
     )
