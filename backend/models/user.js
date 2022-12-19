@@ -47,6 +47,10 @@ const UserSchema = new mongoose.Schema({
     type: "ObjectId",
     ref: "Cart",
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);

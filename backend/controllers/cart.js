@@ -15,7 +15,6 @@ const cartAdd = async (req, res) => {
 };
 const updatedCart = async (req, res) => {
   const { id, product, quantity } = req.body;
-  console.log(req.body);
   try {
     const newCart = await Cart.findOneAndUpdate(
       { _id: id },
@@ -29,7 +28,6 @@ const updatedCart = async (req, res) => {
         new: true,
       }
     ).populate("product");
-    console.log(newCart);
     return newCart;
   } catch (err) {
     console.log(err);

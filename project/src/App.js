@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       loggedIn: false,
+      isAdmin: false,
       user: null,
       cartItems: 0,
       cartProducts: [],
@@ -19,9 +20,7 @@ class App extends Component {
     };
   }
   setCartItems = (number) => {
-    console.log("asdddd", number);
     this.setState({ cartItems: number });
-    console.log("asdddd", number);
   };
   setCartProduct = (products) => {
     this.setState({ cartProducts: products });
@@ -33,7 +32,6 @@ class App extends Component {
     this.setState({
       loggedIn: true,
       user,
-      
     });
     if (user.cart) {
       this.setState({
@@ -42,16 +40,21 @@ class App extends Component {
         cartQuantity: user.cart.quantity,
       });
     }
+    if (user.isAdmin) {
+      this.setState({
+        isAdmin: true,
+      });
+    }
   };
   logOut = () => {
     document.cookie = "aid= ; expires = Thu, 1 Jan 1970 00:00:01 GMT;path=/";
-    console.log("asd");
     this.setState({
       loggedIn: false,
+      isAdmin: false,
       user: null,
       cartItems: 0,
       cartProducts: null,
-      cartQuantity: null
+      cartQuantity: null,
     });
   };
 
@@ -82,7 +85,7 @@ class App extends Component {
     }
   }
   render() {
-    const { loggedIn, user, cartItems, cartProducts, cartQuantity } =
+    const { loggedIn, isAdmin, user, cartItems, cartProducts, cartQuantity } =
       this.state;
     if (!this.state.error) {
       return "";
@@ -92,6 +95,7 @@ class App extends Component {
         value={{
           loggedIn,
           user,
+          isAdmin,
           cartItems,
           cartProducts,
           cartQuantity,
