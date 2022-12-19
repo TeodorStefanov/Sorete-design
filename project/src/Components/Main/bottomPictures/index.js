@@ -1,8 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import picOne from "../../../images/bottomPictures/block1_48.jpg";
 import picTwo from "../../../images/bottomPictures/block3_48 (2).jpg";
 import styles from "./index.module.css";
 const BottomPictures = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/Towels");
+    window.scrollTo(0, 0);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -20,7 +26,9 @@ const BottomPictures = () => {
           <p className={styles.rightBottоmBottom}>
             The perfect combination of sustainability and comfort.
           </p>
-          <button className={styles.rightButton}>SHOP NOW</button>
+          <button className={styles.rightButton} onClick={handleClick}>
+            SHOP NOW
+          </button>
         </div>
       </div>
     </div>
