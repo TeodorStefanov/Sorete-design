@@ -16,12 +16,13 @@ const CartItem = ({ imageUrl, name, total, products, quantity, index }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: user.cart,
+        id: user.cart._id,
         product: products,
         quantity: quantity,
       }),
     });
     const response = await promise.json();
+    console.log(response);
     setCartItems(response.product.length);
   };
   return (

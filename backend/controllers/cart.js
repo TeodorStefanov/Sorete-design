@@ -46,10 +46,17 @@ const deleteItem = async (req, res) => {
       },
       { new: true }
     );
-
-    return cart;
+    if (cart) {
+      return { cart };
+    } else {
+      return {
+        error: true,
+      };
+    }
   } catch (err) {
-    console.log;
+    return {
+      error: true,
+    };
   }
 };
 module.exports = {

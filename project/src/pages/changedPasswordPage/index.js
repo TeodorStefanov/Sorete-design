@@ -34,7 +34,7 @@ const ChangedPasswordPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const promise = await fetch(`/changePassword/${userId}/${uniqueString}`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -44,7 +44,6 @@ const ChangedPasswordPage = () => {
     if (promise.status === 200) {
       navigate("/login");
     } else {
-      console.log(1);
       setActiveted(false);
     }
   };

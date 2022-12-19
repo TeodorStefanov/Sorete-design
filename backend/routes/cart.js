@@ -9,14 +9,19 @@ router.post("/addToCart", async (req, res) => {
   }
 });
 router.put("/updateCart", async (req, res) => {
-  const cart = await updatedCart(req, res)
+  const cart = await updatedCart(req, res);
   if (cart) {
     res.status(200).send(cart);
   }
 });
 router.put("/deleteItem", async (req, res) => {
-  const cart = await deleteItem(req, res);
-  console.log(cart);
+  const { error, cart } = await deleteItem(req, res);
   res.status(200).send(cart);
+});
+router.put("/buyItems", async (req, res) => {
+  const { error, cart } = await deleteItem(req, res);
+  if (cart) {
+    res.status(200).send(cart);
+  }
 });
 module.exports = router;
