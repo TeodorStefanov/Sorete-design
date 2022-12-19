@@ -9,9 +9,9 @@ import { Navigate, useNavigate } from "react-router-dom";
 const Aside = () => {
   const context = useContext(UserContext);
   const [searchMenu, setSearchMenu] = useState("");
-  const { loggedIn, user } = context;
+  const { isAdmin, user } = context;
 
-  const links = getNavigation(loggedIn, user);
+  const links = getNavigation(isAdmin, user);
   const navigate = useNavigate();
   const handleClick = async () => {
     navigate(`/searchPage/${searchMenu}`);
