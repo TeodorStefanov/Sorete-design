@@ -98,7 +98,7 @@ router.get("/changePassword/:email", async (req, res) => {
     res.status(401).send({ message: "Enter valid email" });
   }
 });
-router.post("/changePassword/:userId/:uniqueString", async (req, res) => {
+router.put("/changePassword/:userId/:uniqueString", async (req, res) => {
   const { error } = await changedPassword(req, res);
   if (!error) {
     res.status(200).send({ message: "Successfully changed password" });
