@@ -6,6 +6,7 @@ const LinkComponent = ({ link, title }) => {
     <div className={styles["list-item"]}>
       <Link to={link} className={styles.link}>
         {title}
+        {window.scrollTo(0, 0)}
       </Link>
     </div>
   );

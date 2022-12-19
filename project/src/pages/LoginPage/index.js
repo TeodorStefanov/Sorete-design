@@ -32,6 +32,7 @@ const LoginPage = () => {
     if (promise.status === 200) {
       context.logIn(response);
       navigate("/");
+      window.scrollTo(0, 0);
     }
     if (promise.status === 401) {
       setIsFailed(response.message);
