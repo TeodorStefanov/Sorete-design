@@ -1,11 +1,11 @@
 const env = process.env.NODE_ENV || "development";
 const express = require("express");
 const router = express.Router();
-const { cartAdd, updatedCart, deleteItem } = require("../controllers/cart");
+const { addCart, updatedCart, deleteItem } = require("../controllers/cart");
 router.post("/addToCart", async (req, res) => {
-  const cart = await cartAdd(req, res);
-  if (cart) {
-    res.status(200).send(cart._id);
+  const {error, newCart} = await addCart(req, res);
+  if (newCart) {
+    res.status(200).send(newCart._id);
   }
 });
 router.put("/updateCart", async (req, res) => {
