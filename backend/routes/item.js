@@ -4,13 +4,13 @@ const {
   getItem,
   createItem,
   getGaufreProducts,
-  getTowels,
+  getProducts,
   getSearch,
 } = require("../controllers/items");
 const router = express.Router();
 const Item = require("../models/item");
-router.post("/create", async (req, res) => {
-  const item = await createItem(req, res);
+router.post("/createItem", async (req, res) => {
+  const { error, item } = await createItem(req, res);
   if (item) {
     res.status(200).send(item);
   }
@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
   const items = await Item.find().then((items) => res.send(items));
 });
 router.get("/item/:id", async (req, res) => {
-  const item = await getItem(req, res);
+  const { error, item } = await getItem(req, res);
   if (item) {
     res.status(200).send(item);
   }
@@ -35,13 +35,13 @@ router.get("/products/gaufreColors", async (req, res) => {
   }
 });
 router.get("/:type", async (req, res) => {
-  const towels = await getTowels(req, res);
-  if (towels) {
-    res.status(200).send(towels);
+  const { products } = await getProducts(req, res);
+  if (products) {
+    res.status(200).send(products);
   }
 });
 router.get("/search/:searchMenu", async (req, res) => {
-  const itemsSearch = await getSearch(req, res);
+  const {error, itemsSearch} = await getSearch(req, res);
   if (itemsSearch) {
     res.status(200).send(itemsSearch);
   } else {

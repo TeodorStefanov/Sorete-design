@@ -1,7 +1,7 @@
 import React from "react";
-import TowelsPage from "..";
+import ProductsPage from "..";
 const Towels = () => {
-  return <TowelsPage type="Towels" />;
+  return <ProductsPage type="Towels" />;
 };
 
 export default Towels;

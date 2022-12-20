@@ -27,7 +27,7 @@ class Admin extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const promise = await fetch(`/create`, {
+      const promise = await fetch(`/createItem`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
