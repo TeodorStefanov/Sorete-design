@@ -1,19 +1,18 @@
 const Item = require("../models/item");
 
 const createItem = async (req, res) => {
-  const obj = req.body;
-  const {
-    name,
-    description,
-    descriptionTwo,
-    composition,
-    imageUrl,
-    imageUrlTwo,
-    price,
-    category,
-  } = obj;
-
   try {
+    const {
+      name,
+      description,
+      descriptionTwo,
+      composition,
+      imageUrl,
+      imageUrlTwo,
+      price,
+      category,
+    } = req.body;
+
     const item = new Item({
       name: name.trim(),
       description: description.trim(),
@@ -25,7 +24,13 @@ const createItem = async (req, res) => {
       category,
     });
     await item.save();
-    return item;
+    if (item) {
+      return { item };
+    } else {
+      return {
+        error: true,
+      };
+    }
   } catch (err) {
     return {
       error: true,
@@ -34,17 +39,16 @@ const createItem = async (req, res) => {
   }
 };
 const getItem = async (req, res) => {
-  const id = req.params.id;
   try {
+    const id = req.params.id;
     const item = await Item.findById(id).exec();
-
-    if (!item) {
+    if (item) {
+      return { item };
+    } else {
       return {
         error: true,
-        message: "Wrong userId",
       };
     }
-    return item;
   } catch (err) {
     return {
       error: true,
@@ -56,10 +60,16 @@ const getGaufreProducts = async (req, res) => {
   try {
     const products = await Item.find({ category: "GAUFRE" });
     const productsColors = await Item.find({ category: "colors" });
-    return {
-      products,
-      productsColors,
-    };
+    if (products && productsColors) {
+      return {
+        products,
+        productsColors,
+      };
+    } else {
+      return {
+        error: true,
+      };
+    }
   } catch (err) {
     return {
       error: true,
@@ -67,11 +77,17 @@ const getGaufreProducts = async (req, res) => {
     };
   }
 };
-const getTowels = async (req, res) => {
+const getProducts = async (req, res) => {
   try {
-    const towels = await Item.find({ category: req.params.type });
-    if (towels) {
-      return towels;
+    const products = await Item.find({ category: req.params.type });
+    if (products) {
+      return {
+        products,
+      };
+    } else {
+      return {
+        error: true,
+      };
     }
   } catch (err) {
     return {
@@ -81,13 +97,21 @@ const getTowels = async (req, res) => {
   }
 };
 const getSearch = async (req, res) => {
-  const { searchMenu } = req.params;
   try {
+    const { searchMenu } = req.params;
     const items = await Item.find();
     const itemsSearch = items.filter((el) =>
       el.name.toLowerCase().includes(searchMenu.toLowerCase())
     );
-    return itemsSearch;
+    if (itemsSearch) {
+      return {
+        itemsSearch,
+      };
+    } else {
+      return {
+        error: true,
+      };
+    }
   } catch (err) {
     return {
       error: true,
@@ -99,6 +123,6 @@ module.exports = {
   createItem,
   getItem,
   getGaufreProducts,
-  getTowels,
+  getProducts,
   getSearch,
 };
