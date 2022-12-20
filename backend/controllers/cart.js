@@ -1,20 +1,29 @@
 const Cart = require("../models/cart");
 
-const cartAdd = async (req, res) => {
+const addCart = async (req, res) => {
   const { product, quantity } = req.body;
   try {
     const cart = new Cart({
       product: [product],
       quantity: [quantity],
     });
-    const cartObj = await cart.save();
-    return cartObj;
+    const newCart = await cart.save();
+    if(newCart) {
+      return {newCart}
+    }else{
+      return {
+        error: true
+      }
+    }
   } catch (err) {
-    console.log(err);
+    return {
+      error: true
+    }
   }
 };
 const updatedCart = async (req, res) => {
   const { id, product, quantity } = req.body;
+  console.log(req.body);
   try {
     const newCart = await Cart.findOneAndUpdate(
       { _id: id },
@@ -28,6 +37,7 @@ const updatedCart = async (req, res) => {
         new: true,
       }
     ).populate("product");
+    console.log(newCart);
     return newCart;
   } catch (err) {
     console.log(err);
@@ -58,7 +68,7 @@ const deleteItem = async (req, res) => {
   }
 };
 module.exports = {
-  cartAdd,
+  addCart,
   updatedCart,
   deleteItem,
 };

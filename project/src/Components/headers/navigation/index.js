@@ -15,7 +15,6 @@ const Aside = () => {
   const navigate = useNavigate();
   const handleClick = async () => {
     navigate(`/searchPage/${searchMenu}`);
-    window.scrollTo(0, 0);
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
