@@ -12,32 +12,29 @@ const generateToken = (data) => {
   return token;
 };
 const sendVerificationEmail = async ({ _id, email }, message, path) => {
-  const currentUrl = "http://localhost:3000/";
-  const uniqueString = uuidv4() + _id;
-  const transporter = nodemailer.createTransport({
-    service: config.emailService,
-    auth: {
-      user: config.emailUser,
-      pass: config.emailPass,
-    },
-  });
-  const mailOption = {
-    from: config.emailUser,
-    to: email,
-    subject: "User send Message",
-    html: `${message} <b>This link
+  try {
+    const currentUrl = "http://localhost:3000/";
+    const uniqueString = uuidv4() + _id;
+    const transporter = nodemailer.createTransport({
+      service: config.emailService,
+      auth: {
+        user: config.emailUser,
+        pass: config.emailPass,
+      },
+    });
+    const mailOption = {
+      from: config.emailUser,
+      to: email,
+      subject: "User send Message",
+      html: `${message} <b>This link
     <b>expires in 6 hours</b>.</b><b>Press <a href=${
       currentUrl + `user/${path}/` + _id + "/" + uniqueString
     }>here</a> to proceed.</p>`,
-  };
-  const messageSend = await transporter.sendMail(mailOption);
-  if (!messageSend) {
-    return { error: "Wrong details" };
-  }
+    };
+    await transporter.sendMail(mailOption);
 
-  const saltRounds = 10;
-  const hashedUniqueString = await bcrypt.hash(uniqueString, saltRounds);
-  try {
+    const saltRounds = 10;
+    const hashedUniqueString = await bcrypt.hash(uniqueString, saltRounds);
     const newVerification = new verificationUser({
       userId: _id,
       uniqueString: hashedUniqueString,

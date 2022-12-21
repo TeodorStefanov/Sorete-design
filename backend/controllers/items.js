@@ -24,13 +24,8 @@ const createItem = async (req, res) => {
       category,
     });
     await item.save();
-    if (item) {
-      return { item };
-    } else {
-      return {
-        error: true,
-      };
-    }
+
+    return { item };
   } catch (err) {
     return {
       error: true,
@@ -42,13 +37,8 @@ const getItem = async (req, res) => {
   try {
     const id = req.params.id;
     const item = await Item.findById(id).exec();
-    if (item) {
-      return { item };
-    } else {
-      return {
-        error: true,
-      };
-    }
+
+    return { item };
   } catch (err) {
     return {
       error: true,
@@ -60,16 +50,11 @@ const getGaufreProducts = async (req, res) => {
   try {
     const products = await Item.find({ category: "GAUFRE" });
     const productsColors = await Item.find({ category: "colors" });
-    if (products && productsColors) {
-      return {
-        products,
-        productsColors,
-      };
-    } else {
-      return {
-        error: true,
-      };
-    }
+
+    return {
+      products,
+      productsColors,
+    };
   } catch (err) {
     return {
       error: true,
@@ -80,15 +65,10 @@ const getGaufreProducts = async (req, res) => {
 const getProducts = async (req, res) => {
   try {
     const products = await Item.find({ category: req.params.type });
-    if (products) {
-      return {
-        products,
-      };
-    } else {
-      return {
-        error: true,
-      };
-    }
+
+    return {
+      products,
+    };
   } catch (err) {
     return {
       error: true,
@@ -103,15 +83,9 @@ const getSearch = async (req, res) => {
     const itemsSearch = items.filter((el) =>
       el.name.toLowerCase().includes(searchMenu.toLowerCase())
     );
-    if (itemsSearch) {
-      return {
-        itemsSearch,
-      };
-    } else {
-      return {
-        error: true,
-      };
-    }
+    return {
+      itemsSearch,
+    };
   } catch (err) {
     return {
       error: true,
