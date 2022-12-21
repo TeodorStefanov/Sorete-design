@@ -37,7 +37,11 @@ const getItem = async (req, res) => {
   try {
     const id = req.params.id;
     const item = await Item.findById(id).exec();
-
+    if (!item) {
+      return {
+        error: true,
+      };
+    }
     return { item };
   } catch (err) {
     return {

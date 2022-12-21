@@ -54,7 +54,9 @@ const ChangedPasswordPage = () => {
   return (
     <PageWrapper>
       {!activeted ? (
-        <div>Error. Your link has been activeted already or wrong details</div>
+        <div>
+          Error. Your link has expired/been activeted already or wrong details
+        </div>
       ) : (
         <div className={styles.container}>
           <p>

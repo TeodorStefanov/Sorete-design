@@ -4,7 +4,6 @@ import Input from "../../Components/Other/input";
 import PageWrapper from "../../Components/page-wrapper";
 import UserContext from "../../Context";
 import {
-  emailValidator,
   familyNameValidator,
   firstNameValidator,
   phoneNumberValidator,
@@ -17,13 +16,11 @@ const ProfileEdit = () => {
   const [firstName, setFirstName] = useState(`${user.firstName}`);
   const [familyName, setFamilyName] = useState(`${user.familyName}`);
   const [phoneNumber, setPhoneNumber] = useState(`${user.phoneNumber}`);
-  const [email, setEmail] = useState(`${user.email}`);
   const [picture, setPicture] = useState(`${user.picture}`);
   const [error, setError] = useState("");
   const [firstNameError, setFirstnameError] = useState("");
   const [familyNameError, setFamilyNameError] = useState("");
   const [phoneNumberError, setPhoneNumberError] = useState("");
-  const [emailError, setEmailError] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,11 +28,9 @@ const ProfileEdit = () => {
       firstName &&
       familyName &&
       phoneNumber &&
-      email &&
       firstNameError === "" &&
       familyNameError === "" &&
-      phoneNumberError === "" &&
-      emailError === ""
+      phoneNumberError === ""
     ) {
       const promise = await fetch("/profile/edit", {
         method: "PUT",
@@ -47,7 +42,7 @@ const ProfileEdit = () => {
           firstName,
           familyName,
           phoneNumber,
-          email,
+
           picture,
         }),
       });
@@ -94,9 +89,7 @@ const ProfileEdit = () => {
   const handleBlurPhoneNumber = () => {
     setPhoneNumberError(phoneNumberValidator(phoneNumber));
   };
-  const handleBlurEmail = () => {
-    setEmailError(emailValidator(email));
-  };
+
   return (
     <PageWrapper>
       <form className={styles.container} onSubmit={handleSubmit}>
@@ -132,14 +125,7 @@ const ProfileEdit = () => {
           onChange={(e) => setPhoneNumber(e.target.value)}
           error={phoneNumberError}
         />
-        <Input
-          name="email"
-          value={email}
-          onBlur={handleBlurEmail}
-          lebal="Email"
-          onChange={(e) => setEmail(e.target.value)}
-          error={emailError}
-        />
+
         <button type="submit" className={styles.submitButton}>
           Save
         </button>
