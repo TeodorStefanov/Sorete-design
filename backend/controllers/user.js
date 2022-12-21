@@ -73,22 +73,26 @@ const getVerification = async (req, res, path) => {
       }
 
       return {
-        message: "Link has expired. Please try again.",
+        error: true,
       };
     }
     const status = bcrypt.compareSync(uniqueString, hashedUniqueString);
-    if (status) {
-      if (path === "email") {
-        await User.updateOne({ _id: userId }, { verified: true });
-        await verificationUser.deleteOne({ userId });
-      } else if (path === "password") {
-        await verificationUser.deleteOne({ userId });
-      }
-
+    if (!status) {
       return {
-        message: "Verification complate!",
+        error: true,
       };
     }
+
+    if (path === "email") {
+      await User.updateOne({ _id: userId }, { verified: true });
+      await verificationUser.deleteOne({ userId });
+    } else if (path === "password") {
+      await verificationUser.deleteOne({ userId });
+    }
+
+    return {
+      message: "Verification complate!",
+    };
   } catch (error) {
     return {
       error: true,
@@ -155,7 +159,7 @@ const saveUser = async (req, res) => {
     const message =
       "<b>Verify your email adress to complete the signup and login into your account.</b>";
     const path = "verify";
-    const newVerification = sendVerificationEmail(userObj, message, path);
+    const newVerification = await sendVerificationEmail(userObj, message, path);
 
     if (!newVerification) {
       return {
@@ -188,15 +192,14 @@ const verifyUser = async (req, res) => {
   const { username, password } = obj;
   try {
     const user = await User.findOne({ username }).populate("cart");
-    if (user.cart) {
-      await user.cart.populate("product");
-    }
-
     if (!user) {
       return {
         error: true,
         message: "No user",
       };
+    }
+    if (user.cart) {
+      await user.cart.populate("product");
     }
 
     const status = await bcrypt.compare(password, user.password);
@@ -221,7 +224,6 @@ const verifyUser = async (req, res) => {
       user,
     };
   } catch (err) {
-    console.log(err);
     return {
       error: true,
       message: "No user",
@@ -229,21 +231,21 @@ const verifyUser = async (req, res) => {
   }
 };
 const checkAuthentication = async (req, res) => {
-  const { token } = req.body;
-
-  if (!token) {
-    return false;
-  }
   try {
+    const { token } = req.body;
+
+    if (!token) {
+      return false;
+    }
     const decoded = jwt.verify(token, config.privetKey);
     if (decoded) {
       const { username } = decoded;
       const user = await User.findOne({ username }).populate("cart");
 
       if (user.cart) {
-        const newUser = await user.cart.populate("product");
+        await user.cart.populate("product");
       }
-      return user;
+      return { user };
     }
   } catch (err) {
     if (err) {
@@ -252,22 +254,20 @@ const checkAuthentication = async (req, res) => {
   }
 };
 const editProfile = async (req, res) => {
-  const obj = req.body;
-  const { _id, firstName, familyName, phoneNumber, email, picture } = obj;
-  const newObj = {
-    firstName,
-    familyName,
-    phoneNumber,
-    email,
-    picture,
-  };
-  if (!_id || !firstName || !familyName || !phoneNumber || !email) {
-    return {
-      error: true,
-      message: "Please enter valid credentials",
-    };
-  }
   try {
+    const { _id, firstName, familyName, phoneNumber, picture } = req.body;
+    const newObj = {
+      firstName,
+      familyName,
+      phoneNumber,
+      picture,
+    };
+    if (!_id || !firstName || !familyName || !phoneNumber) {
+      return {
+        error: true,
+        message: "Please enter valid credentials",
+      };
+    }
     const user = await User.findOneAndUpdate({ _id }, newObj, {
       new: true,
     });
@@ -348,7 +348,7 @@ const changePassword = async (req, res) => {
     if (user) {
       const message = `<b>To change your password and login into your account.</b>`;
       const path = "changePassword";
-      const newVerification = sendVerificationEmail(user, message, path);
+      const newVerification = await sendVerificationEmail(user, message, path);
       return newVerification;
     } else {
       return {

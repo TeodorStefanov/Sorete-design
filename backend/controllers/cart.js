@@ -30,7 +30,6 @@ const updateCart = async (req, res) => {
         new: true,
       }
     ).populate("product");
-
     return {
       updatedCart,
     };

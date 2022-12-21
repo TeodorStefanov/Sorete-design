@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
   }
 });
 router.post("/verify", async (req, res) => {
-  const user = await checkAuthentication(req, res);
+  const { user } = await checkAuthentication(req, res);
   if (user) {
     res.send(user);
   }
@@ -105,7 +105,7 @@ router.put("/changePassword/:userId/:uniqueString", async (req, res) => {
   }
 });
 router.get("/getVerified/:userId/:uniqueString", async (req, res) => {
-  const path = "varification";
+  const path = "verification";
   const { error, message } = await getVerification(req, res, path);
   if (message) {
     res.status(200).send({ message });

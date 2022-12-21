@@ -50,7 +50,7 @@ const Navigation = () => {
                 <Route path='/user/verify/:userId/:uniqueString' element={<VerifyUser/>} />
                 <Route path='/searchPage/:searchMenu' element={<SearchPage/>} />
                 {loggedIn ? <Route path='/forgotYourPassword' element={<ForgotYourPasswordPage/>} /> : <Route path='/forgotYourPassword' element={<Navigate to='/' />} />}
-                {loggedIn ? <Route path='/user/changePassword/:userId/:uniqueString' element={<ChangedPasswordPage/>} /> : <Route path='/user/changePassword/:userId/:uniqueString' element={<Navigate to='/' />} />}
+                <Route path='/user/changePassword/:userId/:uniqueString' element={<ChangedPasswordPage/>} />
             </Routes>
         </BrowserRouter>
     )
