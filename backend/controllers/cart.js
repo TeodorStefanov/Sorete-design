@@ -8,13 +8,7 @@ const addCart = async (req, res) => {
       quantity: [quantity],
     });
     const newCart = await cart.save();
-    if (newCart) {
-      return { newCart };
-    } else {
-      return {
-        error: true,
-      };
-    }
+    return { newCart };
   } catch (err) {
     return {
       error: true,
@@ -36,15 +30,10 @@ const updateCart = async (req, res) => {
         new: true,
       }
     ).populate("product");
-    if (updatedCart) {
-      return {
-        updatedCart,
-      };
-    } else {
-      return {
-        error: true,
-      };
-    }
+
+    return {
+      updatedCart,
+    };
   } catch (err) {
     return {
       error: true,
@@ -62,13 +51,8 @@ const deleteItem = async (req, res) => {
       },
       { new: true }
     );
-    if (cart) {
-      return { cart };
-    } else {
-      return {
-        error: true,
-      };
-    }
+
+    return { cart };
   } catch (err) {
     return {
       error: true,
