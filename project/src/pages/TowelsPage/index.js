@@ -6,8 +6,10 @@ const ProductsPage = ({ type }) => {
   const [products, setProducts] = useState([]);
   const getProducts = async () => {
     const promise = await fetch(`/${type}`);
-    const response = await promise.json();
-    setProducts(response);
+    if (promise.status === 200) {
+      const response = await promise.json();
+      setProducts(response);
+    }
   };
   const renderProducts = () => {
     return products.map((el, index) => {

@@ -42,7 +42,6 @@ const ProfileEdit = () => {
           firstName,
           familyName,
           phoneNumber,
-
           picture,
         }),
       });

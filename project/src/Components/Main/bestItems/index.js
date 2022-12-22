@@ -8,9 +8,11 @@ const BestItems = () => {
   const [changeProducts, setChangeProducts] = useState(true);
   const getGaufreProducts = async () => {
     const promise = await fetch("/products/gaufreColors");
-    const response = await promise.json();
-    setProducts(response.products);
-    setProductsColors(response.productsColors);
+    if (promise.status === 200) {
+      const response = await promise.json();
+      setProducts(response.products);
+      setProductsColors(response.productsColors);
+    }
   };
   const renderProducts = () => {
     return products.map((el, index) => {

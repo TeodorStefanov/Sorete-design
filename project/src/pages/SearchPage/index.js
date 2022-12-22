@@ -10,11 +10,12 @@ const SearchPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const getSearch = async () => {
     const promise = await fetch(`/search/${searchMenu}`);
-    const response = await promise.json();
-    if (response) {
-      setIsLoading(false);
-    }
     if (promise.status === 200) {
+      const response = await promise.json();
+      if (response) {
+        setIsLoading(false);
+      }
+
       setItems(response);
     }
   };
@@ -22,7 +23,7 @@ const SearchPage = () => {
     return items.map((el, index) => {
       return (
         <Product
-          id={el.id}
+          id={el._id}
           imageUrl={el.imageUrl}
           imageUrlTwo={el.imageUrlTwo}
           name={el.name}
@@ -35,7 +36,7 @@ const SearchPage = () => {
   };
   useEffect(() => {
     getSearch();
-  }, [items]);
+  }, [searchMenu]);
   return (
     <PageWrapper>
       {isLoading ? (

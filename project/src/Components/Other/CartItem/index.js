@@ -21,9 +21,10 @@ const CartItem = ({ imageUrl, name, total, products, quantity, index }) => {
         quantity: quantity,
       }),
     });
-    const response = await promise.json();
-    console.log(response);
-    setCartItems(response.product.length);
+    if (promise.status === 200) {
+      const response = await promise.json();
+      setCartItems(response.product.length);
+    }
   };
   return (
     <div className={styles.container}>

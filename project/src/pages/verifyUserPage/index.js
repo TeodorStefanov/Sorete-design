@@ -8,10 +8,12 @@ const VerifyUser = () => {
   const uniqueString = params.uniqueString;
   const verification = async () => {
     const promise = await fetch(`/getVerification/${userId}/${uniqueString}`);
-    const response = await promise.json();
-    if (response) {
-      console.log(response);
-      setVerify(response.message);
+    if (promise.status === 200) {
+      setVerify("Verification complate");
+    } else {
+      setVerify(
+        "Error. Your link has expired/been activeted already or wrong details"
+      );
     }
   };
   useEffect(() => {
