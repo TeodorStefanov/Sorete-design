@@ -83,11 +83,13 @@ const ProductPage = () => {
               cartId: response,
             }),
           });
-          const newResponse = await newPromise.json();
-          setClickModal(true);
-          setCartItems(newResponse.cart.product.length);
-          setCartProduct(newResponse.cart.product);
-          setCartQuantity(newResponse.cart.quantity);
+          if (newPromise.status === 200) {
+            const newResponse = await newPromise.json();
+            setClickModal(true);
+            setCartItems(newResponse.cart.product.length);
+            setCartProduct(newResponse.cart.product);
+            setCartQuantity(newResponse.cart.quantity);
+          }
         }
       } else {
         const cart = user.cart;
@@ -106,12 +108,14 @@ const ProductPage = () => {
             },
           }),
         });
-        const response2 = await promise2.json();
-        console.log(response2);
-        setClickModal(true);
-        setCartItems(response2.product.length);
-        setCartProduct(response2.product);
-        setCartQuantity(response2.quantity);
+        if (promise2.status === 200) {
+          const response2 = await promise2.json();
+
+          setClickModal(true);
+          setCartItems(response2.product.length);
+          setCartProduct(response2.product);
+          setCartQuantity(response2.quantity);
+        }
       }
     }
   };

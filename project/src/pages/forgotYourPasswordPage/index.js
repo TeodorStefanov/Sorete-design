@@ -7,7 +7,6 @@ const ForgotYourPasswordPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const promise = await fetch(`/changePassword/${email}`);
-    const response = await promise.json();
     if (promise.status === 200) {
       setEmailResponse("Please check your email to proceed");
     } else {

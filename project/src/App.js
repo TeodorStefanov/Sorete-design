@@ -73,12 +73,10 @@ class App extends Component {
         },
         body: JSON.stringify({ token }),
       });
-
-      const response = await promise.json();
-
-      if (response) {
+      if (promise.status === 200) {
+        const response = await promise.json();
         this.logIn(response);
-        this.setState({ error: true });
+        this.setState({ error: true }); 
       } else {
         this.setState({ error: true });
       }

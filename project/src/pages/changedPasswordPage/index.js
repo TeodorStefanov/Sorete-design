@@ -26,7 +26,6 @@ const ChangedPasswordPage = () => {
   };
   const getVerified = async () => {
     const promise = await fetch(`/getVerified/${userId}/${uniqueString}`);
-    const response = await promise.json();
     if (promise.status === 200) {
       setActiveted(true);
     }
@@ -40,7 +39,6 @@ const ChangedPasswordPage = () => {
       },
       body: JSON.stringify({ password, rePassword }),
     });
-    const response = await promise.json();
     if (promise.status === 200) {
       navigate("/login");
     } else {
