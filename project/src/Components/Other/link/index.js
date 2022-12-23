@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 const LinkComponent = ({ link, title }) => {
   return (
     <div className={styles["list-item"]}>
-      <Link to={link} className={styles.link}>
+      <Link onClick={() => window.scrollTo(0, 0)} to={link} className={styles.link}>
         {title}
-        {window.scrollTo(0, 0)}
       </Link>
     </div>
   );

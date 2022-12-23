@@ -26,6 +26,7 @@ const Input = ({
           required
           onChange={onChange}
           placeholder={placeHolder}
+          autoComplete=''
         />
       </label>
       <div className={styles.error}>{error ? error : ""}</div>

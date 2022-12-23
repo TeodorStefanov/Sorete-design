@@ -102,7 +102,6 @@ module.exports = {
     getVerificationEmail: async (req, res) => {
       const path = "email";
       const { error, message } = await getVerification(req, res, path);
-      console.log(message);
       if (message) {
         return res.status(200).send({ message: "Verification complate" });
       }
@@ -348,11 +347,15 @@ module.exports = {
           { _id: id },
           {
             cart: cartId,
-          }
+          },
+          { new: true }
         ).populate("cart");
+
         await user.cart.populate("product");
+
         res.status(200).send(user);
       } catch (err) {
+        console.log(err);
         res.status(400).send({ error: "There is an error" });
       }
     },
@@ -372,6 +375,9 @@ module.exports = {
         const user = await User.findOneAndUpdate({ _id }, newObj, {
           new: true,
         }).populate("cart");
+        if (user.cart) {
+          await user.cart.populate("product");
+        }
         res.status(200).send(user);
       } catch (err) {
         if (err.code === 11000 && err.keyValue.email) {

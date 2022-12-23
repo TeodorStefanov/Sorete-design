@@ -35,3 +35,8 @@
   right: 180px;
   cursor: pointer;
 }
+@media only screen and (max-width: 600px) {
+  .container {
+    background-color: rgb(49, 206, 80);
+  }
+}
