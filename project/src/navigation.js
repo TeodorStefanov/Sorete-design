@@ -49,7 +49,7 @@ const Navigation = () => {
                 {loggedIn ? <Route path='/:userID/cart' element={<CartPage/>} /> :  <Route path='/:userID/cart' element={<Navigate to='/' />} />}
                 <Route path='/user/verify/:userId/:uniqueString' element={<VerifyUser/>} />
                 <Route path='/searchPage/:searchMenu' element={<SearchPage/>} />
-                {loggedIn ? <Route path='/forgotYourPassword' element={<ForgotYourPasswordPage/>} /> : <Route path='/forgotYourPassword' element={<Navigate to='/' />} />}
+                <Route path='/forgotYourPassword' element={<ForgotYourPasswordPage/>} />
                 <Route path='/user/changePassword/:userId/:uniqueString' element={<ChangedPasswordPage/>} />
             </Routes>
         </BrowserRouter>

@@ -21,7 +21,7 @@ const ProductPage = () => {
   const [clickModal, setClickModal] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
-  const { user, setCartItems, setCartProduct, setCartQuantity } =
+  const { user, logIn, setCartItems, setCartProduct, setCartQuantity } =
     useContext(UserContext);
 
   const getData = async () => {
@@ -72,6 +72,7 @@ const ProductPage = () => {
           }),
         });
         const response = await promise.json();
+        console.log(response);
         if (promise.status === 200) {
           const newPromise = await fetch("/user/createCart", {
             method: "PUT",
@@ -86,9 +87,7 @@ const ProductPage = () => {
           if (newPromise.status === 200) {
             const newResponse = await newPromise.json();
             setClickModal(true);
-            setCartItems(newResponse.cart.product.length);
-            setCartProduct(newResponse.cart.product);
-            setCartQuantity(newResponse.cart.quantity);
+            logIn(newResponse);
           }
         }
       } else {
@@ -110,7 +109,6 @@ const ProductPage = () => {
         });
         if (promise2.status === 200) {
           const response2 = await promise2.json();
-
           setClickModal(true);
           setCartItems(response2.product.length);
           setCartProduct(response2.product);

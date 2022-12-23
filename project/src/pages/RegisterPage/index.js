@@ -86,16 +86,18 @@ class RegisterPage extends Component {
         },
         body: JSON.stringify(this.state),
       });
-      const response = await promise.json();
       if (promise.status === 200) {
         this.props.history("/login");
       } else {
+        const response = await promise.json();
         if (response["error"].includes("Username")) {
           this.setState({ isFailed: true });
           this.setState({ error: "Username already exists" });
         } else if (response["error"].includes("Email")) {
           this.setState({ isFailed: true });
           this.setState({ error: "Email already exists" });
+        } else {
+          this.setState({ isFailed: "There is an error" });
         }
       }
     } else {
@@ -151,6 +153,8 @@ class RegisterPage extends Component {
       phoneNumberError,
       error,
     } = this.state;
+    
+    
     return (
       <PageWrapper>
         <div className={styles.container}>

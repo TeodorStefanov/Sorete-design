@@ -9,7 +9,7 @@ import {
   phoneNumberValidator,
 } from "../../utils/registration";
 import styles from "./index.module.css";
-const ProfileEdit = () => {
+const ProfileEdit = () => { 
   const context = useContext(UserContext);
   const navigate = useNavigate();
   const { user } = context;
