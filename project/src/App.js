@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import UserContext from "./Context";
-
-import UserContext2 from "./Context2";
 function getCookie(name) {
   const cookieValue = document.cookie.match("\\b" + name + "=([^;]*)\\b");
   return cookieValue ? cookieValue[1] : null;
@@ -76,7 +74,7 @@ class App extends Component {
       if (promise.status === 200) {
         const response = await promise.json();
         this.logIn(response);
-        this.setState({ error: true }); 
+        this.setState({ error: true });
       } else {
         this.setState({ error: true });
       }

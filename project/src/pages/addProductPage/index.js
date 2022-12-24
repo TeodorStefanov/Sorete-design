@@ -26,20 +26,17 @@ class Admin extends Component {
   };
   handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const promise = await fetch(`/createItem`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
 
-        body: JSON.stringify(this.state),
-      });
-      if (promise.status(200)) {
-        this.props.history("/");
-      }
-    } catch (e) {
-      console.log(e);
+    const promise = await fetch(`/createItem`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(this.state),
+    });
+    if (promise.status(200)) {
+      this.props.history("/");
     }
   };
   openWidget = () => {
@@ -146,7 +143,7 @@ class Admin extends Component {
             <button type="submit">login</button>
           </form>
         </div>
-      </PageWrapper>
+      </PageWrapper>   
     );
   }
 }

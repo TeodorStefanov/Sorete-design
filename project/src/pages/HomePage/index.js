@@ -4,7 +4,6 @@ import BestItems from "../../Components/Main/bestItems";
 import BottomPictures from "../../Components/Main/bottomPictures";
 import ConceptMenu from "../../Components/Main/conceptMenu";
 import ItemMenu from "../../Components/Main/itemMenu";
-import Items from "../../Components/Main/items";
 import PageWrapper from "../../Components/page-wrapper";
 import styles from "./index.module.css";
 import BottomContextPicture from "../../Components/Main/bottomContextPicture";

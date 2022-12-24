@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 
-const Item = ({ name, description, imageUrl, price, id }) => {
+const Item = ({ name, imageUrl, price, id }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/products/${id}`);
@@ -11,7 +11,7 @@ const Item = ({ name, description, imageUrl, price, id }) => {
   return (
     <div className={styles.container} onClick={handleClick}>
       <div className={styles.top}>
-        <img className={styles.image} src={imageUrl}></img>
+        <img className={styles.image} src={imageUrl} alt=""></img>
       </div>
       <div className={styles.bottom}>
         <div>{name}</div>

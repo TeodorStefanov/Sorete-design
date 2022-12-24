@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Link from "../../Other/link";
 import UserContext from "../../../Context";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Aside = () => {
   const context = useContext(UserContext);
   const [searchMenu, setSearchMenu] = useState("");

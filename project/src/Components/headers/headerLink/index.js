@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./index.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
@@ -54,6 +54,7 @@ const HeaderLink = () => {
                 cartItems === 0 ? styles.total : ""
               }`}
               onClick={handleClickNew}
+              alt=""
             />
             <Link to="/" className={styles.link} onClick={logOut}>
               Log Out

@@ -16,7 +16,6 @@ const ChangedPasswordPage = () => {
   const [passwordError, setPasswordError] = useState("");
   const [rePasswordError, setRePasswordError] = useState("");
   const [activeted, setActiveted] = useState(false);
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const handleBlurPassword = () => {
     setPasswordError(passwordValidator(password));

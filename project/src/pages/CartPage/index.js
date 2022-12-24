@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import CartItem from "../../Components/Other/CartItem";
 import PageWrapper from "../../Components/page-wrapper";
 import UserContext from "../../Context";
@@ -20,6 +20,7 @@ const CartPage = () => {
       const total =
         cartQuantity[index].L + cartQuantity[index].M + cartQuantity[index].S;
       allTotal += total * el.price;
+      return null
     });
     return allTotal.toFixed(2);
   };
@@ -35,7 +36,6 @@ const CartPage = () => {
       body: JSON.stringify({ id: user.cart._id, product: [], quantity: [] }),
     });
     const response = await promise.json();
-    console.log(response);
     if (promise.status === 200) {
       setCartProduct(response.product);
       setCartQuantity(response.quantity);

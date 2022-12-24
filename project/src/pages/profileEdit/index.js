@@ -9,7 +9,7 @@ import {
   phoneNumberValidator,
 } from "../../utils/registration";
 import styles from "./index.module.css";
-const ProfileEdit = () => { 
+const ProfileEdit = () => {
   const context = useContext(UserContext);
   const navigate = useNavigate();
   const { user } = context;
@@ -92,7 +92,7 @@ const ProfileEdit = () => {
   return (
     <PageWrapper>
       <form className={styles.container} onSubmit={handleSubmit}>
-        <img className={styles.picture} src={picture}></img>
+        <img className={styles.picture} src={picture} alt=""></img>
         <button
           type="button"
           className={styles.submitPicture}
