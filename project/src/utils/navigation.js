@@ -1,4 +1,4 @@
-const getNavigation = (isAdmin, user) => {
+const getNavigation = (isAdmin) => {
   const links = [
     {
       title: "Towels",

@@ -58,7 +58,7 @@ const ContactPage = () => {
   return (
     <PageWrapper>
       <div className={styles.container}>
-        <img src={picOne} className={styles.picture} />
+        <img src={picOne} className={styles.picture} alt="" />
         <div className={styles.top}>
           <h1>Contacts</h1>
           <p>
@@ -69,7 +69,7 @@ const ContactPage = () => {
           </p>
         </div>
         <div className={styles.middle}>
-          <img src={imgTwo} className={styles.pictureTwo} />
+          <img src={imgTwo} className={styles.pictureTwo} alt="" />
           <form className={styles.middleForm} onSubmit={handleSubmit}>
             <p className={styles.middleP}>Contact us</p>
             <p>Please let us know if you need any further information.</p>

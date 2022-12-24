@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import styles from "./index.module.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import UserContext from "../../../Context";
 const CartItem = ({ imageUrl, name, total, products, quantity, index }) => {
   const context = useContext(UserContext);
-  const { user, setCartItems, cartProducts } = context;
+  const { user, setCartItems } = context;
   const handleClick = async () => {
-    const newProducts = products.splice(index, 1);
-    const newQuantity = quantity.splice(index, 1);
+    products.splice(index, 1);
+    quantity.splice(index, 1);
     const promise = await fetch("/deleteItem", {
       method: "PUT",
       headers: {
@@ -28,7 +27,7 @@ const CartItem = ({ imageUrl, name, total, products, quantity, index }) => {
   };
   return (
     <div className={styles.container}>
-      <img className={styles.picture} src={imageUrl}></img>
+      <img className={styles.picture} src={imageUrl} alt=""></img>
       <div className={styles.main}>
         <div className={styles.left}>
           <h1 className={styles.name}>{name}</h1>

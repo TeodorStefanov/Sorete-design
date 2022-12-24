@@ -72,7 +72,6 @@ const ProductPage = () => {
           }),
         });
         const response = await promise.json();
-        console.log(response);
         if (promise.status === 200) {
           const newPromise = await fetch("/user/createCart", {
             method: "PUT",
@@ -228,7 +227,7 @@ const ProductPage = () => {
         <div className={styles.containerModal}>
           <div className={styles.modalContainer}>
             <div className={styles.topModal}>
-              <img src={imageUrl} className={styles.pictureModal}></img>
+              <img src={imageUrl} className={styles.pictureModal} alt=""></img>
               <div className={styles.nameQuantity}>
                 <h1 className={styles.nameModal}>{name}</h1>
                 <ul>
@@ -268,7 +267,7 @@ const ProductPage = () => {
             <p className={styles.bottomP}>Composition</p>
             <p className={styles.bottomStyle}>{composition}</p>
           </div>
-          <img src={imageUrlTwo} className={styles.bottomPicture}></img>
+          <img src={imageUrlTwo} className={styles.bottomPicture} alt=""></img>
         </div>
       ) : (
         ""

@@ -112,7 +112,7 @@ module.exports = {
     getCheckVerfication: async (req, res) => {
       const path = "verification";
       const { error, message } = await getVerification(req, res, path);
-      console.log(message);
+
       if (message) {
         return res.status(200).send({ message: "Verification complate" });
       }
@@ -137,7 +137,6 @@ module.exports = {
         if (!newVerification) {
           return res.status(400).send({ error: "There is an error" });
         }
-        console.log("verification", newVerification);
         res.status(200).send();
       } catch (err) {
         res.status(400).send({ error: "There is an error" });
@@ -355,7 +354,6 @@ module.exports = {
 
         res.status(200).send(user);
       } catch (err) {
-        console.log(err);
         res.status(400).send({ error: "There is an error" });
       }
     },

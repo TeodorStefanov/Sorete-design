@@ -45,7 +45,6 @@ class RegisterPage extends Component {
   static contextType = UserContext;
   handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state);
     const {
       firstName,
       familyName,

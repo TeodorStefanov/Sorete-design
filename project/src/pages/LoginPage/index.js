@@ -2,21 +2,17 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../Components/Other/input";
 import PageWrapper from "../../Components/page-wrapper";
-import WrongUser from "../../Components/NOT USED/wrongUser";
 import UserContext from "../../Context";
-import UserContext2 from "../../Context2";
 import styles from "./index.module.css";
 import { usernameValidator, passwordValidator } from "../../utils/login";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isFailed, setIsFailed] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   const context = useContext(UserContext);
-  const context2 = useContext(UserContext2);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -33,10 +29,6 @@ const LoginPage = () => {
       context.logIn(response);
       navigate("/");
       window.scrollTo(0, 0);
-    }
-    if (promise.status === 401) {
-      setIsFailed(response.message);
-      //context2.isError2();
     }
   };
   const handleClick = () => {
@@ -76,7 +68,6 @@ const LoginPage = () => {
           </div>
           <button className={styles.submit}>Login</button>
         </form>
-        {isFailed ? <WrongUser value={isFailed} /> : ""}
       </div>
     </PageWrapper>
   );
