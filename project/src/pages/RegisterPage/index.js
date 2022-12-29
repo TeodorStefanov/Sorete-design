@@ -152,8 +152,7 @@ class RegisterPage extends Component {
       phoneNumberError,
       error,
     } = this.state;
-    
-    
+
     return (
       <PageWrapper>
         <div className={styles.container}>
@@ -231,7 +230,7 @@ class RegisterPage extends Component {
             />
 
             <button type="submit" className={styles.submit}>
-              registation
+              Registration
             </button>
           </form>
           {this.state.isFailed ? (
