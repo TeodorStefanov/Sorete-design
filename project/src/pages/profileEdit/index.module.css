@@ -16,8 +16,8 @@
 }
 .submitPicture {
   text-align: center;
-  background: #234465;
-  color: pink;
+  background: #273540;
+  color: white;
   padding: 10px;
   width: 180px;
   margin-bottom: 80px;
@@ -31,8 +31,8 @@
 }
 .submitButton {
   text-align: center;
-  background: #234465;
-  color: pink;
+  background: #273540;
+  color: white;
   padding: 10px;
   width: 100px;
   border-radius: 5px;
@@ -45,15 +45,15 @@
 }
 
 .submitPicture:hover {
-  background-color: pink;
-  border: 2px solid #234465;
-  color: #234465;
+  background-color: white;
+  border: 2px solid #273540;
+  color: #273540;
   font-style: italic;
 }
 .submitButton:hover {
-  background-color: pink;
-  border: 2px solid #234465;
-  color: #234465;
+  background-color: white;
+  border: 2px solid #273540;
+  color: #273540;
   font-style: italic;
 }
 .error {

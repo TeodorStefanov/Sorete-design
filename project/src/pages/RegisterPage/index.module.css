@@ -7,8 +7,8 @@
 }
 
 .submit {
-  background: #234465;
-  color: pink;
+  background: #273540;
+  color: white;
   padding: 10px;
   width: 100px;
   border-radius: 5px;
@@ -20,9 +20,9 @@
 }
 
 .submit:hover {
-  background-color: pink;
-  border: 2px solid #234465;
-  color: #234465;
+  background-color: white;
+  border: 2px solid #273540;
+  color: #273540;
   font-style: italic;
 }
 .error {
