@@ -2,7 +2,7 @@ const env = process.env.NODE_ENV || "development";
 
 const config = {
   development: {
-    port: process.env.PORT || 9000,
+    port: process.env.PORT,
     dbURL: process.env.DATABASE_URL,
     privetKey: process.env.PRIVATE_KEY,
     emailService: process.env.EMAIL_SERVICE,
