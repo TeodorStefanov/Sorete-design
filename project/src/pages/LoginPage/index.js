@@ -57,6 +57,7 @@ const LoginPage = () => {
           <Input
             name="password"
             value={password}
+            type="password"
             onBlur={handleBlurPassword}
             lebal="Password"
             onChange={(e) => setPassword(e.target.value)}
