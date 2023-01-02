@@ -223,7 +223,7 @@ class RegisterPage extends Component {
               value={rePassword}
               onBlur={this.handleBlurRePassword}
               lebal={"Confirm Password"}
-              type="text"
+              type="password"
               onChange={(e) => this.onChange(e, "rePassword")}
               placeHolder={"Confirm your password"}
               error={rePasswordError}
