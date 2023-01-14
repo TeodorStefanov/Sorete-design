@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
+  const [error, setError] = useState("");
   const context = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -29,6 +29,8 @@ const LoginPage = () => {
       context.logIn(response);
       navigate("/");
       window.scrollTo(0, 0);
+    } else {
+      setError(response.message);
     }
   };
   const handleClick = () => {
@@ -64,6 +66,7 @@ const LoginPage = () => {
             placeHolder="Enter yoyr password"
             error={passwordError}
           />
+          {error ? <div className={styles.error}>{error}</div> : ""}
           <div className={styles.forgotYourPassword} onClick={handleClick}>
             Forgot your password?
           </div>

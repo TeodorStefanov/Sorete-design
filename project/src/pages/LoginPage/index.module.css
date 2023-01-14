@@ -31,3 +31,6 @@
   color: rgb(231, 119, 119);
   cursor: pointer;
 }
+.error {
+  color: red;
+}
